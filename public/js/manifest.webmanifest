@@ -1,0 +1,18 @@
+{
+  "short_name": "SI-ALDO",
+  "name": "WebGIS SI-ALDO",
+  "description": "Sistem Informasi Pengelolaan Air Limbah Domestik Kota Banjarmasin",
+  "icons": [
+    {
+      "src": "../img/favicon/favicon-196.png",
+      "sizes": "196x196",
+      "type": "image/png"
+    }
+  ],
+
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#000000"
+
+}
