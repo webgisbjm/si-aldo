@@ -27,7 +27,11 @@ class IpalController extends Controller
 
         $ipals = Ipal::with(['kelurahans', 'categories', 'services', 'media'])->get();
 
-        return view('admin.ipals.index', compact('ipals'));
+        $data = [
+            'title'     => 'IPAL PERUMDA PALD',
+        ];
+
+        return view('admin.ipals.index', $data, compact('ipals'));
     }
 
     public function create()

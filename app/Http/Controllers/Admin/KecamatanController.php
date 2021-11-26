@@ -86,19 +86,4 @@ class KecamatanController extends Controller
 
         return response(null, Response::HTTP_NO_CONTENT);
     }
-
-    // public function select(Request $request)
-    // {
-    //     $kecamatans = [];
-
-    //     if ($request->has('q')) {
-    //         $search = $request->q;
-    //         $kecamatans = Kecamatan::select("id", "name")
-    //             ->Where('name', 'LIKE', "%$search%")
-    //             ->get();
-    //     } else {
-    //         $kecamatans = Kecamatan::limit(5)->get();
-    //     }
-    //     return response()->json($kecamatans);
-    // }
 }

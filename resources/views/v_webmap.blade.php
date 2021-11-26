@@ -108,7 +108,7 @@
       let kecamatan{{ $data->id }} = L.layerGroup();
   @endforeach
 
-
+    let ipalLayer = new L.layerGroup();
 </script>
 
 <script>
@@ -643,7 +643,7 @@ let mckplus = L.geoJson(null, {
 });
 $.getJSON("{{ asset('data/mckplus.geojson') }}", function (data) {
     mckplus.addData(data);
-    map.addLayer(mckplusLayer);
+    // map.addLayer(mckplusLayer);
 });
 
 /* Empty layer placeholder to add to layer control for listening when to add/remove mckkomunal to markerClusters layer */
@@ -816,38 +816,38 @@ $.getJSON("{{ asset('data/kotaku.geojson') }}", function (data) {
     septikkomunal.addData(data);
 });
 
-/* IPAL layer placeholder*/
-let ipalLayer = L.geoJson(null);
-let ipal = L.geoJson(null, {
-    pointToLayer: function (feature, latlng) {
-        return L.marker(latlng, {
-            icon: L.icon({
-                iconUrl: "{{ asset('img/pdpal.png') }}",
-                iconSize: [32, 37],
-                iconAnchor: [12, 28],
-                popupAnchor: [0, -25]
-            }),
-            title: feature.properties.NAMA + " (PDPAL)",
-            riseOnHover: true
-        });
-    },
-    onEachFeature: function (feature, layer) {
-        if (feature.properties) {
-            let content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>NAMA</th><td>" + feature.properties.NAMA + "<tr><th>ALAMAT</th><td>" + feature.properties.ALAMAT + "</td></tr>" + "<tr><th>KAPASITAS</th><td>" + feature.properties.KAPASITAS + "</td></tr>" + "<tr><th>TAHUN OPERASI</th><td>" + feature.properties.TAHUN + "</td></tr>" + "</td></tr>" + "<table>";
-            layer.on({
-                click: function (e) {
-                    $("#feature-title").html(feature.properties.NAMA);
-                    $("#feature-info").html(content);
-                    $("#featureModal").modal("show");
-                    highlight.clearLayers().addLayer(L.circleMarker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], highlightStyle));
-                }
-            });
-        }
-    }
-});
-$.getJSON("{{ asset('data/PDPAL_PT.geojson') }}", function (data) {
-    ipal.addData(data);
-});
+// /* IPAL layer placeholder*/
+// let ipalLayer = L.geoJson(null);
+// let ipal = L.geoJson(null, {
+//     pointToLayer: function (feature, latlng) {
+//         return L.marker(latlng, {
+//             icon: L.icon({
+//                 iconUrl: "{{ asset('img/pdpal.png') }}",
+//                 iconSize: [32, 37],
+//                 iconAnchor: [12, 28],
+//                 popupAnchor: [0, -25]
+//             }),
+//             title: feature.properties.NAMA + " (PDPAL)",
+//             riseOnHover: true
+//         });
+//     },
+//     onEachFeature: function (feature, layer) {
+//         if (feature.properties) {
+//             let content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>NAMA</th><td>" + feature.properties.NAMA + "<tr><th>ALAMAT</th><td>" + feature.properties.ALAMAT + "</td></tr>" + "<tr><th>KAPASITAS</th><td>" + feature.properties.KAPASITAS + "</td></tr>" + "<tr><th>TAHUN OPERASI</th><td>" + feature.properties.TAHUN + "</td></tr>" + "</td></tr>" + "<table>";
+//             layer.on({
+//                 click: function (e) {
+//                     $("#feature-title").html(feature.properties.NAMA);
+//                     $("#feature-info").html(content);
+//                     $("#featureModal").modal("show");
+//                     highlight.clearLayers().addLayer(L.circleMarker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], highlightStyle));
+//                 }
+//             });
+//         }
+//     }
+// });
+// $.getJSON("{{ asset('data/PDPAL_PT.geojson') }}", function (data) {
+//     ipal.addData(data);
+// });
 
 
 
@@ -1220,6 +1220,55 @@ L.geoJson(<?= $data->geojson ?>, {
 
 @endforeach
 
+/*IPAL PERUMDAPALD*/
+
+@foreach ($ipal as $data)
+L.marker([<?= $data->lat . ',' . $data->lng ?>], {
+        icon: L.icon({
+                iconUrl: "{{ asset('img/pdpal.png') }}",
+                iconSize: [32, 37],
+                iconAnchor: [12, 28],
+                popupAnchor: [0, -25]
+            }),
+            riseOnHover: true
+        }).bindPopup('IPAL {{ $data->name }}').openPopup().addTo(ipalLayer);
+@endforeach
+
+// /* IPAL layer placeholder*/
+// let ipalLayer = L.geoJson(null);
+// let ipal = L.geoJson(null, {
+//     pointToLayer: function (feature, latlng) {
+//         return L.marker(latlng, {
+//             icon: L.icon({
+//                 iconUrl: "{{ asset('img/pdpal.png') }}",
+//                 iconSize: [32, 37],
+//                 iconAnchor: [12, 28],
+//                 popupAnchor: [0, -25]
+//             }),
+//             title: feature.properties.NAMA + " (PDPAL)",
+//             riseOnHover: true
+//         });
+//     },
+//     onEachFeature: function (feature, layer) {
+//         if (feature.properties) {
+//             let content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>NAMA</th><td>" + feature.properties.NAMA + "<tr><th>ALAMAT</th><td>" + feature.properties.ALAMAT + "</td></tr>" + "<tr><th>KAPASITAS</th><td>" + feature.properties.KAPASITAS + "</td></tr>" + "<tr><th>TAHUN OPERASI</th><td>" + feature.properties.TAHUN + "</td></tr>" + "</td></tr>" + "<table>";
+//             layer.on({
+//                 click: function (e) {
+//                     $("#feature-title").html(feature.properties.NAMA);
+//                     $("#feature-info").html(content);
+//                     $("#featureModal").modal("show");
+//                     highlight.clearLayers().addLayer(L.circleMarker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], highlightStyle));
+//                 }
+//             });
+//         }
+//     }
+// });
+// $.getJSON("{{ asset('data/PDPAL_PT.geojson') }}", function (data) {
+//     ipal.addData(data);
+// });
+
+
+
   let baseTree = {
       label: '<b>{{ trans('cruds.maps.thematic') }}</b>',
       children: [
@@ -1269,7 +1318,7 @@ L.geoJson(<?= $data->geojson ?>, {
               {label: '<b>{{ trans('cruds.maps.asset') }}</b>',
                   selectAllCheckbox: true,
                   children: [
-                      {label: "<img src='{{ asset('img/mckplus.png') }}' width='24' height='24'>&nbsp;MCK Plus", layer: mckplusLayer},
+                      {label: "<img src='{{ asset('img/mckplus.png') }}' width='24' height='24'>&nbsp;MCK Plus", layer: mckplus},
                       {label: "<img src='{{ asset('img/mckkomunal.png') }}' width='24' height='24'>&nbsp;MCK Komunal", layer: mckkomunalLayer},
                       {label: "<img src='{{ asset('img/mckumum.png') }}' width='24' height='24'>&nbsp;MCK Umum", layer: mckumumLayer},
                       {label: "<img src='{{ asset('img/ipalkomunal.png') }}' width='24' height='24'>&nbsp;IPAL Komunal", layer: ipalkomunalLayer},
