@@ -20,6 +20,8 @@ class UpdateCategoryRequest extends FormRequest
             'type' => [
                 'required',
             ],
+            'icon.*' => ['mimes:jpg,png,jpeg,gif,svg'],
+
         ];
     }
 }

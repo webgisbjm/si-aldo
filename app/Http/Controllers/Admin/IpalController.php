@@ -25,7 +25,7 @@ class IpalController extends Controller
     {
         abort_if(Gate::denies('ipal_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $ipals = Ipal::with(['kelurahans', 'categories', 'services', 'media'])->get();
+        $ipals = Ipal::with(['kelurahans', 'categories', 'services'])->get();
 
         $data = [
             'title'     => 'IPAL PERUMDA PALD',
@@ -40,7 +40,7 @@ class IpalController extends Controller
 
         $kelurahans = Kelurahan::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        $categories = Category::pluck('type', 'id')->prepend(trans('global.pleaseSelect'), '');
+        $categories = Category::pluck('type', 'icon', 'id')->prepend(trans('global.pleaseSelect'), '');
 
         $services = Kelurahan::pluck('name', 'id');
 
@@ -51,13 +51,13 @@ class IpalController extends Controller
     {
         $ipal = Ipal::create($request->all());
         $ipal->services()->sync($request->input('services', []));
-        foreach ($request->input('photos', []) as $file) {
-            $ipal->addMedia(storage_path('tmp/uploads/' . basename($file)))->toMediaCollection('photos');
-        }
+        // foreach ($request->input('photos', []) as $file) {
+        //     $ipal->addMedia(storage_path('tmp/uploads/' . basename($file)))->toMediaCollection('photos');
+        // }
 
-        if ($media = $request->input('ck-media', false)) {
-            Media::whereIn('id', $media)->update(['model_id' => $ipal->id]);
-        }
+        // if ($media = $request->input('ck-media', false)) {
+        //     Media::whereIn('id', $media)->update(['model_id' => $ipal->id]);
+        // }
 
         return redirect()->route('admin.ipals.index');
     }
@@ -68,7 +68,7 @@ class IpalController extends Controller
 
         $kelurahans = Kelurahan::pluck('name', 'id')->prepend(trans('global.pleaseSelect'), '');
 
-        $categories = Category::pluck('type', 'id')->prepend(trans('global.pleaseSelect'), '');
+        $categories = Category::pluck('type', 'icon', 'id')->prepend(trans('global.pleaseSelect'), '');
 
         $services = Kelurahan::pluck('name', 'id');
 
@@ -81,19 +81,19 @@ class IpalController extends Controller
     {
         $ipal->update($request->all());
         $ipal->services()->sync($request->input('services', []));
-        if (count($ipal->photos) > 0) {
-            foreach ($ipal->photos as $media) {
-                if (!in_array($media->file_name, $request->input('photos', []))) {
-                    $media->delete();
-                }
-            }
-        }
-        $media = $ipal->photos->pluck('file_name')->toArray();
-        foreach ($request->input('photos', []) as $file) {
-            if (count($media) === 0 || !in_array($file, $media)) {
-                $ipal->addMedia(storage_path('tmp/uploads/' . basename($file)))->toMediaCollection('photos');
-            }
-        }
+        // if (count($ipal->photos) > 0) {
+        //     foreach ($ipal->photos as $media) {
+        //         if (!in_array($media->file_name, $request->input('photos', []))) {
+        //             $media->delete();
+        //         }
+        //     }
+        // }
+        // $media = $ipal->photos->pluck('file_name')->toArray();
+        // foreach ($request->input('photos', []) as $file) {
+        //     if (count($media) === 0 || !in_array($file, $media)) {
+        //         $ipal->addMedia(storage_path('tmp/uploads/' . basename($file)))->toMediaCollection('photos');
+        //     }
+        // }
 
         return redirect()->route('admin.ipals.index');
     }
@@ -123,15 +123,15 @@ class IpalController extends Controller
         return response(null, Response::HTTP_NO_CONTENT);
     }
 
-    public function storeCKEditorImages(Request $request)
-    {
-        abort_if(Gate::denies('ipal_create') && Gate::denies('ipal_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+    // public function storeCKEditorImages(Request $request)
+    // {
+    //     abort_if(Gate::denies('ipal_create') && Gate::denies('ipal_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $model         = new Ipal();
-        $model->id     = $request->input('crud_id', 0);
-        $model->exists = true;
-        $media         = $model->addMediaFromRequest('upload')->toMediaCollection('ck-media');
+    //     $model         = new Ipal();
+    //     $model->id     = $request->input('crud_id', 0);
+    //     $model->exists = true;
+    //     $media         = $model->addMediaFromRequest('upload')->toMediaCollection('ck-media');
 
-        return response()->json(['id' => $media->id, 'url' => $media->getUrl()], Response::HTTP_CREATED);
-    }
+    //     return response()->json(['id' => $media->id, 'url' => $media->getUrl()], Response::HTTP_CREATED);
+    // }
 }

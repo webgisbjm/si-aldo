@@ -1222,16 +1222,15 @@ L.geoJson(<?= $data->geojson ?>, {
 
 /*IPAL PERUMDAPALD*/
 
-@foreach ($ipal as $data)
+@foreach ($ipal as $k =>$data)
 L.marker([<?= $data->lat . ',' . $data->lng ?>], {
         icon: L.icon({
-                iconUrl: "{{ asset('img/pdpal.png') }}",
-                iconSize: [32, 37],
+                iconUrl: '{{ asset('') }}{{ $data->icon }}',
                 iconAnchor: [12, 28],
                 popupAnchor: [0, -25]
             }),
             riseOnHover: true
-        }).bindPopup('IPAL {{ $data->name }}').openPopup().addTo(ipalLayer);
+        }).bindPopup('{{ $data->name }}').openPopup().addTo(ipalLayer);
 @endforeach
 
 // /* IPAL layer placeholder*/

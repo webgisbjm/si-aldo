@@ -27,18 +27,24 @@ class Webmap extends Model
 
     public function dataCategory()
     {
+
         return DB::table('categories')->get();
     }
 
     public function dataBuild()
     {
-        return DB::table('builds')->get();
+        return DB::table('builds')
+            ->leftjoin('categories', 'categories.id', '=', 'builds.categories_id')
+            ->rightjoin('kecamatans', 'kecamatans.id', '=', 'builds.kecamatans_id')
+            ->rightjoin('kelurahans', 'kelurahans.id', '=', 'builds.kelurahans_id')
+            ->get();
     }
 
     public function dataIPAL()
     {
         return DB::table('ipals')
-            ->join('categories', 'categories.id', '=', 'ipals.categories_id')
+            ->leftjoin('categories', 'categories.id', '=', 'ipals.categories_id')
+            ->select('ipals.*', 'categories.*')
             ->join('kelurahans', 'kelurahans.id', '=', 'ipals.kelurahans_id')
             ->get();
     }

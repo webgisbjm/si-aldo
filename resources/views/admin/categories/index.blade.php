@@ -50,8 +50,8 @@
                             </td>
                             <td>
                                 @if($category->icon)
-                                    <a href="{{ $category->icon->getUrl() }}" target="_blank">
-                                        <img src="{{ $category->icon->getUrl('thumb') }}" class="img-thumbnail rounded mx-auto d-block">
+                                    <a href="{{ asset($category->icon) }}" target="_blank">
+                                        <img src="{{ asset($category->icon) }}" class="img-thumbnail rounded mx-auto d-block">
                                     </a>
                                 @endif
                             </td>

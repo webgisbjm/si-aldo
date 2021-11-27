@@ -37,7 +37,7 @@
                         </th>
                         <td>
                             @if($category->icon)
-                                <img src="{{ $category->icon->getUrl('thumb') }}">           
+                                <img src="{{ $category->icon }}">           
                             @endif
                         </td>
                     </tr>

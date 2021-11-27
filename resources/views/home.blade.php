@@ -82,7 +82,11 @@
                                                 </div>
                                                 <div class="media-body">
                                                     <span class="m-0 text-white">Total Kelurahan</span>
-                                                    <h4 class="mb-0 counter text-white">52</h4><i class="far fa-map icon-bg text-white" style="font-size: 75px;"></i>
+                                                        @php
+                                                        $kelurahanCount = DB::table('kelurahans')->count();
+                                                        echo '<h4 class="mb-0 counter text-white">'. $kelurahanCount . '</h4>';
+                                                        @endphp
+                                                        <i class="far fa-map icon-bg text-white" style="font-size: 75px;"></i>
                                                 </div>
                                             </div>
                                         </div>
