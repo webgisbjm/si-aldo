@@ -15,7 +15,9 @@ class DatabaseSeeder extends Seeder
             UsersTableSeeder::class,
             RoleUserTableSeeder::class,
             TaskStatusTableSeeder::class,
+            KecamatansTableSeeder::class,
             KelurahansTableSeeder::class,
+            CategoriesTableSeeder::class,
         ]);
     }
 }

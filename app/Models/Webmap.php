@@ -34,6 +34,7 @@ class Webmap extends Model
     public function dataBuild()
     {
         return DB::table('builds')
+            ->where('builds.deleted_at', '=', null)
             ->leftjoin('categories', 'categories.id', '=', 'builds.categories_id')
             ->rightjoin('kecamatans', 'kecamatans.id', '=', 'builds.kecamatans_id')
             ->rightjoin('kelurahans', 'kelurahans.id', '=', 'builds.kelurahans_id')
@@ -43,6 +44,7 @@ class Webmap extends Model
     public function dataMCKUmum()
     {
         return DB::table('builds')
+            ->where('builds.deleted_at', '=', null)
             ->leftjoin('categories', 'categories.id', '=', 'builds.categories_id')
             ->where('categories.type', '=', 'MCK Umum')
             ->rightjoin('kecamatans', 'kecamatans.id', '=', 'builds.kecamatans_id')
@@ -53,6 +55,7 @@ class Webmap extends Model
     public function dataMCKKomunal()
     {
         return DB::table('builds')
+            ->where('builds.deleted_at', '=', null)
             ->leftjoin('categories', 'categories.id', '=', 'builds.categories_id')
             ->where('categories.type', '=', 'MCK Komunal')
             ->rightjoin('kecamatans', 'kecamatans.id', '=', 'builds.kecamatans_id')
@@ -63,6 +66,7 @@ class Webmap extends Model
     public function dataIPALKomunal()
     {
         return DB::table('builds')
+            ->where('builds.deleted_at', '=', null)
             ->leftjoin('categories', 'categories.id', '=', 'builds.categories_id')
             ->where('categories.type', '=', 'IPAL Komunal')
             ->rightjoin('kecamatans', 'kecamatans.id', '=', 'builds.kecamatans_id')
@@ -73,6 +77,7 @@ class Webmap extends Model
     public function dataMCKPlus()
     {
         return DB::table('builds')
+            ->where('builds.deleted_at', '=', null)
             ->leftjoin('categories', 'categories.id', '=', 'builds.categories_id')
             ->where('categories.type', '=', 'MCK Plus')
             ->rightjoin('kecamatans', 'kecamatans.id', '=', 'builds.kecamatans_id')
@@ -92,6 +97,7 @@ class Webmap extends Model
     public function dataKotaku()
     {
         return DB::table('nsups')
+            ->where('nsups.deleted_at', '=', null)
             ->leftjoin('categories', 'categories.id', '=', 'nsups.categories_id')
             ->select('nsups.*', 'categories.*')
             ->join('kelurahans', 'kelurahans.id', '=', 'nsups.kelurahans_id')

@@ -48,6 +48,7 @@ class BuildGalleryController extends Controller
             $table->editColumn('id', function ($row) {
                 return $row->id ? $row->id : '';
             });
+
             $table->addColumn('build_address', function ($row) {
                 return $row->build ? $row->build->address : '';
             });

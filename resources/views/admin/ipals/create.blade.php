@@ -27,7 +27,7 @@
                 <span class="help-block">{{ trans('cruds.ipal.fields.kelurahans_helper') }}</span>
             </div>
             <div class="form-group">
-                <label class="required" for="categories_id">{{ trans('cruds.ipal.fields.categories') }}</label>
+                <label class="required" for="categories_id">{{ trans('cruds.build.fields.categories') }}</label>
                 <select class="form-control select2 {{ $errors->has('categories') ? 'is-invalid' : '' }}" name="categories_id" id="categories_id" required>
                     @foreach($categories as $id => $entry)
                         <option value="{{ $id }}" {{ old('categories_id') == $id ? 'selected' : '' }}>{{ $entry }}</option>
@@ -36,7 +36,7 @@
                 @if($errors->has('categories'))
                     <span class="text-danger">{{ $errors->first('categories') }}</span>
                 @endif
-                <span class="help-block">{{ trans('cruds.ipal.fields.categories_helper') }}</span>
+                <span class="help-block">{{ trans('cruds.build.fields.categories_helper') }}</span>
             </div>
             <div class="form-group">
                 <label class="required" for="name">{{ trans('cruds.ipal.fields.name') }}</label>
