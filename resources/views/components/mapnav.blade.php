@@ -75,14 +75,14 @@
                         </li>
                     </ul>
 
-                    <div class="navbar-form ms-0 d-flex" role="search">
+                    {{-- <div class="navbar-form ms-0 d-flex" role="search">
                         <span class="form-group has-feedback">
                           <input id="searchbox" type="search" class="form-control" placeholder="{{ trans('global.search') }}..."/>
                         </span>
                           <button id="search-button" type="button" class="btn btn-sm btn-primary">
                             <i class="fas fa-search"></i>
                           </button>
-                    </div>
+                    </div> --}}
                     
 
                 
@@ -90,7 +90,7 @@
 
 
 
-                    {{-- <!-- Right navbar links -->
+                    <!-- Right navbar links -->
                     @if(count(config('panel.available_languages', [])) > 1)
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item dropdown text-decoration-none">
@@ -104,7 +104,7 @@
                             </div>
                         </li>
                     </ul>
-                    @endif --}}
+                    @endif
                 </div>
             </div>
         </nav>

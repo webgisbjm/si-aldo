@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             KecamatansTableSeeder::class,
             KelurahansTableSeeder::class,
             CategoriesTableSeeder::class,
+            BuildsTableSeeder::class,
         ]);
     }
 }

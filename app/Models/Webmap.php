@@ -78,10 +78,9 @@ class Webmap extends Model
     {
         return DB::table('builds')
             ->where('builds.deleted_at', '=', null)
-            ->leftjoin('categories', 'categories.id', '=', 'builds.categories_id')
+            ->join('categories', 'categories.id', '=', 'builds.categories_id')
             ->where('categories.type', '=', 'MCK Plus')
-            ->rightjoin('kecamatans', 'kecamatans.id', '=', 'builds.kecamatans_id')
-            ->rightjoin('kelurahans', 'kelurahans.id', '=', 'builds.kelurahans_id')
+            ->join('kelurahans', 'kelurahans.id', '=', 'builds.kelurahans_id')
             ->get();
     }
 
@@ -91,6 +90,7 @@ class Webmap extends Model
             ->leftjoin('categories', 'categories.id', '=', 'ipals.categories_id')
             ->select('ipals.*', 'categories.*')
             ->join('kelurahans', 'kelurahans.id', '=', 'ipals.kelurahans_id')
+            ->select('kelurahans.name as kelName', 'ipals.*', 'ipals.name as ipalName', 'categories.*')
             ->get();
     }
 

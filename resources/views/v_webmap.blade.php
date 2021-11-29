@@ -6,9 +6,6 @@
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
-
-    <script src="https://unpkg.com/esri-leaflet@3.0.3/dist/esri-leaflet.js"></script>
-    
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
     <link rel="stylesheet" href= "{{ asset('css/L.Control.Layers.Tree.css') }}" />
@@ -64,11 +61,15 @@
   </ul> --}}
 {{-- </div> --}}
 
-<div id="map" style="width: 100%; height: 80vh; box-shadow: 0 0 3px rgba(0,0,0,0.5);"></div>
+
   
+
+<div id="map" style="width: 100%; height: 80vh; box-shadow: 0 0 3px rgba(0,0,0,0.5);"></div>
+
+
   <!-- Modal -->
   <div class="modal fade" id="featureModal" tabindex="-1" aria-labelledby="feature-title" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="feature-title"></h5>
@@ -76,7 +77,7 @@
         </div>
         <div class="modal-body" id="feature-info"></div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-outline-success" data-bs-dismiss="modal">Close</button>
         </div>
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
@@ -117,7 +118,7 @@
 
 <script>
   let map = [];
-//   featureList,
+  // featureList,
   KelurahanSearch = [];
   // KecamatanSearch = [],
 //   septiktankSearch = [],
@@ -248,13 +249,13 @@ function clearHighlight() {
 
 
 
-//     /* Update list.js featureList */
-//     featureList = new List("features", {
-//         valueNames: ["feature-name"]
-//     });
-//     featureList.sort("feature-name", {
-//         order: "asc"
-//     });
+    // /* Update list.js featureList */
+    // featureList = new List("features", {
+    //     valueNames: ["feature-name"]
+    // });
+    // featureList.sort("feature-name", {
+    //     order: "asc"
+    // });
 // }
 
 
@@ -608,212 +609,6 @@ let markerClusters = new L.MarkerClusterGroup({
 });
 
 
-
-/* Empty layer placeholder to add to layer control for listening when to add/remove mckplus to markerClusters layer */
-// mckplus = L.geoJson(null, {
-//     pointToLayer: function (feature, latlng) {
-//         return L.marker(latlng, {
-//             icon: L.icon({
-//                 iconUrl: "{{ asset('img/mckplus.png') }}",
-//                 iconSize: [24, 28],
-//                 iconAnchor: [12, 28],
-//                 popupAnchor: [0, -25]
-//             }),
-//             title: feature.properties.JENIS_SARANA,
-//             riseOnHover: true
-//         });
-//     },
-//     onEachFeature: function (feature, layer) {
-//         if (feature.properties) {
-//             let content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>JENIS SARANA</th><td>" + feature.properties.JENIS_SARANA + "<tr><th>KECAMATAN</th><td>" + feature.properties.KECAMATAN + "</td></tr>" + "<tr><th>KELURAHAN</th><td>" + feature.properties.KELURAHAN + "</td></tr>" + "<tr><th>ALAMAT</th><td>" + feature.properties.ALAMAT + "</td></tr>" + "</td></tr>" + "<table>";
-//             layer.on({
-//                 click: function (e) {
-//                     $("#feature-title").html(feature.properties.JENIS_SARANA);
-//                     $("#feature-info").html(content);
-//                     $("#featureModal").modal("show");
-//                     highlight.clearLayers().addLayer(L.circleMarker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], highlightStyle));
-//                 }
-//             });
-            // $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="{{ asset('img/mckplus.png') }}"></td><td class="feature-name">' + layer.feature.properties.ALAMAT + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
-            // mckplusSearch.push({
-            //     name: layer.feature.properties.JENIS_SARANA,
-            //     address: layer.feature.properties.ALAMAT,
-            //     source: "mckplus",
-            //     id: L.stamp(layer),
-            //     lat: layer.feature.geometry.coordinates[1],
-            //     lng: layer.feature.geometry.coordinates[0]
-            // });
-//         }
-//     }
-// });
-// $.getJSON("{{ asset('data/mckplus.geojson') }}", function (data) {
-//     mckplus.addData(data);
-//     map.addLayer(mckplusLayer);
-// });
-
-/* Empty layer placeholder to add to layer control for listening when to add/remove mckkomunal to markerClusters layer */
-// let mckkomunal = L.geoJson(null, {
-//     pointToLayer: function (feature, latlng) {
-//         return L.marker(latlng, {
-//             icon: L.icon({
-//                 iconUrl: "{{ asset('img/mckkomunal.png') }}",
-//                 iconSize: [24, 28],
-//                 iconAnchor: [12, 28],
-//                 popupAnchor: [0, -25]
-//             }),
-//             title: feature.properties.JENIS_SARANA,
-//             riseOnHover: true
-//         });
-//     },
-//     onEachFeature: function (feature, layer) {
-//         if (feature.properties) {
-//             let content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>JENIS SARANA</th><td>" + feature.properties.JENIS_SARANA + "</td></tr>" + "<tr><th>KECAMATAN</th><td>" + feature.properties.KECAMATAN + "</td></tr>" + "<tr><th>KELURAHAN</th><td>" + feature.properties.KELURAHAN + "</td></tr>" + "<tr><th>ALAMAT</th><td>" + feature.properties.ALAMAT + "</td></tr>" + "<table>";
-//             layer.on({
-//                 click: function (e) {
-//                     $("#feature-title").html(feature.properties.JENIS_SARANA);
-//                     $("#feature-info").html(content);
-//                     $("#featureModal").modal("show");
-//                     highlight.clearLayers().addLayer(L.circleMarker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], highlightStyle));
-//                 }
-//             });
-            // $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="{{ asset('img/mckkomunal.png') }}"></td><td class="feature-name">' + layer.feature.properties.ALAMAT + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
-            // mckkomunalSearch.push({
-            //     name: layer.feature.properties.JENIS_SARANA,
-            //     address: layer.feature.properties.ALAMAT,
-            //     source: "mckkomunal",
-            //     id: L.stamp(layer),
-            //     lat: layer.feature.geometry.coordinates[1],
-            //     lng: layer.feature.geometry.coordinates[0]
-            // });
-//         }
-//     }
-// });
-// $.getJSON("{{ asset('data/mckkomunal.geojson') }}", function (data) {
-//     mckkomunal.addData(data);
-// });
-
-
-/* Empty layer placeholder to add to layer control for listening when to add/remove ipalkomunal to markerClusters layer */
-// let ipalkomunalLayer = L.geoJson(null);
-// let ipalkomunal = L.geoJson(null, {
-//     pointToLayer: function (feature, latlng) {
-//         return L.marker(latlng, {
-//             icon: L.icon({
-//                 iconUrl: "{{ asset('img/ipalkomunal.png') }}",
-//                 iconSize: [24, 28],
-//                 iconAnchor: [12, 28],
-//                 popupAnchor: [0, -25]
-//             }),
-//             title: feature.properties.JENIS_SARANA,
-//             riseOnHover: true
-//         });
-//     },
-//     onEachFeature: function (feature, layer) {
-//         if (feature.properties) {
-//             let content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>JENIS SARANA</th><td>" + feature.properties.JENIS_SARANA + "</td></tr>" + "<tr><th>KECAMATAN</th><td>" + feature.properties.KECAMATAN + "</td></tr>" + "<tr><th>KELURAHAN</th><td>" + feature.properties.KELURAHAN + "</td></tr>" + "<tr><th>ALAMAT</th><td>" + feature.properties.ALAMAT + "</td></tr>" + "<table>";
-//             layer.on({
-//                 click: function (e) {
-//                     $("#feature-title").html(feature.properties.JENIS_SARANA);
-//                     $("#feature-info").html(content);
-//                     $("#featureModal").modal("show");
-//                     highlight.clearLayers().addLayer(L.circleMarker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], highlightStyle));
-//                 }
-//             });
-            // $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="{{ asset('img/ipalkomunal.png') }}"></td><td class="feature-name">' + layer.feature.properties.ALAMAT + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
-            // ipalkomunalSearch.push({
-            //     name: layer.feature.properties.JENIS_SARANA,
-            //     address: layer.feature.properties.ALAMAT,
-            //     source: "ipalkomunal",
-            //     id: L.stamp(layer),
-            //     lat: layer.feature.geometry.coordinates[1],
-            //     lng: layer.feature.geometry.coordinates[0]
-            // });
-//         }
-//     }
-// });
-// $.getJSON("{{ asset('data/ipalkomunal.geojson') }}", function (data) {
-//     ipalkomunal.addData(data);
-// });
-
-/* Empty layer placeholder to add to layer control for listening when to add/remove mck umum to markerClusters layer */
-// let mckumum = L.geoJson(null, {
-//     pointToLayer: function (feature, latlng) {
-//         return L.marker(latlng, {
-//             icon: L.icon({
-//                 iconUrl: "{{ asset('img/mckumum.png') }}",
-//                 iconSize: [24, 28],
-//                 iconAnchor: [12, 28],
-//                 popupAnchor: [0, -25]
-//             }),
-//             title: feature.properties.JENIS_SARANA,
-//             riseOnHover: true
-//         });
-//     },
-//     onEachFeature: function (feature, layer) {
-//         if (feature.properties) {
-//             let content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>JENIS SARANA</th><td>" + feature.properties.JENIS_SARANA + "</td></tr>" + "<tr><th>KECAMATAN</th><td>" + feature.properties.KECAMATAN + "</td></tr>" + "<tr><th>KELURAHAN</th><td>" + feature.properties.KELURAHAN + "</td></tr>" + "<tr><th>ALAMAT</th><td>" + feature.properties.ALAMAT + "</td></tr>" + "<table>";
-//             layer.on({
-//                 click: function (e) {
-//                     $("#feature-title").html(feature.properties.JENIS_SARANA);
-//                     $("#feature-info").html(content);
-//                     $("#featureModal").modal("show");
-//                     highlight.clearLayers().addLayer(L.circleMarker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], highlightStyle));
-//                 }
-//             });
-            // $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="{{ asset('img/mckumum.png') }}"></td><td class="feature-name">' + layer.feature.properties.ALAMAT + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
-            // mckumumSearch.push({
-            //     name: layer.feature.properties.JENIS_SARANA,
-            //     address: layer.feature.properties.ALAMAT,
-            //     source: "mckumum",
-            //     id: L.stamp(layer),
-            //     lat: layer.feature.geometry.coordinates[1],
-            //     lng: layer.feature.geometry.coordinates[0]
-            // });
-//         }
-//     }
-// });
-// $.getJSON("{{ asset('data/mckumum.geojson') }}", function (data) {
-//     mckumum.addData(data);
-// });
-
-
-
-
-// /* IPAL layer placeholder*/
-// let ipalLayer = L.geoJson(null);
-// let ipal = L.geoJson(null, {
-//     pointToLayer: function (feature, latlng) {
-//         return L.marker(latlng, {
-//             icon: L.icon({
-//                 iconUrl: "{{ asset('img/pdpal.png') }}",
-//                 iconSize: [32, 37],
-//                 iconAnchor: [12, 28],
-//                 popupAnchor: [0, -25]
-//             }),
-//             title: feature.properties.NAMA + " (PDPAL)",
-//             riseOnHover: true
-//         });
-//     },
-//     onEachFeature: function (feature, layer) {
-//         if (feature.properties) {
-//             let content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>NAMA</th><td>" + feature.properties.NAMA + "<tr><th>ALAMAT</th><td>" + feature.properties.ALAMAT + "</td></tr>" + "<tr><th>KAPASITAS</th><td>" + feature.properties.KAPASITAS + "</td></tr>" + "<tr><th>TAHUN OPERASI</th><td>" + feature.properties.TAHUN + "</td></tr>" + "</td></tr>" + "<table>";
-//             layer.on({
-//                 click: function (e) {
-//                     $("#feature-title").html(feature.properties.NAMA);
-//                     $("#feature-info").html(content);
-//                     $("#featureModal").modal("show");
-//                     highlight.clearLayers().addLayer(L.circleMarker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], highlightStyle));
-//                 }
-//             });
-//         }
-//     }
-// });
-// $.getJSON("{{ asset('data/PDPAL_PT.geojson') }}", function (data) {
-//     ipal.addData(data);
-// });
-
-
-
 map = L.map(document.getElementById('map'), {
   zoom: 12,
   center: [-3.314771, 114.6185566],
@@ -837,7 +632,7 @@ let iconLayersControl = new L.Control.IconLayers(
         {
             title: 'Outdoor',
             layer: mapboxOutdoor,
-            icon: '{{ asset('img/basemap/street.png') }}'
+            icon: '{{ asset('img/basemap/outdoor.png') }}'
         },
         {
             title: 'Google Maps',
@@ -850,9 +645,9 @@ let iconLayersControl = new L.Control.IconLayers(
             icon: '{{ asset('img/basemap/googleSatellite.png') }}'
         },
         {
-            title: 'RBI',
-            layer: rbi,
-            icon: '{{ asset('img/basemap/rbi.png') }}'
+            title: 'Street Maps',
+            layer: mapboxStreet,
+            icon: '{{ asset('img/basemap/streetmap.png') }}'
         },
         {
             title: 'Topo Map',
@@ -959,13 +754,11 @@ map.on('contextmenu', function () {
   map.on('contextmenu', onClicked);
 });
 
+if (L.Browser.touch) {
+    L.control.touchHover().addTo(map);
+}
 
-
-// if (L.Browser.touch) {
-//     L.control.touchHover().addTo(map);
-// }
-
-// L.Path.CLIP_PADDING = 0.12;
+L.Path.CLIP_PADDING = 0.12;
 
 
 // /*Angka Kepadatan Penduduk*/
@@ -1183,9 +976,10 @@ L.geoJson(<?= $data->geojson ?>, {
 
 @endforeach
 
-/*MCK Umum*/
+/*MCK Plus*/
 
-@foreach ($mckplus as $data)
+@foreach ($mckplus as $index => $data)
+
 L.marker([<?= $data->lat . ',' . $data->lng ?>], {
         icon: L.icon({
                 iconUrl: '{{ asset('') }}{{ $data->icon }}',
@@ -1194,7 +988,36 @@ L.marker([<?= $data->lat . ',' . $data->lng ?>], {
                 popupAnchor: [0, -25]
             }),
             riseOnHover: true
-        }).bindPopup('{{ $data->type}}').openPopup().addTo({{ $data->layer }});
+        }).addTo({{ $data->layer }}).on('click', function(e){
+          let modalTitle = "{{ $data->type }}";
+          let content = "<table class='table table-striped table-bordered table-condensed'><tr><th>KELURAHAN</th><td>" + "{{ $data->name  }}" + "<tr><th>ALAMAT</th><td>" + "{{ $data->address }}" +  "<tr><th>STATUS</th><td>" + "{{ $data->status }}" + "<tr><th colspan='2'><a href='#' class='tooltip-test' title='Detail'>Lihat Selengkapnya</a></th></tr>" + "</table>";
+            $("#feature-title").html(modalTitle);
+            $("#feature-info").html(content);
+            $('#featureModal').modal('show');
+            highlight.clearLayers().addLayer(L.circleMarker(this.getLatLng(), highlightStyle));
+          });
+
+@endforeach
+
+/*MCK Komunal*/
+
+@foreach ($mckkomunal as $data)
+L.marker([<?= $data->lat . ',' . $data->lng ?>], {
+        icon: L.icon({
+                iconUrl: '{{ asset('') }}{{ $data->icon }}',
+                iconSize: [24, 28],
+                iconAnchor: [12, 28],
+                popupAnchor: [0, -25]
+            }),
+            riseOnHover: true
+          }).addTo({{ $data->layer }}).on('click', function(e){
+          let modalTitle = "{{ $data->type }}";
+          let content = "<table class='table table-striped table-bordered table-condensed'><tr><th>KELURAHAN</th><td>" + "{{ $data->name  }}" + "<tr><th>ALAMAT</th><td>" + "{{ $data->address }}" +  "<tr><th>STATUS</th><td>" + "{{ $data->status }}" + "<tr><th colspan='2'><a href='#' class='tooltip-test' title='Detail'>Lihat Selengkapnya</a></th></tr>" + "</table>";
+            $("#feature-title").html(modalTitle);
+            $("#feature-info").html(content);
+            $('#featureModal').modal('show');
+            highlight.clearLayers().addLayer(L.circleMarker(this.getLatLng(), highlightStyle));
+          });
 
 @endforeach
 
@@ -1209,7 +1032,36 @@ L.marker([<?= $data->lat . ',' . $data->lng ?>], {
                 popupAnchor: [0, -25]
             }),
             riseOnHover: true
-        }).bindPopup('{{ $data->type}}').openPopup().addTo(mckumum);
+          }).addTo({{ $data->layer }}).on('click', function(e){
+          let modalTitle = "{{ $data->type }}";
+          let content = "<table class='table table-striped table-bordered table-condensed'><tr><th>KELURAHAN</th><td>" + "{{ $data->name  }}" + "<tr><th>ALAMAT</th><td>" + "{{ $data->address }}" +  "<tr><th>STATUS</th><td>" + "{{ $data->status }}" + "<tr><th colspan='2'><a href='#' class='tooltip-test' title='Detail'>Lihat Selengkapnya</a></th></tr>" + "</table>";
+            $("#feature-title").html(modalTitle);
+            $("#feature-info").html(content);
+            $('#featureModal').modal('show');
+            highlight.clearLayers().addLayer(L.circleMarker(this.getLatLng(), highlightStyle));
+          });
+
+@endforeach
+
+/*IPAL Komunal*/
+
+@foreach ($ipalkomunal as $data)
+L.marker([<?= $data->lat . ',' . $data->lng ?>], {
+        icon: L.icon({
+                iconUrl: '{{ asset('') }}{{ $data->icon }}',
+                iconSize: [24, 28],
+                iconAnchor: [12, 28],
+                popupAnchor: [0, -25]
+            }),
+            riseOnHover: true
+          }).addTo({{ $data->layer }}).on('click', function(e){
+          let modalTitle = "{{ $data->type }}";
+          let content = "<table class='table table-striped table-bordered table-condensed'><tr><th>KELURAHAN</th><td>" + "{{ $data->name  }}" + "<tr><th>ALAMAT</th><td>" + "{{ $data->address }}" +  "<tr><th>STATUS</th><td>" + "{{ $data->status }}" + "<tr><th colspan='2'><a href='#' class='tooltip-test' title='Detail'>Lihat Selengkapnya</a></th></tr>" + "</table>";
+            $("#feature-title").html(modalTitle);
+            $("#feature-info").html(content);
+            $('#featureModal').modal('show');
+            highlight.clearLayers().addLayer(L.circleMarker(this.getLatLng(), highlightStyle));
+          });
 
 @endforeach
 
@@ -1224,42 +1076,16 @@ L.marker([<?= $data->lat . ',' . $data->lng ?>], {
                 popupAnchor: [0, -25]
             }),
             riseOnHover: true
-        }).bindPopup('{{ $data->name }}').openPopup().addTo(ipal);
+          }).addTo({{ $data->layer }}).on('click', function(e){
+          let modalTitle = "{{ $data->ipalName }}";
+          let content = "<table class='table table-striped table-bordered table-condensed'><tr><th>KELURAHAN</th><td>" + "{{ $data->kelName  }}" + "<tr><th>ALAMAT</th><td>" + "{{ $data->address }}" + "<tr><th>TAHUN OPERASI</th><td>" + "{{ $data->year }}" + "<tr><th>KAPASITAS</th><td>" + "{{ $data->capacity }} m<sup>3</sup>" + "/hari" + "<tr><th colspan='2'><a href='#' class='tooltip-test' title='Detail'>Lihat Selengkapnya</a></th></tr>" + "</table>";
+            $("#feature-title").html(modalTitle);
+            $("#feature-info").html(content);
+            $('#featureModal').modal('show');
+            highlight.clearLayers().addLayer(L.circleMarker(this.getLatLng(), highlightStyle));
+          });
+
 @endforeach
-
-
-// /* IPAL layer placeholder*/
-// let ipalLayer = L.geoJson(null);
-// let ipal = L.geoJson(null, {
-//     pointToLayer: function (feature, latlng) {
-//         return L.marker(latlng, {
-//             icon: L.icon({
-//                 iconUrl: "{{ asset('img/pdpal.png') }}",
-//                 iconSize: [32, 37],
-//                 iconAnchor: [12, 28],
-//                 popupAnchor: [0, -25]
-//             }),
-//             title: feature.properties.NAMA + " (PDPAL)",
-//             riseOnHover: true
-//         });
-//     },
-//     onEachFeature: function (feature, layer) {
-//         if (feature.properties) {
-//             let content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>NAMA</th><td>" + feature.properties.NAMA + "<tr><th>ALAMAT</th><td>" + feature.properties.ALAMAT + "</td></tr>" + "<tr><th>KAPASITAS</th><td>" + feature.properties.KAPASITAS + "</td></tr>" + "<tr><th>TAHUN OPERASI</th><td>" + feature.properties.TAHUN + "</td></tr>" + "</td></tr>" + "<table>";
-//             layer.on({
-//                 click: function (e) {
-//                     $("#feature-title").html(feature.properties.NAMA);
-//                     $("#feature-info").html(content);
-//                     $("#featureModal").modal("show");
-//                     highlight.clearLayers().addLayer(L.circleMarker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], highlightStyle));
-//                 }
-//             });
-//         }
-//     }
-// });
-// $.getJSON("{{ asset('data/PDPAL_PT.geojson') }}", function (data) {
-//     ipal.addData(data);
-// });
 
 /*KOTAKU*/
 
@@ -1317,8 +1143,6 @@ $.getJSON("{{ asset('data/kotaku.geojson') }}", function (data) {
 });
 
 
-
-
   let baseTree = {
       label: '<b>{{ trans('cruds.maps.thematic') }}</b>',
       children: [
@@ -1327,9 +1151,7 @@ $.getJSON("{{ asset('data/kotaku.geojson') }}", function (data) {
           {label: '&nbsp;{{ trans('cruds.maps.risk') }}', layer: Kerawanan},
           {label: '&nbsp;{{ trans('cruds.maps.density') }}', layer: dataKepadatan},
       ]
-  };
-
-  
+  };  
 
       var hasAllUnSelected = function() {
           return function(ev, domNode, treeNode, map) {
@@ -1394,28 +1216,28 @@ $.getJSON("{{ asset('data/kotaku.geojson') }}", function (data) {
 
 
 
-// /* Highlight search box text on click */
-// $("#searchbox").click(function () {
-//     $(this).select();
-// });
+/* Highlight search box text on click */
+$("#searchbox").click(function () {
+    $(this).select();
+});
 
-// /* Prevent hitting enter from refreshing the page */
-// $("#searchbox").keypress(function (e) {
-//     if (e.which == 13) {
-//         e.preventDefault();
-//     }
-// });
+/* Prevent hitting enter from refreshing the page */
+$("#searchbox").keypress(function (e) {
+    if (e.which == 13) {
+        e.preventDefault();
+    }
+});
 
 $("#featureModal").on("hidden.bs.modal", function (e) {
     $(document).on("mouseout", ".feature-row", clearHighlight);
 });
 
-// /* Typeahead search functionality */
-// $(document).one("ajaxStop", function () {
-//     $("#loading").hide();
-//     sizeLayerControl();
+/* Typeahead search functionality */
+$(document).one("ajaxStop", function () {
+    $("#loading").hide();
+    sizeLayerControl();
     /* Fit map to Kelurahan bounds */
-    // map.fitBounds(Kelurahan.getBounds());
+    map.fitBounds(Kelurahan.getBounds());
     // featureList = new List("features", {
     //     valueNames: ["feature-name"]
     // });
@@ -1423,15 +1245,15 @@ $("#featureModal").on("hidden.bs.modal", function (e) {
     //     order: "asc"
     // });
 
-    // let KelurahanBH = new Bloodhound({
-    //     name: "Kelurahan",
-    //     datumTokenizer: function (d) {
-    //         return Bloodhound.tokenizers.whitespace(d.name);
-    //     },
-    //     queryTokenizer: Bloodhound.tokenizers.whitespace,
-    //     local: KelurahanSearch,
-    //     limit: 10
-    // });
+    let KelurahanBH = new Bloodhound({
+        name: "Kelurahan",
+        datumTokenizer: function (d) {
+            return Bloodhound.tokenizers.whitespace(d.name);
+        },
+        queryTokenizer: Bloodhound.tokenizers.whitespace,
+        local: KelurahanSearch,
+        limit: 10
+    });
 
     // let KecamatanBH = new Bloodhound({
     //     name: "Kecamatan",
@@ -1503,8 +1325,8 @@ $("#featureModal").on("hidden.bs.modal", function (e) {
     //     limit: 100
     // });
 
-    // KelurahanBH.initialize();
-//     KecamatanBH.initialize();
+    KelurahanBH.initialize();
+//KecamatanBH.initialize();
     // septiktankBH.initialize();
     // mckplusBH.initialize();
     // mckkomunalBH.initialize();
@@ -1512,146 +1334,34 @@ $("#featureModal").on("hidden.bs.modal", function (e) {
     // mckumumBH.initialize();
     // septikkomunalBH.initialize();
 
-    // /* instantiate the typeahead UI */
-    // $("#searchbox").typeahead({
-    //     minLength: 3,
-    //     highlight: true,
-    //     hint: false
-    // },
-//    {
-//         name: "Kecamatan",
-//         displayKey: "name",
-//         source: KecamatanBH.ttAdapter(),
-//         templates: {
-//             header: "<h4 class='typeahead-header'>Kecamatan di Banjarmasin</h4>"
-//         }
-    // {
-    //     name: "Kelurahan",
-    //     displayKey: "name",
-    //     source: KelurahanBH.ttAdapter(),
-    //     templates: {
-    //         header: "<h4 class='typeahead-header'>Kelurahan di Banjarmasin</h4>"
-    //     }
-    // }, {
-    //     name: "Septiktank",
-    //     displayKey: "name",
-    //     source: septiktankBH.ttAdapter(),
-    //     templates: {
-    //         header: "<h4 class='typeahead-header'>Septiktank Individual</h4>"
-    //     }
-    // }, {
-    //     name: "mck_plus",
-    //     displayKey: "name",
-    //     source: mckplusBH.ttAdapter(),
-    //     templates: {
-    //         header: "<h4 class='typeahead-header'><img src='{{ asset('img/mckplus.png') }} width='24' height='28'>&nbsp;MCK Plus</h4>",
-          
-    //     }
-    // }, {
-    //     name: "mck_komunal",
-    //     displayKey: "name",
-    //     source: mckkomunalBH.ttAdapter(),
-    //     templates: {
-    //         header: "<h4 class='typeahead-header'><img src='{{ asset('img/mckkomunal.png') }} width='24' height='28'>&nbsp;MCK Komunal</h4>",
-          
-    //     }
-    // }, {
+    /* instantiate the typeahead UI */
+    $("#searchbox").typeahead({
+        minLength: 3,
+        highlight: true,
+        hint: false
+      },
+      {
+        name: "Kelurahan",
+        displayKey: "name",
+        source: KelurahanBH.ttAdapter(),
+        templates: {header: "<h4 class='typeahead-header'>Kelurahan di Banjarmasin</h4>"}
+      }).on("typeahead:selected", function (obj, datum) {
 
-    //     name: "mck_umum",
-    //     displayKey: "name",
-    //     source: mckumumBH.ttAdapter(),
-    //     templates: {
-    //         header: "<h4 class='typeahead-header'><img src='{{ asset('img/mckumum.png') }} width='24' height='28'>&nbsp;MCK Umum</h4>",
-          
-    //     }
-    // }, {
+        if (datum.source === "Kelurahan") {
+            map.fitBounds(datum.bounds);
+        }
 
-    //     name: "ipal_komunal",
-    //     displayKey: "name",
-    //     source: ipalkomunalBH.ttAdapter(),
-    //     templates: {
-    //         header: "<h4 class='typeahead-header'><img src='{{ asset('img/ipalkomunal.png') }} width='24' height='28'>&nbsp;IPAL Komunal</h4>",
-          
-    //     }
-    // }, {
 
-    //     name: "septiktank_komunal",
-    //     displayKey: "name",
-    //     source: septikkomunalBH.ttAdapter(),
-    //     templates: {
-    //         header: "<h4 class='typeahead-header'><img src='{{ asset('img/septictank.png') }} width='24' height='28'>&nbsp;Sarana dari KOTAKU</h4>",
-          
-    //     }
-
-    // }).on("typeahead:selected", function (obj, datum) {
-//         if (datum.source === "Kecamatan") {
-//             map.fitBounds(datum.bounds);
-//         }
-//         if (datum.source === "Kelurahan") {
-//             map.fitBounds(datum.bounds);
-//         }
-//         if (datum.source === "septiktank") {
-//             map.fitBounds(datum.bounds);
-//         }
-//         if (datum.source === "mckplus") {
-//             if (!map.hasLayer(mckplusLayer)) {
-//                 map.addLayer(mckplusLayer);
-//             }
-//             map.setView([datum.lat, datum.lng], 17);
-//             if (map._layers[datum.id]) {
-//                 map._layers[datum.id].fire("click");
-//             }
-//         }
-//         if (datum.source === "mckkomunal") {
-//             if (!map.hasLayer(mckkomunalLayer)) {
-//                 map.addLayer(mckkomunalLayer);
-//             }
-//             map.setView([datum.lat, datum.lng], 17);
-//             if (map._layers[datum.id]) {
-//                 map._layers[datum.id].fire("click");
-//             }
-//         }
-//         if (datum.source === "mckumum") {
-//             if (!map.hasLayer(mckumumLayer)) {
-//                 map.addLayer(mckumumLayer);
-//             }
-//             map.setView([datum.lat, datum.lng], 17);
-//             if (map._layers[datum.id]) {
-//                 map._layers[datum.id].fire("click");
-//             }
-//         }
-//         if (datum.source === "ipalkomunal") {
-//             if (!map.hasLayer(ipalkomunalLayer)) {
-//                 map.addLayer(ipalkomunalLayer);
-//             }
-//             map.setView([datum.lat, datum.lng], 17);
-//             if (map._layers[datum.id]) {
-//                 map._layers[datum.id].fire("click");
-//             }
-//         }
-//         if (datum.source === "septikkomunal") {
-//             if (!map.hasLayer(septikkomunalLayer)) {
-//                 map.addLayer(septikkomunalLayer);
-//             }
-//             map.setView([datum.lat, datum.lng], 17);
-//             if (map._layers[datum.id]) {
-//                 map._layers[datum.id].fire("click");
-//             }
-//         }
-
-//         if ($(".navbar-collapse").height() > 50) {
-//             $(".navbar-collapse").collapse("hide");
-//         }
-//     }).on("typeahead:opened", function () {
-//         $(".navbar-collapse.in").css("max-height", $(document).height() - $(".navbar-header").height());
-//         $(".navbar-collapse.in").css("height", $(document).height() - $(".navbar-header").height());
-//     }).on("typeahead:closed", function () {
-//         $(".navbar-collapse.in").css("max-height", "");
-//         $(".navbar-collapse.in").css("height", "");
-//     });
-//     $(".twitter-typeahead").css("position", "static");
-//     $(".twitter-typeahead").css("display", "block");
-// });
+    }).on("typeahead:opened", function () {
+        $(".navbar-collapse.in").css("max-height", $(document).height() - $(".navbar-header").height());
+        $(".navbar-collapse.in").css("height", $(document).height() - $(".navbar-header").height());
+    }).on("typeahead:closed", function () {
+        $(".navbar-collapse.in").css("max-height", "");
+        $(".navbar-collapse.in").css("height", "");
+    });
+    $(".twitter-typeahead").css("position", "static");
+    $(".twitter-typeahead").css("display", "block");
+  });
 
 
  /*Geocoder Searching*/
@@ -1750,15 +1460,15 @@ $("#featureModal").on("hidden.bs.modal", function (e) {
         thousandsSep: '.'});
     measureControl.addTo(map);
 
-// Leaflet patch to make layer control scrollable on touch browsers
-// let container = $(".leaflet-control-layers")[0];
-// if (!L.Browser.touch) {
-//   L.DomEvent
-//   .disableClickPropagation(container)
-//   .disableScrollPropagation(container);
-// } else {
-//   L.DomEvent.disableClickPropagation(container);
-// }
+/* Leaflet patch to make layer control scrollable on touch browsers*/
+let container = $(".leaflet-control-layers")[0];
+if (!L.Browser.touch) {
+  L.DomEvent
+  .disableClickPropagation(container)
+  .disableScrollPropagation(container);
+} else {
+  L.DomEvent.disableClickPropagation(container);
+}
 
 </script>
 
