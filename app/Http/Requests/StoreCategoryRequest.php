@@ -21,6 +21,11 @@ class StoreCategoryRequest extends FormRequest
                 'required',
             ],
             'icon.*' => ['mimes:jpg,png,jpeg,gif,svg'],
+            'layer' => [
+                'required',
+                'alpha',
+                'max:20',
+            ],
         ];
     }
 }

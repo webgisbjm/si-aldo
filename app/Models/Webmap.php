@@ -40,12 +40,62 @@ class Webmap extends Model
             ->get();
     }
 
+    public function dataMCKUmum()
+    {
+        return DB::table('builds')
+            ->leftjoin('categories', 'categories.id', '=', 'builds.categories_id')
+            ->where('categories.type', '=', 'MCK Umum')
+            ->rightjoin('kecamatans', 'kecamatans.id', '=', 'builds.kecamatans_id')
+            ->rightjoin('kelurahans', 'kelurahans.id', '=', 'builds.kelurahans_id')
+            ->get();
+    }
+
+    public function dataMCKKomunal()
+    {
+        return DB::table('builds')
+            ->leftjoin('categories', 'categories.id', '=', 'builds.categories_id')
+            ->where('categories.type', '=', 'MCK Komunal')
+            ->rightjoin('kecamatans', 'kecamatans.id', '=', 'builds.kecamatans_id')
+            ->rightjoin('kelurahans', 'kelurahans.id', '=', 'builds.kelurahans_id')
+            ->get();
+    }
+
+    public function dataIPALKomunal()
+    {
+        return DB::table('builds')
+            ->leftjoin('categories', 'categories.id', '=', 'builds.categories_id')
+            ->where('categories.type', '=', 'IPAL Komunal')
+            ->rightjoin('kecamatans', 'kecamatans.id', '=', 'builds.kecamatans_id')
+            ->rightjoin('kelurahans', 'kelurahans.id', '=', 'builds.kelurahans_id')
+            ->get();
+    }
+
+    public function dataMCKPlus()
+    {
+        return DB::table('builds')
+            ->leftjoin('categories', 'categories.id', '=', 'builds.categories_id')
+            ->where('categories.type', '=', 'MCK Plus')
+            ->rightjoin('kecamatans', 'kecamatans.id', '=', 'builds.kecamatans_id')
+            ->rightjoin('kelurahans', 'kelurahans.id', '=', 'builds.kelurahans_id')
+            ->get();
+    }
+
     public function dataIPAL()
     {
         return DB::table('ipals')
             ->leftjoin('categories', 'categories.id', '=', 'ipals.categories_id')
             ->select('ipals.*', 'categories.*')
             ->join('kelurahans', 'kelurahans.id', '=', 'ipals.kelurahans_id')
+            ->get();
+    }
+
+    public function dataKotaku()
+    {
+        return DB::table('nsups')
+            ->leftjoin('categories', 'categories.id', '=', 'nsups.categories_id')
+            ->select('nsups.*', 'categories.*')
+            ->join('kelurahans', 'kelurahans.id', '=', 'nsups.kelurahans_id')
+            ->join('kecamatans', 'kecamatans.id', '=', 'nsups.kecamatans_id')
             ->get();
     }
 }

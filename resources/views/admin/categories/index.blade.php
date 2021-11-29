@@ -28,6 +28,9 @@
                         <th>
                             {{ trans('cruds.category.fields.type') }}
                         </th>
+                        <th>
+                            {{ trans('cruds.category.fields.layer') }}
+                        </th>
                         <th class="text-center">
                             {{ trans('cruds.category.fields.icon') }}
                         </th>
@@ -47,6 +50,9 @@
                             </td>
                             <td>
                                 {{ App\Models\Category::TYPE_SELECT[$category->type] ?? '' }}
+                            </td>
+                            <td>
+                                {{ $category->layer ?? '' }}
                             </td>
                             <td>
                                 @if($category->icon)

@@ -8,6 +8,7 @@ use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
 use App\Models\Category;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\Response;
@@ -52,6 +53,7 @@ class CategoryController extends Controller
         Category::create([
             'id' => $request->id,
             'type' => $request->type,
+            'layer' => $request->layer,
             'icon' => $icon,
         ]);
 
@@ -83,6 +85,7 @@ class CategoryController extends Controller
         $category->update([
             'id' => $request->id,
             'type' => $request->type,
+            'layer' => $request->layer,
             'icon' => $icon,
         ]);
 

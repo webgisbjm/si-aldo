@@ -127,6 +127,8 @@ return [
             'type_helper'       => 'Jenis Sarana',
             'icon'              => 'Ikon',
             'icon_helper'       => ' ',
+            'layer'             => 'Nama Layer',
+            'layer_helper'       => 'Layer untuk webgis, tidak boleh angka, spasi, atau karakter khusus',
             'created_at'        => 'Created at',
             'created_at_helper' => ' ',
             'updated_at'        => 'Updated at',

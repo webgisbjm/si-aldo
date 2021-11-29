@@ -15,7 +15,7 @@
                 <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 gap-3 mb-3">
                         <li class="nav-item">
-                            <a class="nav-link px-md-3" aria-current="page" href="#">{{ trans('frontend.home') }}</a>
+                            <a class="nav-link px-md-3 {{ request()->is('/') ? 'active' : '' }}" aria-current="page" href="#">{{ trans('frontend.home') }}</a>
                         </li>
                         <li class="nav-item">
                           <a class="nav-link px-md-3 {{ request()->is('webmap') ? 'active' : '' }}" href={{ url("/webmap") }}>WebGIS</a>
@@ -57,10 +57,14 @@
                     @endauth
                     @guest
                     <div class="d-flex">
+                        <a href="{{ route('register') }}" class="nav-link px-md-2">
                         <button class="btn btn-register text-blue-1">{{ trans('frontend.register') }}</button>
-                        <button class="btn btn-login btn-login-blue">
-                            {{ trans('frontend.login') }}
-                        </button>
+                        </a>
+                        <a href="{{ route('login') }}" class="nav-link px-md-2">
+                            <button class="btn btn-login btn-login-blue" >
+                                {{ trans('frontend.login') }}
+                            </button>
+                        </a>
                     </div>
                     @endguest
 

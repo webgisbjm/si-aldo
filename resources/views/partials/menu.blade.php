@@ -100,9 +100,7 @@
                             @can('nsup_access')
                                 <li class="nav-item">
                                     <a href="{{ route("admin.nsups.index") }}" class="nav-link {{ request()->is("admin/nsups") || request()->is("admin/nsups/*") ? "active" : "" }}">
-                                        <i class="fa-fw nav-icon fas fa-door-open">
-
-                                        </i>
+                                        <img src="{{ asset('img/kotaku.png') }}" class="img-fluid nav-icon fab" width="16px" alt="kotaku">
                                         <p>
                                             {{ trans('cruds.nsup.title') }}
                                         </p>

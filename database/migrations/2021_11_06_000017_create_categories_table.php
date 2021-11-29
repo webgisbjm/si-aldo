@@ -12,7 +12,7 @@ class CreateCategoriesTable extends Migration
             $table->bigIncrements('id');
             $table->string('type');
             $table->string('icon');
-            $table->timestamps();
+            $table->string('layer')->unique();
             $table->softDeletes();
         });
     }

@@ -24,6 +24,14 @@
                 <span class="help-block">{{ trans('cruds.category.fields.type_helper') }}</span>
             </div>
             <div class="form-group">
+                <label class="required" for="layer">{{ trans('cruds.category.fields.layer') }}</label>
+                <input class="form-control {{ $errors->has('layer') ? 'is-invalid' : '' }}" type="text" name="layer" id="layer" value="{{ old('layer', $category->layer) }}" required>
+                @if($errors->has('layer'))
+                    <span class="text-danger">{{ $errors->first('layer') }}</span>
+                @endif
+                <span class="help-block">{{ trans('cruds.category.fields.layer_helper') }}</span>
+            </div>
+            <div class="form-group">
                 <label for="icon">{{ trans('cruds.category.fields.icon') }}</label>
                 <input type="file" name="icon" class="form-control" value="{{ old('icon') }}">
                 @if($errors->has('icon'))

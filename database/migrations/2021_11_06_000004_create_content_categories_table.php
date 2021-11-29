@@ -11,7 +11,7 @@ class CreateContentCategoriesTable extends Migration
         Schema::create('content_categories', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name')->nullable();
-            $table->string('slug')->nullable();
+            $table->string('slug')->nullable()->unique();
             $table->timestamps();
             $table->softDeletes();
         });

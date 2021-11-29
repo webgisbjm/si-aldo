@@ -12,7 +12,7 @@ class CreateKelurahansTable extends Migration
             $table->bigIncrements('id');
             $table->string('name')->unique();
             $table->longText('geojson')->nullable();
-            $table->string('slug')->nullable();
+            $table->string('slug')->nullable()->unique();;
             $table->timestamps();
             $table->softDeletes();
         });

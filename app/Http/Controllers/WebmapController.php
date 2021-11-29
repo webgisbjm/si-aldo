@@ -22,9 +22,14 @@ class WebmapController extends Controller
             'title'     => 'WebGIS SI-ALDO',
             'kecamatan' => $this->Webmap->dataKecamatan(),
             'kelurahan' => $this->Webmap->dataKelurahan(),
+            'kategori'  => $this->Webmap->dataCategory(),
             'build'     => $this->Webmap->dataBuild(),
             'ipal'      => $this->Webmap->dataIpal(),
-            'category'  => $this->Webmap->dataCategory(),
+            'kotaku'    => $this->Webmap->dataKotaku(),
+            'mckumum'   => $this->Webmap->dataMCKUmum(),
+            'mckkomunal' => $this->Webmap->dataMCKKomunal(),
+            'ipalkomunal' => $this->Webmap->dataIPALKomunal(),
+            'mckplus'    => $this->Webmap->dataMCKPlus(),
 
         ];
 

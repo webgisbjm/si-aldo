@@ -108,7 +108,11 @@
       let kecamatan{{ $data->id }} = L.layerGroup();
   @endforeach
 
-    let ipalLayer = new L.layerGroup();
+    @foreach ($kategori as $data)
+    let {{ $data->layer }}Layer = L.geoJson(null);
+    let {{ $data->layer }} = L.layerGroup();
+    @endforeach
+
 </script>
 
 <script>
@@ -603,9 +607,10 @@ let markerClusters = new L.MarkerClusterGroup({
   disableClusteringAtZoom: 17
 });
 
+
+
 /* Empty layer placeholder to add to layer control for listening when to add/remove mckplus to markerClusters layer */
-let mckplusLayer = L.geoJson(null);
-let mckplus = L.geoJson(null, {
+mckplus = L.geoJson(null, {
     pointToLayer: function (feature, latlng) {
         return L.marker(latlng, {
             icon: L.icon({
@@ -643,35 +648,34 @@ let mckplus = L.geoJson(null, {
 });
 $.getJSON("{{ asset('data/mckplus.geojson') }}", function (data) {
     mckplus.addData(data);
-    // map.addLayer(mckplusLayer);
+    map.addLayer(mckplusLayer);
 });
 
 /* Empty layer placeholder to add to layer control for listening when to add/remove mckkomunal to markerClusters layer */
-let mckkomunalLayer = L.geoJson(null);
-let mckkomunal = L.geoJson(null, {
-    pointToLayer: function (feature, latlng) {
-        return L.marker(latlng, {
-            icon: L.icon({
-                iconUrl: "{{ asset('img/mckkomunal.png') }}",
-                iconSize: [24, 28],
-                iconAnchor: [12, 28],
-                popupAnchor: [0, -25]
-            }),
-            title: feature.properties.JENIS_SARANA,
-            riseOnHover: true
-        });
-    },
-    onEachFeature: function (feature, layer) {
-        if (feature.properties) {
-            let content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>JENIS SARANA</th><td>" + feature.properties.JENIS_SARANA + "</td></tr>" + "<tr><th>KECAMATAN</th><td>" + feature.properties.KECAMATAN + "</td></tr>" + "<tr><th>KELURAHAN</th><td>" + feature.properties.KELURAHAN + "</td></tr>" + "<tr><th>ALAMAT</th><td>" + feature.properties.ALAMAT + "</td></tr>" + "<table>";
-            layer.on({
-                click: function (e) {
-                    $("#feature-title").html(feature.properties.JENIS_SARANA);
-                    $("#feature-info").html(content);
-                    $("#featureModal").modal("show");
-                    highlight.clearLayers().addLayer(L.circleMarker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], highlightStyle));
-                }
-            });
+// let mckkomunal = L.geoJson(null, {
+//     pointToLayer: function (feature, latlng) {
+//         return L.marker(latlng, {
+//             icon: L.icon({
+//                 iconUrl: "{{ asset('img/mckkomunal.png') }}",
+//                 iconSize: [24, 28],
+//                 iconAnchor: [12, 28],
+//                 popupAnchor: [0, -25]
+//             }),
+//             title: feature.properties.JENIS_SARANA,
+//             riseOnHover: true
+//         });
+//     },
+//     onEachFeature: function (feature, layer) {
+//         if (feature.properties) {
+//             let content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>JENIS SARANA</th><td>" + feature.properties.JENIS_SARANA + "</td></tr>" + "<tr><th>KECAMATAN</th><td>" + feature.properties.KECAMATAN + "</td></tr>" + "<tr><th>KELURAHAN</th><td>" + feature.properties.KELURAHAN + "</td></tr>" + "<tr><th>ALAMAT</th><td>" + feature.properties.ALAMAT + "</td></tr>" + "<table>";
+//             layer.on({
+//                 click: function (e) {
+//                     $("#feature-title").html(feature.properties.JENIS_SARANA);
+//                     $("#feature-info").html(content);
+//                     $("#featureModal").modal("show");
+//                     highlight.clearLayers().addLayer(L.circleMarker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], highlightStyle));
+//                 }
+//             });
             // $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="{{ asset('img/mckkomunal.png') }}"></td><td class="feature-name">' + layer.feature.properties.ALAMAT + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
             // mckkomunalSearch.push({
             //     name: layer.feature.properties.JENIS_SARANA,
@@ -681,40 +685,40 @@ let mckkomunal = L.geoJson(null, {
             //     lat: layer.feature.geometry.coordinates[1],
             //     lng: layer.feature.geometry.coordinates[0]
             // });
-        }
-    }
-});
-$.getJSON("{{ asset('data/mckkomunal.geojson') }}", function (data) {
-    mckkomunal.addData(data);
-});
+//         }
+//     }
+// });
+// $.getJSON("{{ asset('data/mckkomunal.geojson') }}", function (data) {
+//     mckkomunal.addData(data);
+// });
 
 
 /* Empty layer placeholder to add to layer control for listening when to add/remove ipalkomunal to markerClusters layer */
-let ipalkomunalLayer = L.geoJson(null);
-let ipalkomunal = L.geoJson(null, {
-    pointToLayer: function (feature, latlng) {
-        return L.marker(latlng, {
-            icon: L.icon({
-                iconUrl: "{{ asset('img/ipalkomunal.png') }}",
-                iconSize: [24, 28],
-                iconAnchor: [12, 28],
-                popupAnchor: [0, -25]
-            }),
-            title: feature.properties.JENIS_SARANA,
-            riseOnHover: true
-        });
-    },
-    onEachFeature: function (feature, layer) {
-        if (feature.properties) {
-            let content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>JENIS SARANA</th><td>" + feature.properties.JENIS_SARANA + "</td></tr>" + "<tr><th>KECAMATAN</th><td>" + feature.properties.KECAMATAN + "</td></tr>" + "<tr><th>KELURAHAN</th><td>" + feature.properties.KELURAHAN + "</td></tr>" + "<tr><th>ALAMAT</th><td>" + feature.properties.ALAMAT + "</td></tr>" + "<table>";
-            layer.on({
-                click: function (e) {
-                    $("#feature-title").html(feature.properties.JENIS_SARANA);
-                    $("#feature-info").html(content);
-                    $("#featureModal").modal("show");
-                    highlight.clearLayers().addLayer(L.circleMarker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], highlightStyle));
-                }
-            });
+// let ipalkomunalLayer = L.geoJson(null);
+// let ipalkomunal = L.geoJson(null, {
+//     pointToLayer: function (feature, latlng) {
+//         return L.marker(latlng, {
+//             icon: L.icon({
+//                 iconUrl: "{{ asset('img/ipalkomunal.png') }}",
+//                 iconSize: [24, 28],
+//                 iconAnchor: [12, 28],
+//                 popupAnchor: [0, -25]
+//             }),
+//             title: feature.properties.JENIS_SARANA,
+//             riseOnHover: true
+//         });
+//     },
+//     onEachFeature: function (feature, layer) {
+//         if (feature.properties) {
+//             let content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>JENIS SARANA</th><td>" + feature.properties.JENIS_SARANA + "</td></tr>" + "<tr><th>KECAMATAN</th><td>" + feature.properties.KECAMATAN + "</td></tr>" + "<tr><th>KELURAHAN</th><td>" + feature.properties.KELURAHAN + "</td></tr>" + "<tr><th>ALAMAT</th><td>" + feature.properties.ALAMAT + "</td></tr>" + "<table>";
+//             layer.on({
+//                 click: function (e) {
+//                     $("#feature-title").html(feature.properties.JENIS_SARANA);
+//                     $("#feature-info").html(content);
+//                     $("#featureModal").modal("show");
+//                     highlight.clearLayers().addLayer(L.circleMarker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], highlightStyle));
+//                 }
+//             });
             // $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="{{ asset('img/ipalkomunal.png') }}"></td><td class="feature-name">' + layer.feature.properties.ALAMAT + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
             // ipalkomunalSearch.push({
             //     name: layer.feature.properties.JENIS_SARANA,
@@ -724,39 +728,38 @@ let ipalkomunal = L.geoJson(null, {
             //     lat: layer.feature.geometry.coordinates[1],
             //     lng: layer.feature.geometry.coordinates[0]
             // });
-        }
-    }
-});
-$.getJSON("{{ asset('data/ipalkomunal.geojson') }}", function (data) {
-    ipalkomunal.addData(data);
-});
+//         }
+//     }
+// });
+// $.getJSON("{{ asset('data/ipalkomunal.geojson') }}", function (data) {
+//     ipalkomunal.addData(data);
+// });
 
 /* Empty layer placeholder to add to layer control for listening when to add/remove mck umum to markerClusters layer */
-let mckumumLayer = L.geoJson(null);
-let mckumum = L.geoJson(null, {
-    pointToLayer: function (feature, latlng) {
-        return L.marker(latlng, {
-            icon: L.icon({
-                iconUrl: "{{ asset('img/mckumum.png') }}",
-                iconSize: [24, 28],
-                iconAnchor: [12, 28],
-                popupAnchor: [0, -25]
-            }),
-            title: feature.properties.JENIS_SARANA,
-            riseOnHover: true
-        });
-    },
-    onEachFeature: function (feature, layer) {
-        if (feature.properties) {
-            let content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>JENIS SARANA</th><td>" + feature.properties.JENIS_SARANA + "</td></tr>" + "<tr><th>KECAMATAN</th><td>" + feature.properties.KECAMATAN + "</td></tr>" + "<tr><th>KELURAHAN</th><td>" + feature.properties.KELURAHAN + "</td></tr>" + "<tr><th>ALAMAT</th><td>" + feature.properties.ALAMAT + "</td></tr>" + "<table>";
-            layer.on({
-                click: function (e) {
-                    $("#feature-title").html(feature.properties.JENIS_SARANA);
-                    $("#feature-info").html(content);
-                    $("#featureModal").modal("show");
-                    highlight.clearLayers().addLayer(L.circleMarker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], highlightStyle));
-                }
-            });
+// let mckumum = L.geoJson(null, {
+//     pointToLayer: function (feature, latlng) {
+//         return L.marker(latlng, {
+//             icon: L.icon({
+//                 iconUrl: "{{ asset('img/mckumum.png') }}",
+//                 iconSize: [24, 28],
+//                 iconAnchor: [12, 28],
+//                 popupAnchor: [0, -25]
+//             }),
+//             title: feature.properties.JENIS_SARANA,
+//             riseOnHover: true
+//         });
+//     },
+//     onEachFeature: function (feature, layer) {
+//         if (feature.properties) {
+//             let content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>JENIS SARANA</th><td>" + feature.properties.JENIS_SARANA + "</td></tr>" + "<tr><th>KECAMATAN</th><td>" + feature.properties.KECAMATAN + "</td></tr>" + "<tr><th>KELURAHAN</th><td>" + feature.properties.KELURAHAN + "</td></tr>" + "<tr><th>ALAMAT</th><td>" + feature.properties.ALAMAT + "</td></tr>" + "<table>";
+//             layer.on({
+//                 click: function (e) {
+//                     $("#feature-title").html(feature.properties.JENIS_SARANA);
+//                     $("#feature-info").html(content);
+//                     $("#featureModal").modal("show");
+//                     highlight.clearLayers().addLayer(L.circleMarker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], highlightStyle));
+//                 }
+//             });
             // $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="{{ asset('img/mckumum.png') }}"></td><td class="feature-name">' + layer.feature.properties.ALAMAT + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
             // mckumumSearch.push({
             //     name: layer.feature.properties.JENIS_SARANA,
@@ -766,55 +769,15 @@ let mckumum = L.geoJson(null, {
             //     lat: layer.feature.geometry.coordinates[1],
             //     lng: layer.feature.geometry.coordinates[0]
             // });
-        }
-    }
-});
-$.getJSON("{{ asset('data/mckumum.geojson') }}", function (data) {
-    mckumum.addData(data);
-});
+//         }
+//     }
+// });
+// $.getJSON("{{ asset('data/mckumum.geojson') }}", function (data) {
+//     mckumum.addData(data);
+// });
 
 
-/* Empty layer placeholder to add to layer control for listening when to add/remove KOTAKU to markerClusters layer */
-let septikkomunalLayer = L.geoJson(null);
-let septikkomunal = L.geoJson(null, {
-    pointToLayer: function (feature, latlng) {
-        return L.marker(latlng, {
-            icon: L.icon({
-                iconUrl: "{{ asset('img/septictank.png') }}",
-                iconSize: [24, 28],
-                iconAnchor: [12, 28],
-                popupAnchor: [0, -25]
-            }),
-            title: feature.properties.JENIS_SARANA,
-            riseOnHover: true
-        });
-    },
-    onEachFeature: function (feature, layer) {
-        if (feature.properties) {
-            let content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>NAMA KSM</th><td>" + feature.properties.NAMA_KSM + "<tr><th>KECAMATAN</th><td>" + feature.properties.KECAMATAN + "</td></tr>" + "<tr><th>KELURAHAN</th><td>" + feature.properties.KELURAHAN + "</td></tr>" + "<tr><th>TAHUN</th><td>" + feature.properties.Tahun + "</td></tr>" + "<tr><th>SUMBER DATA</th><td>" + feature.properties.SUMBER + "</td></tr>" + "</td></tr>" + "<table>";
-            layer.on({
-                click: function (e) {
-                    $("#feature-title").html(feature.properties.JENIS_SARANA);
-                    $("#feature-info").html(content);
-                    $("#featureModal").modal("show");
-                    highlight.clearLayers().addLayer(L.circleMarker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], highlightStyle));
-                }
-            });
-            // $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="{{ asset('img/septictank.png') }}"></td><td class="feature-name">' + layer.feature.properties.NAMA_KSM + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
-            // septikkomunalSearch.push({
-            //     name: layer.feature.properties.JENIS_SARANA,
-            //     address: layer.feature.properties.KELURAHAN,
-            //     source: "septikkomunal",
-            //     id: L.stamp(layer),
-            //     lat: layer.feature.geometry.coordinates[1],
-            //     lng: layer.feature.geometry.coordinates[0]
-            // });
-       }
-    }
-});
-$.getJSON("{{ asset('data/kotaku.geojson') }}", function (data) {
-    septikkomunal.addData(data);
-});
+
 
 // /* IPAL layer placeholder*/
 // let ipalLayer = L.geoJson(null);
@@ -854,7 +817,7 @@ $.getJSON("{{ asset('data/kotaku.geojson') }}", function (data) {
 map = L.map(document.getElementById('map'), {
   zoom: 12,
   center: [-3.314771, 114.6185566],
-  layers: [mapboxDark, Kelurahan, mckplus,
+  layers: [mapboxDark, Kelurahan,
   markerClusters, highlight],
   zoomControl: false,
   fullscreenControl: false
@@ -1220,18 +1183,35 @@ L.geoJson(<?= $data->geojson ?>, {
 
 @endforeach
 
-/*IPAL PERUMDAPALD*/
+/*MCK Umum*/
 
-@foreach ($ipal as $k =>$data)
+@foreach ($mckumum as $data)
 L.marker([<?= $data->lat . ',' . $data->lng ?>], {
         icon: L.icon({
                 iconUrl: '{{ asset('') }}{{ $data->icon }}',
+                iconSize: [24, 28],
                 iconAnchor: [12, 28],
                 popupAnchor: [0, -25]
             }),
             riseOnHover: true
-        }).bindPopup('{{ $data->name }}').openPopup().addTo(ipalLayer);
+        }).bindPopup('{{ $data->type}}').openPopup().addTo(mckumum);
+
 @endforeach
+
+/*IPAL PERUMDAPALD*/
+
+@foreach ($ipal as $data)
+L.marker([<?= $data->lat . ',' . $data->lng ?>], {
+        icon: L.icon({
+                iconUrl: '{{ asset('') }}{{ $data->icon }}',
+                iconSize: [32, 37],
+                iconAnchor: [12, 28],
+                popupAnchor: [0, -25]
+            }),
+            riseOnHover: true
+        }).bindPopup('{{ $data->name }}').openPopup().addTo(ipal);
+@endforeach
+
 
 // /* IPAL layer placeholder*/
 // let ipalLayer = L.geoJson(null);
@@ -1265,6 +1245,62 @@ L.marker([<?= $data->lat . ',' . $data->lng ?>], {
 // $.getJSON("{{ asset('data/PDPAL_PT.geojson') }}", function (data) {
 //     ipal.addData(data);
 // });
+
+/*KOTAKU*/
+
+// @foreach ($kotaku as $data)
+// L.marker([<?= $data->lat . ',' . $data->lng ?>], {
+//         icon: L.icon({
+//                 iconUrl: '{{ asset('') }}{{ $data->icon }}',
+//                 iconSize: [24, 28],
+//                 iconAnchor: [12, 28],
+//                 popupAnchor: [0, -25]
+//             }),
+//             riseOnHover: true
+//         }).bindPopup('{{ $data->type}} KOTAKU').openPopup().addTo(septikkomunal);
+// @endforeach
+
+// /* Empty layer placeholder to add to layer control for listening when to add/remove KOTAKU to markerClusters layer */
+septikkomunal = L.geoJson(null, {
+    pointToLayer: function (feature, latlng) {
+        return L.marker(latlng, {
+            icon: L.icon({
+                iconUrl: "{{ asset('img/septictank.png') }}",
+                iconSize: [24, 28],
+                iconAnchor: [12, 28],
+                popupAnchor: [0, -25]
+            }),
+            title: feature.properties.JENIS_SARANA,
+            riseOnHover: true
+        });
+    },
+    onEachFeature: function (feature, layer) {
+        if (feature.properties) {
+            let content = "<table class='table table-striped table-bordered table-condensed'>" + "<tr><th>NAMA KSM</th><td>" + feature.properties.NAMA_KSM + "<tr><th>KECAMATAN</th><td>" + feature.properties.KECAMATAN + "</td></tr>" + "<tr><th>KELURAHAN</th><td>" + feature.properties.KELURAHAN + "</td></tr>" + "<tr><th>TAHUN</th><td>" + feature.properties.Tahun + "</td></tr>" + "<tr><th>SUMBER DATA</th><td>" + feature.properties.SUMBER + "</td></tr>" + "</td></tr>" + "<table>";
+            layer.on({
+                click: function (e) {
+                    $("#feature-title").html(feature.properties.JENIS_SARANA);
+                    $("#feature-info").html(content);
+                    $("#featureModal").modal("show");
+                    highlight.clearLayers().addLayer(L.circleMarker([feature.geometry.coordinates[1], feature.geometry.coordinates[0]], highlightStyle));
+                }
+            });
+            // $("#feature-list tbody").append('<tr class="feature-row" id="' + L.stamp(layer) + '" lat="' + layer.getLatLng().lat + '" lng="' + layer.getLatLng().lng + '"><td style="vertical-align: middle;"><img width="16" height="18" src="{{ asset('img/septictank.png') }}"></td><td class="feature-name">' + layer.feature.properties.NAMA_KSM + '</td><td style="vertical-align: middle;"><i class="fa fa-chevron-right pull-right"></i></td></tr>');
+            // septikkomunalSearch.push({
+            //     name: layer.feature.properties.JENIS_SARANA,
+            //     address: layer.feature.properties.KELURAHAN,
+            //     source: "septikkomunal",
+            //     id: L.stamp(layer),
+            //     lat: layer.feature.geometry.coordinates[1],
+            //     lng: layer.feature.geometry.coordinates[0]
+            // });
+       }
+    }
+});
+$.getJSON("{{ asset('data/kotaku.geojson') }}", function (data) {
+    septikkomunal.addData(data);
+});
+
 
 
 
@@ -1317,13 +1353,10 @@ L.marker([<?= $data->lat . ',' . $data->lng ?>], {
               {label: '<b>{{ trans('cruds.maps.asset') }}</b>',
                   selectAllCheckbox: true,
                   children: [
-                      {label: "<img src='{{ asset('img/mckplus.png') }}' width='24' height='24'>&nbsp;MCK Plus", layer: mckplus},
-                      {label: "<img src='{{ asset('img/mckkomunal.png') }}' width='24' height='24'>&nbsp;MCK Komunal", layer: mckkomunalLayer},
-                      {label: "<img src='{{ asset('img/mckumum.png') }}' width='24' height='24'>&nbsp;MCK Umum", layer: mckumumLayer},
-                      {label: "<img src='{{ asset('img/ipalkomunal.png') }}' width='24' height='24'>&nbsp;IPAL Komunal", layer: ipalkomunalLayer},
-                      {label: "<img src='{{ asset('img/pdpal.png') }}' width='24' height='24'>&nbsp;IPAL (PERUMDA PALD)", layer: ipalLayer},
-                      {label: "<img src='{{ asset('img/green.png') }}' width='24' height='24'>&nbsp;Tangki Septik Individual", layer: septiktank},
-                      {label: "<img src='{{ asset('img/septictank.png') }}' width='24' height='24'>&nbsp;Tangki Septik (KOTAKU)", layer: septikkomunalLayer},                   
+                    {label: "<img src='{{ asset('img/green.png') }}' width='24' height='24'>&nbsp;Tangki Septik Individual", layer: septiktank},
+                    @foreach ($kategori as $data)
+                    {label: "<img src='{{ asset('') }}{{ $data->icon }}' width='24' height='24'>&nbsp;{{ $data->type }}", layer: {{ $data->layer }}Layer},
+                    @endforeach
                   ]
               }]
           };
@@ -1333,14 +1366,16 @@ L.marker([<?= $data->lat . ',' . $data->lng ?>], {
       let ctl = L.control.layers.tree(baseTree,
               {
                   // namedToggle: true,
-                  // collapseAll: 'Collapse all',
+                  collapseAll: 'Collapse all',
                   // expandAll: 'Expand all',
-                  collapsed: false,
+                  collapsed: true,
               });
 
       ctl.addTo(map).collapseTree(true).expandSelected(false);
 
       ctl.setOverlayTree(overlayTree,).collapseTree(true).expandSelected(false);
+
+
 
 
 

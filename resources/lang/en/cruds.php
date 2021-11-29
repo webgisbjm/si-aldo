@@ -127,6 +127,8 @@ return [
             'type_helper'       => '',
             'icon'              => 'Icon',
             'icon_helper'       => ' ',
+            'layer'             => 'Layer Name',
+            'layer_helper'      => 'Layer for webgis, Do not use number, space, or special character ',
             'created_at'        => 'Created at',
             'created_at_helper' => ' ',
             'updated_at'        => 'Updated at',
