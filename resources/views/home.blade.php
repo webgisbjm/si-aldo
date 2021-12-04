@@ -159,6 +159,6 @@
 <script src="{{ asset('js/poco/jquery.counterup.min.js') }}"></script>
 <script src="{{ asset('js/poco/counter-custom.js') }}"></script>
 @parent
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>{!! $chart4->renderJs() !!}{!! $chart5->renderJs() !!}{!! $chart6->renderJs() !!}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.1/chart.min.js"></script>{!! $chart4->renderJs() !!}{!! $chart5->renderJs() !!}{!! $chart6->renderJs() !!}
 
 @endsection

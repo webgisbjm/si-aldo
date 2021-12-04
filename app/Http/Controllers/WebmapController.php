@@ -5,14 +5,19 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\Webmap;
+use Illuminate\Routing\UrlGenerator;
+use Illuminate\Support\Facades\URL;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class WebmapController extends Controller
 {
+    protected $id;
+    protected $url;
 
-    public function __construct()
+    public function __construct(UrlGenerator $url)
     {
         $this->Webmap = new Webmap();
+        $this->url = $url;
     }
 
     public function index()
@@ -23,7 +28,7 @@ class WebmapController extends Controller
             'kecamatan' => $this->Webmap->dataKecamatan(),
             'kelurahan' => $this->Webmap->dataKelurahan(),
             'kategori'  => $this->Webmap->dataCategory(),
-            'build'     => $this->Webmap->dataBuild(),
+
             'ipal'      => $this->Webmap->dataIpal(),
             'kotaku'    => $this->Webmap->dataKotaku(),
             'mckumum'   => $this->Webmap->dataMCKUmum(),
@@ -34,5 +39,35 @@ class WebmapController extends Controller
         ];
 
         return view('v_webmap', $data);
+    }
+
+    public function kecamatan($id)
+    {
+        $kec = $this->Webmap->detailKecamatan($id);
+        $fileName =  $this->url->to('/data/kotaku.geojson');
+        $data = [
+            'title'     => 'WebGIS ' . $kec->name,
+            'kecamatan' => $this->Webmap->dataKecamatan(),
+            'kec'       => $kec,
+            'filename'  => $fileName,
+            'kel'       => $this->Webmap->dataKelurahan(),
+            'kategori'  => $this->Webmap->dataCategory(),
+            'build'      => $this->Webmap->dataBuild($id),
+            'ipal'      => $this->Webmap->dataIpalKec($id),
+            'kotaku'    => $this->Webmap->dataKotaku(),
+            'mckplus'   => $this->Webmap->dataMCKPlusKec($id),
+            'mckumum'   => $this->Webmap->dataMCKUmumKec($id),
+            'mckkomunal' => $this->Webmap->dataMCKKomunalKec($id),
+            'ipalkomunal' => $this->Webmap->dataIPALKomunalKec($id),
+            'datasanitasi' => $this->Webmap->dataSanitasi($id),
+
+        ];
+
+        return view('v_kecamatan', $data);
+    }
+
+    public function getDataAttribute($value)
+    {
+        return json_decode($value, true);
     }
 }

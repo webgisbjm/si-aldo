@@ -4,9 +4,7 @@
         <div class="left-col">
           <img src="img/si-aldo.png" alt="">
           <h5 class="caption-font">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br class="d-sm-block d-none" />
-            Viverra fermentum euismod erat vitae nunc phasellus.<br />
-            Dui duis tortor, mattis phasellus ullamcorper etiam leo.
+            Sistem Informasi daring untuk memantau kegiatan pengelolaan air limbah domestik di Kota Banjarmasin, mengkomunikasikan pencapaian, mengevaluasi kegiatan, membuka kolaborasi, dan mendorong mekanisme pelaporan yang akuntabel.<br class="d-sm-block d-none" />
           </h5>
         </div>
         <div class="right-col">
@@ -15,16 +13,16 @@
               <h5 class="title-font">Tautan</h5>
               <nav class="list-unstyled list-footer d-grid gap-2">
                 <li>
-                  <a href="#" class="text-decoration-none">Ditjen Ciptakarya</a>
+                  <a href="https://ciptakarya.pu.go.id/" target="_blank" class="text-decoration-none">Ditjen Ciptakarya</a>
                 </li>
                 <li>
-                  <a href="#" class="text-decoration-none">Dit Sanitasi</a>
+                  <a href="https://sanitasi.ciptakarya.pu.go.id/" target="_blank" class="text-decoration-none">Dit Sanitasi</a>
                 </li>
                 <li>
-                  <a href="#" class="text-decoration-none">Pemko Banjarmasin</a>
+                  <a href="https://banjarmasinkota.go.id/" target="_blank" class="text-decoration-none">Pemko Banjarmasin</a>
                 </li>
                 <li>
-                  <a href="#" class="text-decoration-none">Dinas PUPR Kota Banjarmasin</a>
+                  <a href="https://pupr.banjarmasinkota.go.id/" target="_blank" class="text-decoration-none">Dinas PUPR Kota Banjarmasin</a>
                 </li>
               </nav>
             </div>

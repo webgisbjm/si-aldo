@@ -25,6 +25,8 @@
 
     @yield('header')
 
+    @yield('hero')
+
     @yield('content')
         
     @yield('footer')

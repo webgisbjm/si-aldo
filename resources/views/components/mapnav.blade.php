@@ -67,7 +67,7 @@
                               <li>
                                 <div
                                     class="dropdown-header-hover dropdown-item h-100 d-flex py-2 ps-2 align-items-center justify-content-start text-start">
-                                    <a href="#" class="text-decoration-none" id="kecamatan{{ $data->id }}" data-tool="data-list" data-target=".navbar-collapse.in">{{ $data->name }}</a>
+                                    <a href="/webmap/{{ $data->id }}" class="text-decoration-none" id="kecamatan{{ $data->id }}" data-tool="data-list" data-target=".navbar-collapse.in">{{ $data->name }}</a>
                                 </div>
                             </li>
                               @endforeach
@@ -95,7 +95,7 @@
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item dropdown text-decoration-none">
                             <a class="nav-link" data-toggle="dropdown" href="#" data-bs-toggle="dropdown">
-                                {{ strtoupper(app()->getLocale()) }}
+                                <i class="fas fa-globe" aria-hidden="true"></i>&nbsp;{{ strtoupper(app()->getLocale()) }}
                             </a>
                             <div class="dropdown-menu dropdown-header-hover dropdown-menu-right">
                                 @foreach(config('panel.available_languages') as $langLocale => $langName)

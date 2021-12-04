@@ -52,10 +52,6 @@ class KelurahanController extends Controller
                 return $row->kecamatans ? $row->kecamatans->name : '';
             });
 
-            // $table->editColumn('kecamatans.color', function ($row) {
-            //     return $row->kecamatans ? (is_string($row->kecamatans) ? $row->kecamatans : $row->kecamatans->color) : '';
-            // });
-
             $table->rawColumns(['actions', 'placeholder', 'kecamatans']);
 
             return $table->make(true);
@@ -139,28 +135,4 @@ class KelurahanController extends Controller
 
         return response()->json(['html' => $html]);
     }
-
-    // public function getKelurahan(Request $request)
-    // {
-    //     $kelurahans = DB::table("kelurahans")
-    //         ->where("kecamatans_id", $request->kecamatans_id)
-    //         ->pluck("name", "id");
-    //     return response()->json($kelurahans);
-    // }
-
-    // public function select(Request $request)
-    // {
-    //     $kelurahans = [];
-    //     $kecamatanID = $request->kecamatanID;
-    //     if ($request->has('q')) {
-    //         $search = $request->q;
-    //         $kelurahans = Kelurahan::select("id", "name")
-    //             ->where('kecamatans_id', $kecamatanID)
-    //             ->Where('name', 'LIKE', "%$search%")
-    //             ->get();
-    //     } else {
-    //         $kelurahans = Kelurahan::where('kecamatans_id', $kecamatanID)->limit(10)->get();
-    //     }
-    //     return response()->json($kelurahans);
-    // }
 }

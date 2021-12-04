@@ -74,7 +74,7 @@
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item dropdown text-decoration-none">
                             <a class="nav-link" data-toggle="dropdown" href="#" data-bs-toggle="dropdown">
-                                {{ strtoupper(app()->getLocale()) }}
+                                <i class="fas fa-globe" aria-hidden="true"></i>&nbsp;{{ strtoupper(app()->getLocale()) }}
                             </a>
                             <div class="dropdown-menu dropdown-header-hover dropdown-menu-right">
                                 @foreach(config('panel.available_languages') as $langLocale => $langName)

@@ -106,5 +106,16 @@
 
 @push('after-script')
 <x-coordinate></x-coordinate>
+<script type="text/javascript">
+    $("#kecamatans_id").change(function(){
+        $.ajax({
+            url: "{{ route('admin.kelurahans.grab') }}?kecamatans_id=" + $(this).val(),
+            method: 'GET',
+            success: function(data) {
+                $('#kelurahans_id').html(data.html);
+            }
+        });
+    });
+</script>
     
 @endpush

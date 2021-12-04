@@ -15,6 +15,7 @@ Route::get('/home', function () {
 });
 
 Route::get('/webmap', 'WebmapController@index')->name('webmap');
+Route::get('/webmap/{id}', 'WebmapController@kecamatan');
 
 Auth::routes();
 

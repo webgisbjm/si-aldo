@@ -16,6 +16,7 @@
         "postcss": "^8.1.14"
     },
     "dependencies": {
+        "chart.js": "^3.6.1",
         "esri-leaflet": "^3.0.3",
         "handlebars": "^4.7.7",
         "leaflet-geosearch": "^3.6.0",

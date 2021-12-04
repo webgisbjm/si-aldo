@@ -48,12 +48,19 @@
      attribution: 'Powered by Google , Data Peta: &copy; 2021',
  });
 
- let mapboxDark = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+ //  let mapboxDark = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+ //      maxZoom: 21,
+ //      alt: "dark basemap",
+ //      attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
+ //          'Imagery Â© <a href="https://www.mapbox.com/">Mapbox</a>',
+ //      id: 'mapbox/dark-v10'
+ //  });
+
+ let mapboxDark = L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
+     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+     subdomains: "abcd",
      maxZoom: 21,
      alt: "dark basemap",
-     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
-         'Imagery Â© <a href="https://www.mapbox.com/">Mapbox</a>',
-     id: 'mapbox/dark-v10'
  });
 
 

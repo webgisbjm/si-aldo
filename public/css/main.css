@@ -1,5 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
+:root {
+    --grid-gap: 15px;
+}
+
 /* Webmap */
 #sidebar {
     display: block;
@@ -51,6 +55,30 @@
 
 
 /* HEADER STYLE*/
+.hover-underline-animation {
+    display: inline-block;
+    position: relative;
+    color: #0087ca;
+}
+
+.hover-underline-animation:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #0087ca;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+}
+
+.hover-underline-animation:hover:after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
 .header-7-1 .btn-try {
     font-weight: 600;
     padding: 1rem 2rem;
@@ -275,6 +303,50 @@
 }
 
 /* END HEADER STYLE */
+
+/* HERO STYLE */
+.btn-explore {
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: #f3f711;
+    border: 2px solid #f3f711;
+    border-radius: 0.5em;
+    color: #1a1919;
+    cursor: pointer;
+    display: flex;
+    align-self: center;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1;
+    text-decoration: none;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+}
+
+.btn-explore:hover,
+.btn-explore:focus {
+    color: #f3f711;
+    background-color: #1a1919;
+    border: none;
+    outline: 0;
+}
+
+.first {
+    transition: box-shadow 300ms ease-in-out, color 300ms ease-in-out;
+}
+
+.first:hover {
+    box-shadow: 0 0 2px 1px #1a1919;
+    inset;
+}
+}
+
+
+/* END HERO STYLE */
 
 /* FOOTER STYLE */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
