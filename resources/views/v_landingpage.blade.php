@@ -20,8 +20,8 @@
         <div class="col-lg-7 pt-5 pt-lg-0 order-2 order-lg-1 d-flex align-items-center">
              <div data-aos="zoom-out" class="text-center text-lg-start mt-5 ml-5 p-3">
               <h1>SI-ALDO</h1>
-              <h2>Sistem Informasi Penanganan Air Limbah Domestik</h2>
-              <h3>Kota Banjarmasin</h3>
+              <h2>Sistem Informasi Pengelolaan Air Limbah Domestik</h2>
+              <h2>Kota Banjarmasin</h2>
               <div class="text-center text-lg-start">
                 <a href="#" class="btn btn-explore first scrollto rounded-pill mt-3 px-4 py-3 d-inline-block">Jelajahi Sekarang</a>
               </div>
