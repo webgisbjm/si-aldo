@@ -18,4 +18,4 @@ jobs:
           username: "sialdo"
           host: "27.112.79.132"
           password: "Webgis123!"
-          script: '' #cd /var/www/html/MerqataAPI && ./server_deploy.sh
+          script: 'cd /var/www/si-aldo && ./deployer.sh' #cd /var/www/html/MerqataAPI && ./server_deploy.sh
