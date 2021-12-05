@@ -129,7 +129,7 @@
     </div>
     <div class="chart-wrapper">
       <div class="chart-title">
-        Cell Title
+        Data Kepadatan Penduduk
       </div>
       <div class="chart-stage">
         <img data-src="holder.js/100px120?theme=white">
