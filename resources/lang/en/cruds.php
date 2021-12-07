@@ -200,8 +200,8 @@ return [
         ],
     ],
     'ipal' => [
-        'title'          => 'WWTP PERUMDA PALD',
-        'title_singular' => 'WWTP PERUMDA PALD',
+        'title'          => 'DWWTP PERUMDA PALD',
+        'title_singular' => 'DWWTP PERUMDA PALD',
         'fields'         => [
             'id'                => 'ID',
             'id_helper'         => ' ',
@@ -538,8 +538,8 @@ return [
         'location'          => 'Location',
         'thematic'          =>  'THEMATICS',
         'slum'              =>  'Slum Delineation 2015',
-        'pipe'              =>  'GREYWATER PIPE NETWORK',
-        'risk'              =>  'Greywater Risk Level',
+        'pipe'              =>  'SANITARY PIPE NETWORK',
+        'risk'              =>  'Sanitary Risk Level',
         'density'           =>  'Peoples Density',
         'utility'           =>  'ADMINISTRATIVE & UTILITIES CITY',
         'asset'             =>  'SANITATION INFRASTRUCTURE',

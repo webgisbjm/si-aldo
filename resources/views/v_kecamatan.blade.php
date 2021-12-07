@@ -25,7 +25,8 @@
     <div class="grid-hero mx-3 mt-2">
       <div class="hero mb-3">
         <div class="chart-title">
-            <h5 class="text-center">{{ $kec->name }}</h5>
+          <img src="{{ asset('img/logopemko.png') }}" class="float-start img-fluid" alt="logo-banjarmasin" />
+            <h5 class="text-center">Webmap {{ $kec->name }}</h5>
         </div>
         <div class="chart-stage">
             <div id="map" style="width: 100%; height: 75vh; box-shadow: 0 0 5px rgba(4, 161, 252, 0.5);"></div>
@@ -45,7 +46,7 @@
 
       <div class="chart-wrapper card text-dark bg-light-panel mb-3 mt-10">
         <div class="chart-title card-header bg-warning text-dark p-2 text-center">
-          Data Sanitasi (Terinput)
+          Data Infrastruktur Air Limbah Domestik (Terinput)
         </div>
         <div class="chart-stage card-text overflow-auto">
           <table class="tg table-dark">
@@ -53,7 +54,7 @@
               <tr>
                 <th class="tg-c3ow">MCK Plus</th>
                 <th class="tg-c3ow">MCK Komunal</th>
-                <th class="tg-c3ow">IPAL Komunal</th>
+                <th class="tg-c3ow">IPALD Komunal</th>
                 <th class="tg-c3ow">Tangki septik Komunal</th>
               </tr>
             </thead>
@@ -111,45 +112,41 @@
       </div>
     </div>
 
-    <div class="chart-wrapper mx-3">
+    <div class="chart-wrapper mx-3 my-2">
       <div class="chart-title text-center">
         Perhitungan SPM Sanitasi
       </div>
       <div class="chart-stage">
-        <canvas id="piespm" width="200" height="200" aria-label="Pie Chart SPM" role="img"></canvas>
+        <canvas id="piespm" width="200" height="200" aria-label="Chart SPM" role="img"></canvas>
         <select id="chartType" onchange="updateChart()">
           <option value="doughnut">Doughnut</option>
           <option value="pie">Pie</option>
           <option value="bar">Bar</option>
       </select>
       </div>
-      <div class="chart-notes">
-        Chart Data Sanitasi
-      </div>
     </div>
-    <div class="chart-wrapper">
-      <div class="chart-title">
-        Data Kepadatan Penduduk
+    <div class="chart-wrapper mx-3 my-2">
+      <div class="chart-title text-center">
+        Data Akses Aman
       </div>
       <div class="chart-stage">
-        <img data-src="holder.js/100px120?theme=white">
-      </div>
-      <div class="chart-notes">
-        Notes about this chart
+        <canvas id="securechart" width="200" height="200" aria-label="Chart Akses Aman" role="img"></canvas>
+        <select id="chartType2" onchange="updateChart2()">
+          <option value="pie">Pie</option>
+          <option value="doughnut">Doughnut</option>
+          <option value="bar">Bar</option>
+        </select>
       </div>
     </div>
-    <div class="chart-wrapper">
-      <div class="chart-title">
-        Cell Title
+    <div class="chart-wrapper mx-3 my-2">
+      <div class="chart-title text-center">
+        Data Kepadatan Penduduk (Jiwa / Km<sup>2</sup>)
       </div>
       <div class="chart-stage">
-        <img data-src="holder.js/100px120?theme=white">
-      </div>
-      <div class="chart-notes">
-        Notes about this chart
+        <canvas id="densitychart" width="200" height="200" aria-label="Chart Kepadatan Penduduk" role="img"></canvas>
       </div>
     </div>
-    <div class="chart-wrapper" id="1">
+    <div class="chart-wrapper mx-3 my-2" id="1">
       <div class="chart-title">
         Cell Title
       </div>
@@ -160,7 +157,7 @@
         Notes about this chart
       </div>
     </div>
-    <div class="chart-wrapper">
+    <div class="chart-wrapper mx-3 my-2">
       <div class="chart-title">
         Cell Title
       </div>
@@ -171,7 +168,7 @@
         Notes about this chart
       </div>
     </div>
-    <div class="chart-wrapper">
+    <div class="chart-wrapper mx-3 my-2">
       <div class="chart-title">
         Cell Title
       </div>
@@ -261,6 +258,10 @@
     if (feature.properties.KECAMATAN === "{{ $kec->name }}") return true;
   }
 
+  function kelFilter(feature) {
+    if (@foreach ($kelbykec as $data) feature.properties.KELURAHAN === "{{ $data }}" || @endforeach feature.properties.KELURAHAN === "Kertak Hanyar" )
+    return true;
+  }
 
 
   
@@ -321,6 +322,7 @@
   
   
   let Kerawanan = L.geoJson(null, {
+    filter: kelFilter,
     style: function (feature) {
         return {
             name: Kerawanan,
@@ -1052,7 +1054,8 @@ chartdata = {
             ],
             borderWidth: 1,
             hoverOffset: 4,
-        }]
+        }],
+     
     };
 
     var piespm = new Chart(ctx, {
@@ -1072,6 +1075,77 @@ function updateChart() {
 
  $('#chartType').on('change', updateChart)
  updateChart();
+
+let cty = document.getElementById('securechart').getContext('2d');
+
+chartdata2 = {
+        labels: ['Pengguna MCK', 'Tangkiseptik Komunal', 'Tangki Septik Individu', 'Jumlah SR IPALD'],
+        datasets: [{
+            label: 'Akses Aman (KK)',
+            data: [  {{ $secure->mck_user }},{{ $secure->communal }},{{ $secure->individual }},{{ $secure->qty_sr_pdpal }}
+            ],
+            backgroundColor: ['rgba(255, 117, 160, 0.8)', 'rgba(252, 227, 138, 0.8)', 'rgba(234, 255, 208, 0.8)', 'rgba(149, 225, 211, 0.8)'],
+            borderColor: ['rgba(255, 117, 160, 0.8)', 'rgba(252, 227, 138, 0.8)', 'rgba(234, 255, 208, 0.8)', 'rgba(149, 225, 211, 0.8)'],
+            borderWidth: 1,
+            hoverOffset: 4,
+        }]
+    };
+
+    var securechart = new Chart(cty, {
+    type: 'pie',
+    data: chartdata2,
+});
+
+
+function updateChart2() {
+    securechart.destroy();
+
+    securechart = new Chart(cty, {
+    type: document.getElementById("chartType2").value,
+    data: chartdata2,
+ });
+};
+
+ $('#chartType2').on('change', updateChart2)
+ updateChart2();
+
+ let ctz = document.getElementById('densitychart').getContext('2d');
+
+
+chartdata3 = {
+        labels: [@foreach ($kepadatan as $data) "{{ $data->name }}", @endforeach],
+        datasets: [{
+          label: 'Kepadatan',
+          type:'bar',
+          data: [ @foreach ($kepadatan as $data) {{ $data->density }}, @endforeach
+            ],
+            backgroundColor: 'rgba(148, 218, 255, 0.8)',
+        },
+        {
+          label: 'Populasi',
+          type:'bar',
+          data: [ @foreach ($kepadatan as $data) {{ $data->population }}, @endforeach
+            ],
+            backgroundColor: 'rgba(255, 135, 202, 0.8)',
+        }],
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            },
+            responsive: true,
+            maintainAspectRatio: false,
+        }
+    };
+
+    var densitychart = new Chart(ctz, {
+    data: chartdata3,
+});
+
+
 
 </script>
 

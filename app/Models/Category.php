@@ -16,8 +16,8 @@ class Category extends Model
         'MCK Plus'           => 'MCK Plus',
         'MCK Komunal'        => 'MCK Komunal',
         'MCK Umum'           => 'MCK Umum',
-        'IPAL Komunal'       => 'IPAL Komunal',
-        'IPAL'               => 'IPAL Perumda PALD',
+        'IPAL Komunal'       => 'IPALD Komunal',
+        'IPAL'               => 'IPALD Perumda PALD',
         'Septiktank Komunal' => 'Septiktank Komunal (KOTAKU)',
     ];
 

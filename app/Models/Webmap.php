@@ -25,6 +25,13 @@ class Webmap extends Model
         return DB::table('kelurahans')->get();
     }
 
+    public function dataKelurahanByKec($id)
+    {
+        return DB::table('kelurahans')
+            ->where('kelurahans.kecamatans_id', $id)
+            ->pluck('name');
+    }
+
     public function dataCategory()
     {
 
@@ -171,5 +178,21 @@ class Webmap extends Model
             ->where('sanitations.kecamatan_id', $id)
             ->join('kecamatans', 'kecamatans.id', '=', 'sanitations.kecamatan_id')
             ->first();
+    }
+
+    public function dataAman($id)
+    {
+        return DB::table('secureds')
+            ->where('secureds.kecamatan_id', $id)
+            ->join('kecamatans', 'kecamatans.id', '=', 'secureds.kecamatan_id')
+            ->first();
+    }
+
+    public function dataDensity($id)
+    {
+        return DB::table('densities')
+            ->join('kelurahans', 'kelurahans.id', '=', 'densities.kelurahans_id')
+            ->where('kelurahans.kecamatans_id', $id)
+            ->get();
     }
 }

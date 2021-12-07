@@ -247,7 +247,7 @@ function kerawananFeature(feature, layer) {
   let dataKerawanan = layer.feature.properties.KERAWANAN;
   layer.on({
       click: function (value) {
-          layer.bindPopup('<div style=text-align:center;>' + '<h6>' + 'Kel. ' + contentPopup + '</h6>' +
+          layer.bindPopup('<div style=text-align:center;>' + '<p>' + 'Kel. ' + contentPopup + '</p>' +
               '<p>' + 'Area ' + dataKerawanan + ' Air Limbah' + '</p>' + '</div>', customOptions);
           layer.openPopup();
       },
@@ -284,7 +284,7 @@ let Kerawanan = L.geoJson(null, {
           opacity: 1,
           width: 0.01,
           dashArray: '3',
-          interactive: false
+          interactive: true
       };
   },
   onEachFeature: kerawananFeature
@@ -330,7 +330,7 @@ function highlightFeature(e) {
       layer.bringToFront();
   }
 
-//   info.update(layer.feature.properties);
+  info.update(layer.feature.properties);
 
 }
 
@@ -338,8 +338,8 @@ let dataKepadatan;
 
 function resetHighlight(e) {
   dataKepadatan.resetStyle(e.target);
-//   info.update();
-//   infoChart.update();
+  info.update();
+  infoChart.update();
 }
 
 function zoomToFeature(e) {
@@ -405,7 +405,8 @@ let kumuh = L.geoJson(null, {
           },
           mouseout: function (e) {
               kumuh.resetStyle(e.target);
-          }
+          },
+          click: zoomToFeature
       });
   }
 });
@@ -418,6 +419,10 @@ $.getJSON("", function (data) {
   normal.addData(data);
 });
 
+function zoomToFeature(e) {
+  map.fitBounds(e.target.getBounds());
+}
+
 
 let Kelurahan = L.geoJson(null, {
   style: function (feature) {
@@ -427,10 +432,10 @@ let Kelurahan = L.geoJson(null, {
           fillOpacity: 0,
           opacity: 0.3,
           width: 0.01,
-          clickable: false,
           riseOnHover: false
       };
   },
+  
 
   onEachFeature: function (feature, layer) {
       KelurahanSearch.push({
@@ -456,7 +461,9 @@ let Kelurahan = L.geoJson(null, {
           },
           mouseout: function (e) {
               Kelurahan.resetStyle(e.target);
-          }
+          },
+
+          click: zoomToFeature,
       });
   }
 });
@@ -719,35 +726,35 @@ if (L.Browser.touch) {
 L.Path.CLIP_PADDING = 0.12;
 
 
-// /*Angka Kepadatan Penduduk*/
-// let info = L.control({
-//     position: "bottomleft"
-// });
+/*Angka Kepadatan Penduduk*/
+let info = L.control({
+    position: "bottomleft"
+});
 
-// info.onAdd = function (map) {
-//     this._div = L.DomUtil.create('divPadat', 'info');
-//     this.update();
-//     return this._div;
-// };
+info.onAdd = function (map) {
+    this._div = L.DomUtil.create('divPadat', 'info');
+    this.update();
+    return this._div;
+};
 
-// info.update = function (props) {
-//     this._div.innerHTML = (props ?
-//         '<b>' + props.KELURAHAN + '</b><br />' + props.KEPADATAN + ' jiwa / Km<sup>2</sup>' :
-//         '<h6>Gerakkan Mouse Anda di atas layer</h6>');
-// };
+info.update = function (props) {
+    this._div.innerHTML = (props ?
+        '<b>' + props.KELURAHAN + '</b><br />' + props.KEPADATAN + ' jiwa / Km<sup>2</sup>' :
+        '<h6>Gerakkan Mouse Anda di atas layer</h6>');
+};
 
-// // Add and remove info from layers
-// map.on('overlayadd', function (eventLayer) {
-//     if (eventLayer.name === "Kepadatan Penduduk") {
-//         info.addTo(this);
-//     }
-// });
+// Add and remove info from layers
+map.on('overlayadd', function (eventLayer) {
+    if (eventLayer.name === "Kepadatan Penduduk") {
+        info.addTo(this);
+    }
+});
 
-// map.on('overlayremove', function (eventLayer) {
-//     if (eventLayer.name === "Kepadatan Penduduk") {
-//         this.removeControl(info);
-//     }
-// });
+map.on('overlayremove', function (eventLayer) {
+    if (eventLayer.name === "Kepadatan Penduduk") {
+        this.removeControl(info);
+    }
+});
 
 
 // //Dashboard Kecamatan
@@ -826,34 +833,34 @@ L.Path.CLIP_PADDING = 0.12;
 // });
 
 
-// //Legenda Kerawanan Air Limbah//
+//Legenda Kerawanan Air Limbah//
 
-// let rawanLegend = L.control({
-//     name: 'rawanLegend',
-//     position: 'bottomleft'
-// });
+let rawanLegend = L.control({
+    name: 'rawanLegend',
+    position: 'bottomleft'
+});
 
 
 
-// rawanLegend.onAdd = function (map) {
-//     let div = L.DomUtil.create("div", "info legend");
-//     div.innerHTML += "<h6><b>Area Risiko Air Limbah</b></h6>";
-//     div.innerHTML += '<i style="background: #319df5"></i><span>Risiko Rendah</span><br>';
-//     div.innerHTML += '<i style="background: #89fc3d"></i><span>Risiko Sedang</span><br>';
-//     div.innerHTML += '<i style="background: #fcf912"></i><span>Risiko Tinggi</span><br>';
-//     div.innerHTML += '<i style="background: #fc0314"></i><span>Risiko Sangat Tinggi</span><br>';
+rawanLegend.onAdd = function (map) {
+    let div = L.DomUtil.create("div", "info legend");
+    div.innerHTML += "<h6><b>Area Risiko Air Limbah</b></h6>";
+    div.innerHTML += '<i style="background: #319df5"></i><span>Risiko Rendah</span><br>';
+    div.innerHTML += '<i style="background: #89fc3d"></i><span>Risiko Sedang</span><br>';
+    div.innerHTML += '<i style="background: #fcf912"></i><span>Risiko Tinggi</span><br>';
+    div.innerHTML += '<i style="background: #fc0314"></i><span>Risiko Sangat Tinggi</span><br>';
 
-//     return div;
-// };
+    return div;
+};
 
-// // Add and remove legend from layers
-// map.on('overlayadd', function (eventLayer) {
-//     // Switch to the legend...
-//     if (eventLayer.name === "Risiko Air Limbah Domestik") {
-//         rawanLegend.addTo(map);
+// Add and remove legend from layers
+map.on('baselayerchange', function (eventLayer) {
+    // Switch to the legend...
+    if (eventLayer.name === "Risiko Air Limbah Domestik") {
+        rawanLegend.addTo(map);
 
-//     }
-// });
+    }
+});
 
 // map.on('overlayremove', function (eventLayer) {
 //     // Switch to the legend...
@@ -862,7 +869,7 @@ L.Path.CLIP_PADDING = 0.12;
 //     }
 // });
 
-// //Legenda Kepadatan Penduduk//
+//Legenda Kepadatan Penduduk//
 
 // let legend = L.control({
 //     position: 'bottomleft'
@@ -892,7 +899,7 @@ L.Path.CLIP_PADDING = 0.12;
 // };
 
 
-// // Add and remove legend from layers
+// Add and remove legend from layers
 // map.on('overlayadd', function (eventLayer) {
 //     // Switch to the legend...
 //     if (eventLayer.name === "Kepadatan Penduduk") {

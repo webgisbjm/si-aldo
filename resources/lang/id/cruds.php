@@ -200,8 +200,8 @@ return [
         ],
     ],
     'ipal' => [
-        'title'          => 'IPAL PERUMDA PALD',
-        'title_singular' => 'IPAL PERUMDA PALD',
+        'title'          => 'IPALD PERUMDA PALD',
+        'title_singular' => 'IPALD PERUMDA PALD',
         'fields'         => [
             'id'                => 'ID',
             'id_helper'         => ' ',

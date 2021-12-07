@@ -28,13 +28,13 @@ class StoreDensityRequest extends FormRequest
             'population' => [
                 'required',
                 'integer',
-                'min:-2147483648',
+                'min:0',
                 'max:2147483647',
             ],
             'density' => [
                 'required',
                 'integer',
-                'min:-2147483648',
+                'min:0',
                 'max:2147483647',
             ],
             'year' => [

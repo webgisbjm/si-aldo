@@ -28,7 +28,6 @@ class WebmapController extends Controller
             'kecamatan' => $this->Webmap->dataKecamatan(),
             'kelurahan' => $this->Webmap->dataKelurahan(),
             'kategori'  => $this->Webmap->dataCategory(),
-
             'ipal'      => $this->Webmap->dataIpal(),
             'kotaku'    => $this->Webmap->dataKotaku(),
             'mckumum'   => $this->Webmap->dataMCKUmum(),
@@ -51,6 +50,7 @@ class WebmapController extends Controller
             'kec'       => $kec,
             'filename'  => $fileName,
             'kel'       => $this->Webmap->dataKelurahan(),
+            'kelbykec'  => $this->Webmap->dataKelurahanByKec($id),
             'kategori'  => $this->Webmap->dataCategory(),
             'build'      => $this->Webmap->dataBuild($id),
             'ipal'      => $this->Webmap->dataIpalKec($id),
@@ -60,6 +60,8 @@ class WebmapController extends Controller
             'mckkomunal' => $this->Webmap->dataMCKKomunalKec($id),
             'ipalkomunal' => $this->Webmap->dataIPALKomunalKec($id),
             'datasanitasi' => $this->Webmap->dataSanitasi($id),
+            'secure'    => $this->Webmap->dataAman($id),
+            'kepadatan'    => $this->Webmap->dataDensity($id),
 
         ];
 

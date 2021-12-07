@@ -11,6 +11,7 @@ class Density extends Model
     use HasFactory;
 
     public const YEAR_SELECT = [
+        '2020' => '2020',
         '2021' => '2021',
         '2022' => '2022',
         '2023' => '2023',
