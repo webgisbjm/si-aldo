@@ -55,8 +55,9 @@
 <script src="{{ asset('js/typeahead.bundle.min.js')}}"></script>
 <script src="{{ asset('js/handlebars.min.js')}}"></script>
 <script src="{{ asset('js/list.min.js')}}"></script>
-<script src="{{ asset('js/TouchHover.js')}}"></script>
-<script src="{{ asset('js/leaflet.scalefactor.min.js')}}"></script>
+<script src="{{ asset('js/TouchHover.js')}}"></script><script src="{{ asset('js/leaflet.scalefactor.min.js')}}"></script>
+<script src="{{ asset('js/L.grid.js')}}"></script>
+
 <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.js"></script>
 
@@ -582,6 +583,8 @@ map = L.map(document.getElementById('map'), {
   zoomControl: false,
   fullscreenControl: false
 });
+
+let grid = L.grid().addTo(map);
 
 let iconLayersControl = new L.Control.IconLayers(
         [{

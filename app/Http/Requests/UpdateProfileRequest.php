@@ -31,7 +31,7 @@ class UpdateProfileRequest extends FormRequest
         return [
             'name'  => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,' . auth()->id()],
-            'phone' => ['required', 'regex:/^([0-9\s\-\+\(\)]*)$/', 'digits_between:10,14', 'unique:users'],
+            'phone' => ['required', 'regex:/^([0-9\s\-\+\(\)]*)$/', 'digits_between:10,14'],
         ];
     }
 }

@@ -11,6 +11,7 @@ use App\Models\Kelurahan;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\Response;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -71,7 +72,11 @@ class KelurahanController extends Controller
 
     public function store(StoreKelurahanRequest $request)
     {
-        $kelurahan = Kelurahan::create($request->all());
+        $data = $request->all();
+
+        $data['slug'] = Str::slug($request->name);
+
+        Kelurahan::create($data);
 
         return redirect()->route('admin.kelurahans.index');
     }
@@ -89,7 +94,11 @@ class KelurahanController extends Controller
 
     public function update(UpdateKelurahanRequest $request, Kelurahan $kelurahan)
     {
-        $kelurahan->update($request->all());
+        $data = $request->all();
+
+        $data['slug'] = Str::slug($request->name);
+
+        $kelurahan->update($data);
 
         return redirect()->route('admin.kelurahans.index');
     }

@@ -36,7 +36,8 @@
                             },
 @endif
 @endforeach
-                ]
+                ],
+                color: 'yellow',
             })
         });
 </script>

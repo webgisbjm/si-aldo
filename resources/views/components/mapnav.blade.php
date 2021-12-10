@@ -1,26 +1,12 @@
 <header class="h-100 w-100 bg-white" style="box-sizing: border-box;">
-    {{-- <!-- Navbar to show product name on mobile devices -->
-    <nav class="navbar navbar-dark bg-dark navbar-expand d-md-none d-lg-none d-xl-none">
-        <div class="container-fluid">
-            
-            <a class="navbar-brand" href="/">SIGambut</a>
-            <div class="collapse navbar-collapse justify-content-end" id="navbarTogglerDemo01">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="bi bi-info-circle-fill"></i></a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav> --}}
-
+ 
     <!-- Navbar -->
     <div class="header-7-1" style="font-family: 'Poppins', sans-serif">
         <nav class="navbar navbar-expand-lg navbar-light" style="padding-top: 0.5rem; padding-bottom: 0.5rem">
             <div class="container-xxl d-flex gap-1">
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" href="/">
                     <img src="{{ asset('img/si-aldo.png') }}"
-                        alt="" />
+                        alt="logo si-aldo" />
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"

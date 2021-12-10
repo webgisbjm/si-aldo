@@ -6,6 +6,7 @@ use \DateTimeInterface;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\DB;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
@@ -54,5 +55,18 @@ class ContentPage extends Model implements HasMedia
     protected function serializeDate(DateTimeInterface $date)
     {
         return $date->format('Y-m-d H:i:s');
+    }
+
+    public function download()
+    {
+        return DB::table('content_pages')
+            ->where('content_pages.deleted_at', '=', null)
+            ->get();
+    }
+
+    public function category()
+    {
+        return DB::table('content_categories')
+            ->get();
     }
 }

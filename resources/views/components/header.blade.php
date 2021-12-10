@@ -3,9 +3,9 @@
     <div class="header-7-1" style="font-family: 'Poppins', sans-serif">
         <nav class="navbar navbar-expand-lg navbar-light" style="padding-top: 2rem; padding-bottom: 1rem">
             <div class="container-xxl d-flex gap-1">
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" href="/">
                     <img src="{{ asset('img/si-aldo.png') }}"
-                        alt="" />
+                        alt="logo si-aldo" />
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
@@ -15,13 +15,13 @@
                 <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 gap-3 mb-3">
                         <li class="nav-item">
-                            <a class="nav-link px-md-3 {{ request()->is('/') ? 'active' : '' }}" aria-current="page" href="#">{{ trans('frontend.home') }}</a>
+                            <a class="nav-link px-md-3 {{ request()->is('/') ? 'active' : '' }}" aria-current="page" href="/">{{ trans('frontend.home') }}</a>
                         </li>
                         <li class="nav-item">
                           <a class="nav-link px-md-3 {{ request()->is('webmap') ? 'active' : '' }}" href={{ url("/webmap") }}>WebGIS</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-decoration-none" href="#"
+                            <a class="nav-link dropdown-toggle text-decoration-none {{ request()->is('download') ? 'active' : '' }}" href="#"
                                 data-bs-toggle="dropdown">
                                 {{ trans('frontend.download') }}
                             </a>
@@ -29,19 +29,19 @@
                                 <li>
                                     <div
                                         class="dropdown-header-hover dropdown-item h-100 d-flex py-2 ps-2 align-items-center justify-content-start text-start">
-                                        <a href="" class="text-decoration-none">Peraturan</a>
+                                        <a href="/download" class="text-decoration-none">Peraturan</a>
                                     </div>
                                 </li>
                                 <li>
                                     <div
                                         class="dropdown-header-hover dropdown-item h-100 d-flex py-2 ps-2 align-items-center justify-content-start text-start">
-                                        <a href="" class="text-decoration-none">{{ trans('frontend.manual-book') }}</a>
+                                        <a href="https://simantu.pu.go.id/personal/img-post/autocover/b05c3e845a595b61d80bfe832e20b26b.pdf" target="_blank" class="text-decoration-none">{{ trans('frontend.manual-book') }}</a>
                                     </div>
                                 </li>
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link px-md-3" href="#">{{ trans('frontend.infographic') }}</a>
+                            <a class="nav-link px-md-3 {{ request()->is('infographic') ? 'active' : '' }}" href={{ url("/infographic") }}>{{ trans('frontend.infographic') }}</a>
                         </li>
                     </ul>
 

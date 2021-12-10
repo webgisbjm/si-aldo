@@ -13,6 +13,7 @@ use App\Models\Ipal;
 use App\Models\Kelurahan;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\Response;
 
 class IpalController extends Controller
@@ -49,6 +50,7 @@ class IpalController extends Controller
     public function store(StoreIpalRequest $request)
     {
         $ipal = Ipal::create($request->all());
+        $ipal['slug'] = Str::slug($request->name);
         $ipal->services()->sync($request->input('services', []));
 
         return redirect()->route('admin.ipals.index');
@@ -72,6 +74,8 @@ class IpalController extends Controller
     public function update(UpdateIpalRequest $request, Ipal $ipal)
     {
         $ipal->update($request->all());
+        $ipal['slug'] = Str::slug($request->name);
+
         $ipal->services()->sync($request->input('services', []));
         if (count($ipal->photos) > 0) {
             foreach ($ipal->photos as $media) {

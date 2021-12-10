@@ -1,93 +1,116 @@
 @extends('layouts.admin')
 @section('content')
-@can('density_create')
+@can('spm_create')
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
-            <a class="btn btn-success mt-2" href="{{ route('admin.densities.create') }}">
+            <a class="btn btn-success mt-2" href="{{ route('admin.spms.create') }}">
                 <i class="fas fa-plus"></i> {{ trans('global.create') }}
             </a>
             <button class="btn btn-warning mt-2" data-toggle="modal" data-target="#csvImportModal">
                 {{ trans('global.app_csvImport') }}
             </button>
-            @include('csvImport.modal', ['model' => 'Density', 'route' => 'admin.densities.parseCsvImport'])
+            @include('csvImport.modal', ['model' => 'Spm', 'route' => 'admin.spms.parseCsvImport'])
         </div>
     </div>
 @endcan
 <div class="card">
     <div class="card-header">
-        {{ trans('cruds.density.title_singular') }}
+        {{ trans('cruds.spm.title_singular') }}
     </div>
 
     <div class="card-body">
         <div class="table-responsive">
-            <table class=" table table-bordered table-striped table-hover datatable datatable-Density">
-                <thead>
+            <table class=" table table-bordered table-striped table-hover datatable datatable-Spm">
+                <thead class="text-center">
                     <tr>
-                        <th width="10">
+                        <th width="10" rowspan="2" class="align-middle">
 
                         </th>
-                        <th>
-                            {{ trans('cruds.density.fields.id') }}
+                        <th rowspan="2" class="align-middle">
+                            {{ trans('cruds.spm.fields.id') }}
                         </th>
-                        <th>
-                            {{ trans('cruds.density.fields.kelurahans') }}
+                        <th rowspan="2" class="align-middle">
+                            {{ trans('cruds.spm.fields.kelurahans') }}
                         </th>
-                        <th>
-                            {{ trans('cruds.density.fields.area') }}
+                        <th rowspan="2" class="align-middle">
+                            {{ trans('cruds.spm.fields.year') }}
                         </th>
-                        <th>
-                            {{ trans('cruds.density.fields.population') }}
+                        <th rowspan="2" class="align-middle">
+                            {{ trans('cruds.spm.fields.qty_house') }}
                         </th>
-                        <th>
-                            {{ trans('cruds.density.fields.density') }}
+                        <th colspan="2">
+                            AKSES DASAR
                         </th>
-                        <th>
-                            {{ trans('cruds.density.fields.year') }}
+                        <th colspan="2">
+                            SPALD-S
                         </th>
-                        <th>
+                        <th colspan="2">
+                            SPALD-T
+                        </th>
+                        <th rowspan="2">
                             &nbsp;
                         </th>
                     </tr>
+                    <tr>
+                        <th>TARGET</th>
+                        <th>REALISASI</th>
+                        <th>TARGET</th>
+                        <th>REALISASI</th>
+                        <th>TARGET</th>
+                        <th>REALISASI</th>
+                    </tr>
                 </thead>
                 <tbody>
-                    @foreach($densities as $key => $density)
-                        <tr data-entry-id="{{ $density->id }}">
+                    @foreach($spms as $key => $spm)
+                        <tr data-entry-id="{{ $spm->id }}">
                             <td>
 
                             </td>
                             <td>
-                                {{ $density->id ?? '' }}
+                                {{ $spm->id ?? '' }}
                             </td>
                             <td>
-                                {{ $density->kelurahans->name ?? '' }}
+                                {{ $spm->kelurahans->name ?? '' }}
                             </td>
                             <td>
-                                {{ $density->area ?? '' }}
+                                {{ App\Models\Spm::YEAR_SELECT[$spm->year] ?? '' }}
                             </td>
                             <td>
-                                {{ $density->population ?? '' }}
+                                {{ $spm->qty_house ?? '' }}
                             </td>
                             <td>
-                                {{ $density->density ?? '' }}
+                                {{ $spm->basic_target ?? '' }}
                             </td>
                             <td>
-                                {{ App\Models\Density::YEAR_SELECT[$density->year] ?? '' }}
+                                {{ $spm->basic_realization ?? '' }}
                             </td>
                             <td>
-                                @can('density_show')
-                                    <a class="btn btn-xs btn-primary" href="{{ route('admin.densities.show', $density->id) }}">
+                                {{ $spm->spalds_target ?? '' }}
+                            </td>
+                            <td>
+                                {{ $spm->spalds_realization ?? '' }}
+                            </td>
+                            <td>
+                                {{ $spm->spaldt_target ?? '' }}
+                            </td>
+                            <td>
+                                {{ $spm->spaldt_realization ?? '' }}
+                            </td>                           
+                            <td>
+                                @can('spm_show')
+                                    <a class="btn btn-xs btn-primary" href="{{ route('admin.spms.show', $spm->id) }}">
                                         {{ trans('global.view') }}
                                     </a>
                                 @endcan
 
-                                @can('density_edit')
-                                    <a class="btn btn-xs btn-info" href="{{ route('admin.densities.edit', $density->id) }}">
+                                @can('spm_edit')
+                                    <a class="btn btn-xs btn-info" href="{{ route('admin.spms.edit', $spm->id) }}">
                                         {{ trans('global.edit') }}
                                     </a>
                                 @endcan
 
-                                @can('density_delete')
-                                    <form action="{{ route('admin.densities.destroy', $density->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
+                                @can('spm_delete')
+                                    <form action="{{ route('admin.spms.destroy', $spm->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">
                                         <input type="hidden" name="_method" value="DELETE">
                                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                         <input type="submit" class="btn btn-xs btn-danger" value="{{ trans('global.delete') }}">
@@ -112,11 +135,11 @@
 <script>
     $(function () {
   let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons)
-@can('density_delete')
+@can('spm_delete')
   let deleteButtonTrans = '{{ trans('global.datatables.delete') }}'
   let deleteButton = {
     text: deleteButtonTrans,
-    url: "{{ route('admin.densities.massDestroy') }}",
+    url: "{{ route('admin.spms.massDestroy') }}",
     className: 'btn-danger',
     action: function (e, dt, node, config) {
       var ids = $.map(dt.rows({ selected: true }).nodes(), function (entry) {
@@ -147,7 +170,7 @@
     order: [[ 1, 'desc' ]],
     pageLength: 10,
   });
-  let table = $('.datatable-Density:not(.ajaxTable)').DataTable({ buttons: dtButtons })
+  let table = $('.datatable-Spm:not(.ajaxTable)').DataTable({ buttons: dtButtons })
   $('a[data-toggle="tab"]').on('shown.bs.tab click', function(e){
       $($.fn.dataTable.tables(true)).DataTable()
           .columns.adjust();

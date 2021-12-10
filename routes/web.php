@@ -17,6 +17,9 @@ Route::get('/home', function () {
 Route::get('/webmap', 'WebmapController@index')->name('webmap');
 Route::get('/webmap/{id}', 'WebmapController@kecamatan');
 
+Route::get('/infographic', 'InfoController@index')->name('infografis');
+Route::get('/download', 'DownloadController@index')->name('download');
+
 Auth::routes();
 
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'middleware' => ['auth']], function () {
@@ -85,6 +88,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::post('densities/process-csv-import', 'DensityController@processCsvImport')->name('densities.processCsvImport');
     Route::resource('densities', 'DensityController');
 
+
     // Sanitation
     Route::post('sanitations/parse-csv-import', 'SanitationController@parseCsvImport')->name('sanitations.parseCsvImport');
     Route::post('sanitations/process-csv-import', 'SanitationController@processCsvImport')->name('sanitations.processCsvImport');
@@ -99,6 +103,12 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::post('secureds/parse-csv-import', 'SecuredController@parseCsvImport')->name('secureds.parseCsvImport');
     Route::post('secureds/process-csv-import', 'SecuredController@processCsvImport')->name('secureds.processCsvImport');
     Route::resource('secureds', 'SecuredController', ['except' => ['destroy']]);
+
+    // SPM
+    Route::delete('spms/destroy', 'SpmController@massDestroy')->name('spms.massDestroy');
+    Route::post('spms/parse-csv-import', 'SpmController@parseCsvImport')->name('spms.parseCsvImport');
+    Route::post('spms/process-csv-import', 'SpmController@processCsvImport')->name('spms.processCsvImport');
+    Route::resource('spms', 'SpmController');
 
     // Content Category
     Route::delete('content-categories/destroy', 'ContentCategoryController@massDestroy')->name('content-categories.massDestroy');

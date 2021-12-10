@@ -14,21 +14,21 @@
 @section('hero')
 <!-- ======= Hero Section ======= -->
 <section id="hero">
-
+  <button class="scrollToTopBtn"><i class="fas fa-chevron-up"></i></button>
     <div class="container">
       <div class="row justify-content-between">
-        <div class="col-lg-7 pt-5 pt-lg-0 order-2 order-lg-1 d-flex align-items-center">
-             <div data-aos="zoom-out" class="text-center text-lg-start mt-5 ml-5 p-3">
+        <div class="col-lg-5 pt-2 pt-lg-0 order-2 order-lg-1 d-flex justify-content-center">
+            <div data-aos="zoom-out" data-aos-delay="400" class="text-center text-lg-start mt-1 ml-5 p-3 text-hero">
               <h1>SI-ALDO</h1>
               <h2>Sistem Informasi Air Limbah Domestik</h2>
               <h3>Kota Banjarmasin</h3>
               <div class="text-center text-lg-start">
                 <a href="#" class="btn btn-explore first scrollto rounded-pill mt-3 px-4 py-3 d-inline-block">Jelajahi Sekarang</a>
               </div>
-          </div>
+            </div>
         </div>
-        <div class="col-lg-4 order-1 order-lg-2">
-           <img src="#" class="img-fluid animated hero-img" alt="" data-aos="zoom-out" data-aos-delay="300">
+        <div class="col-12 col-lg-7 order-1 order-lg-2 d-flex align-items-center">
+           <img src="{{ asset('img/hero.png') }}" class="img-fluid animated hero-img" alt="banjarmasin smart city" data-aos="zoom-out" data-aos-delay="600">
         </div>
       </div>
     </div>
@@ -51,6 +51,12 @@
   </section><!-- End Hero -->
 @endsection
 
+@section('content')
+
+
+
+@endsection
+
 
 @section('footer')
 @include('components.frontend.footer')
@@ -64,4 +70,40 @@
         </script>
         <script src="{{ asset('js/glightbox.min.js') }}"></script>
         <script src="{{ asset('js/swiper-bundle.min.js') }}"></script>
+        <script>
+          // We select the element we want to target
+          var target = document.querySelector("footer");
+
+          var scrollToTopBtn = document.querySelector(".scrollToTopBtn");
+          var rootElement = document.documentElement;
+
+          // Next we want to create a function that will be called when that element is intersected
+          function callback(entries, observer) {
+            // The callback will return an array of entries, even if you are only observing a single item
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                // Show button
+                scrollToTopBtn.classList.add("showBtn");
+              } else {
+                // Hide button
+                scrollToTopBtn.classList.remove("showBtn");
+              }
+            });
+          }
+
+          function scrollToTop() {
+            rootElement.scrollTo({
+              top: 0,
+              behavior: "smooth"
+            });
+          }
+          scrollToTopBtn.addEventListener("click", scrollToTop);
+
+          // Next we instantiate the observer with the function we created above. This takes an optional configuration
+          // object that we will use in the other examples.
+          let observer = new IntersectionObserver(callback);
+          // Finally start observing the target element
+          observer.observe(target);
+
+        </script>
 @endpush

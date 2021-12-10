@@ -167,7 +167,7 @@ class HomeController
         $chart4 = new LaravelChart($settings4);
 
         $settings5 = [
-            'chart_title'        => 'Jumlah Bangunan Sanitasi',
+            'chart_title'        => 'Jumlah Infrastruktur Sanitasi',
             'chart_type'         => 'bar',
             'report_type'        => 'group_by_relationship',
             'model'              => 'App\Models\Build',

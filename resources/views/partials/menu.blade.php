@@ -1,14 +1,17 @@
-<aside class="main-sidebar sidebar-dark-primary elevation-4" style="min-height: 917px;">
+<aside class="main-sidebar sidebar-light-success elevation-4" style="min-height: 917px;">
     <!-- Brand Logo -->
-    <a href="#" class="brand-link">
+    <a href="/" class="brand-link ">
+        {{-- <img src="img/si-aldo.png" alt="SI-ALDO" class="brand-image"> --}}
         <span class="brand-text font-weight-light">{{ trans('panel.site_title') }}</span>
     </a>
 
     <!-- Sidebar -->
     <div class="sidebar">
-        <!-- Sidebar user (optional) -->
-        <div class="info">
-            <a href="#" class="d-block">{{ Auth::user()->name }}</a>
+        <div class="user-panel d-flex">
+            <!-- Sidebar user (optional) -->
+            <div class="info">
+                <a href="#" class="d-block ml-3">{{ Auth::user()->name }}</a>
+            </div>
         </div>
         <!-- Sidebar Menu -->
         <nav class="mt-2">
@@ -190,6 +193,18 @@
                                         </i>
                                         <p>
                                             {{ trans('cruds.secured.title') }}
+                                        </p>
+                                    </a>
+                                </li>
+                            @endcan
+                            @can('spm_access')
+                                <li class="nav-item">
+                                    <a href="{{ route("admin.spms.index") }}" class="nav-link {{ request()->is("admin/spm") || request()->is("admin/spm/*") ? "active" : "" }}">
+                                        <i class="fa-fw nav-icon fas fa-people-carry">
+
+                                        </i>
+                                        <p>
+                                            {{ trans('cruds.spm.title') }}
                                         </p>
                                     </a>
                                 </li>

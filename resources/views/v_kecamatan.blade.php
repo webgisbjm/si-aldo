@@ -29,7 +29,7 @@
             <h5 class="text-center">Webmap {{ $kec->name }}</h5>
         </div>
         <div class="chart-stage">
-            <div id="map" style="width: 100%; height: 75vh; box-shadow: 0 0 5px rgba(4, 161, 252, 0.5);"></div>
+            <div id="map" style="width: 100%; height: 60vh; box-shadow: 0 0 5px rgba(4, 161, 252, 0.5);"></div>
         </div>
       </div>
 
@@ -49,7 +49,7 @@
           Data Infrastruktur Air Limbah Domestik (Terinput)
         </div>
         <div class="chart-stage card-text overflow-auto">
-          <table class="tg table-dark">
+          <table class="tg table-dark col-12">
             <thead>
               <tr>
                 <th class="tg-c3ow">MCK Plus</th>
@@ -112,7 +112,7 @@
       </div>
     </div>
 
-    <div class="chart-wrapper mx-3 my-2">
+    <div class="chart-wrapper mx-3 my-2 row-3">
       <div class="chart-title text-center">
         Perhitungan SPM Sanitasi
       </div>
@@ -125,7 +125,7 @@
       </select>
       </div>
     </div>
-    <div class="chart-wrapper mx-3 my-2">
+    <div class="chart-wrapper mx-3 my-2 row-3">
       <div class="chart-title text-center">
         Data Akses Aman
       </div>
@@ -138,45 +138,12 @@
         </select>
       </div>
     </div>
-    <div class="chart-wrapper mx-3 my-2">
+    <div class="chart-wrapper mx-3 my-2 row-6">
       <div class="chart-title text-center">
-        Data Kepadatan Penduduk (Jiwa / Km<sup>2</sup>)
+        DemoGraphic
       </div>
       <div class="chart-stage">
-        <canvas id="densitychart" width="200" height="200" aria-label="Chart Kepadatan Penduduk" role="img"></canvas>
-      </div>
-    </div>
-    <div class="chart-wrapper mx-3 my-2" id="1">
-      <div class="chart-title">
-        Cell Title
-      </div>
-      <div class="chart-stage">
-        <img data-src="holder.js/100px120?theme=white">
-      </div>
-      <div class="chart-notes">
-        Notes about this chart
-      </div>
-    </div>
-    <div class="chart-wrapper mx-3 my-2">
-      <div class="chart-title">
-        Cell Title
-      </div>
-      <div class="chart-stage">
-        <img data-src="holder.js/100px120?theme=white">
-      </div>
-      <div class="chart-notes">
-        Notes about this chart
-      </div>
-    </div>
-    <div class="chart-wrapper mx-3 my-2">
-      <div class="chart-title">
-        Cell Title
-      </div>
-      <div class="chart-stage">
-        <img data-src="holder.js/100px120?theme=white">
-      </div>
-      <div class="chart-notes">
-        Notes about this chart
+        <canvas id="densitychart"width="200" height="200" aria-label="Chart Kepadatan Penduduk" role="img"></canvas>
       </div>
     </div>
   </div>
