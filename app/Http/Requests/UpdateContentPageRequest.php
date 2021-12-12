@@ -19,9 +19,7 @@ class UpdateContentPageRequest extends FormRequest
         return [
             'no' => [
                 'nullable',
-                'integer',
-                'min:1',
-                'max:2147483647',
+                'string',
             ],
             'year' => [
                 'numeric',

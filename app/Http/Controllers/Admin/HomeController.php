@@ -2,10 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Spm;
 use LaravelDaily\LaravelCharts\Classes\LaravelChart;
 
 class HomeController
 {
+    public function __construct()
+    {
+        $this->Spm = new Spm();
+    }
+
     public function index()
     {
         $settings1 = [
@@ -174,10 +180,11 @@ class HomeController
             'group_by_field'     => 'type',
             'aggregate_function' => 'count',
             'filter_field'       => 'created_at',
-            'column_class'       => 'col-md-8',
+            'column_class'       => 'col-md-7',
             'entries_number'     => '5',
             'relationship_name'  => 'categories',
             'translation_key'    => 'build',
+
         ];
 
         $chart5 = new LaravelChart($settings5);
@@ -199,7 +206,7 @@ class HomeController
         $chart6 = new LaravelChart($settings6);
 
         $settings7 = [
-            'chart_title'           => 'Entry Data',
+            'chart_title'           => '10 Input Data Terbaru',
             'chart_type'            => 'latest_entries',
             'report_type'           => 'group_by_date',
             'model'                 => 'App\Models\Build',
@@ -231,6 +238,9 @@ class HomeController
 
         $data = [
             'title'     => 'Dashboard Admin',
+            'spm2020'       => $this->Spm->dataSPM2020(),
+            'spm2021'       => $this->Spm->dataSPM2021(),
+            'spm2022'       => $this->Spm->dataSPM2022(),
         ];
 
         return view('home', $data, compact('settings1', 'settings2', 'settings3', 'chart4', 'chart5', 'chart6', 'settings7'));

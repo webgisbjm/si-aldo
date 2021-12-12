@@ -12,7 +12,7 @@
             @csrf
             <div class="form-group">
                 <label for="no">{{ trans('cruds.contentPage.fields.no') }}</label>
-                <input class="form-control {{ $errors->has('no') ? 'is-invalid' : '' }}" type="number" name="no" id="no" value="{{ old('no', $contentPage->no) }}" step="1">
+                <input class="form-control {{ $errors->has('no') ? 'is-invalid' : '' }}" type="text" name="no" id="no" value="{{ old('no', $contentPage->no) }}" step="1">
                 @if($errors->has('no'))
                     <span class="text-danger">{{ $errors->first('no') }}</span>
                 @endif

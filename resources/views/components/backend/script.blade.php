@@ -22,7 +22,13 @@
 
     <script src="{{ asset('js/main.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
-    
+
+    <script>
+      $(document).ready(function(){
+      $(".preloader").fadeOut(1500);
+      })
+    </script>
+   
     <script>
       $(function() {
       let copyButtonTrans = '{{ trans('global.datatables.copy') }}'

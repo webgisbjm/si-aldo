@@ -32,7 +32,7 @@
                         <!-- Container-fluid starts-->
                         <div class="container-fluid general-widget">
                             <div class="row">
-                                <div class="col-sm-6 col-xl-3 col-lg-6 box-col-6 mb-5">
+                                <div class="col-sm-6 col-xl-3 col-lg-3 box-col-6 mb-5">
                                     <div class="card gradient-primary o-hidden">
                                         <div class="b-r-4 card-body">
                                             <div class="media static-top-widget">
@@ -45,7 +45,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-6 col-xl-3 col-lg-6 box-col-6 mb-5">
+                                <div class="col-sm-6 col-xl-3 col-lg-3 box-col-6 mb-5">
                                     <div class="card gradient-secondary o-hidden">
                                         <div class="b-r-4 card-body">
                                             <div class="media static-top-widget">
@@ -58,7 +58,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-6 col-xl-3 col-lg-6 box-col-6 mb-5">
+                                <div class="col-sm-6 col-xl-3 col-lg-3 box-col-6 mb-5">
                                     <div class="card gradient-warning o-hidden">
                                         <div class="b-r-4 card-body">
                                             <div class="media static-top-widget">
@@ -73,7 +73,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-6 col-xl-3 col-lg-6 box-col-6 mb-5">
+                                <div class="col-sm-6 col-xl-3 col-lg-3 box-col-6 mb-5">
                                     <div class="card gradient-info o-hidden">
                                         <div class="b-r-4 card-body">
                                             <div class="media static-top-widget">
@@ -94,19 +94,85 @@
                                 </div>
 
 
-                                <div class="{{ $chart4->options['column_class'] }} p-2" id="myChart">
+                                <div class="card {{ $chart4->options['column_class'] }} p-2 m-2" id="myChart">
                                     <h3 class="text-center">{!! $chart4->options['chart_title'] !!}</h3>
                                     {!! $chart4->renderHtml() !!}
                                 </div>
                                 
-                                <div class="{{ $chart5->options['column_class'] }} p-2">
+                                <div class="card {{ $chart5->options['column_class'] }} p-2 m-2">
                                     <h3 class="text-center">{!! $chart5->options['chart_title'] !!}</h3>
                                     {!! $chart5->renderHtml() !!}
                                 </div>
-                                <div class="{{ $chart6->options['column_class'] }}">
+                                <div class="card {{ $chart6->options['column_class'] }} p-2 mx-2">
                                     <h3>{!! $chart6->options['chart_title'] !!}</h3>
                                     {!! $chart6->renderHtml() !!}
                                 </div>
+
+                               <!-- /.col -->
+                                <div class="col-md-5">
+                                    <div class="card card-danger" style="border-radius:0px;">
+                                    <div class="card-header" style="border-radius:0px;">
+                                        <div class="card-tools">
+                                        <button type="button" class="btn btn-tool" data-toggle="collapse" data-target="#collapseCard" aria-expanded="false" aria-controls="collapseCard">
+                                            <i class="fas fa-minus"></i>
+                                        </button>
+                                        </div>
+                                        <h6 class="card-title">Area Risiko Kerawanan Air Limbah Domestik</h6>
+                                        <!-- /.card-tools -->
+                                    </div>
+                                    <!-- /.card-header -->
+                                    <div class="card-body" id="collapseCard">
+                                        <table class="table-bordered table-sm table-light">
+                                            <thead class="bg-warning">
+                                              <tr>
+                                                <th width="5">No</th>
+                                                <th class="px-5">Kelurahan</th>
+                                                <th class="px-3">Level Risiko</th>
+                                              </tr>
+                                            </thead>
+                                            <tbody>
+                                                @php($i=0)
+                                                @foreach(App\Models\Risk::where('level', '>', '2')->join('kelurahans', 'kelurahans.id', '=', 'risks.kelurahan_id')->orderBy('level', 'desc')->get() as $data)
+                                                @php($i++)
+                                                <tr>
+                                                    <td>{{ $i }}</td>
+                                                    <td>{{ $data->name }}</td>
+                                                    <td>{{ $data->level == "3" ? "Tinggi" : "Sangat Tinggi"}}</td>
+                                                </tr>
+                                                @endforeach
+                                            </tbody>
+                                            </table>
+                                    </div>
+                                    <!-- /.card-body -->
+                                    </div>
+                                    <!-- /.card -->
+                                </div>
+                                <!-- /.col -->
+
+                                <div class="card bg-light bg-gradient p-2 my-2 col-md-10">
+                                    <h3 class="text-center">
+                                      Capaian SPALD-S
+                                    </h3>
+                                    <div class="chart-stage">
+                                        <canvas id="spalds" width="100" height="100" aria-label="Capaian SPALD-S" role="img"></canvas>
+                                        <select id="chartyear">
+                                            <option value="spaldsa" selected>2020</option>
+                                            {{-- <option value="spaldsb" selected>2021</option>
+                                            <option value="spaldsc" selected>2022</option> --}}
+                                       </select>
+                                      
+                                    </div>
+                                </div>
+
+                                <div class="card bg-light bg-gradient p-2 my-2 col-md-10">
+                                    <h3 class="text-center">
+                                      Capaian SPALD-T
+                                    </h3>
+                                    <div class="chart-stage">
+                                      <canvas id="spaldt" width="100" height="100" aria-label="Capaian SPALD-T" role="img"></canvas>
+                                    </div>
+                                </div>
+
 
                         {{-- Widget - latest entries --}}
                         <div class="{{ $settings7['column_class'] }}" style="overflow-x: auto;">
@@ -160,5 +226,190 @@
 <script src="{{ asset('js/poco/counter-custom.js') }}"></script>
 @parent
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.1/chart.min.js"></script>{!! $chart4->renderJs() !!}{!! $chart5->renderJs() !!}{!! $chart6->renderJs() !!}
+<script>
+    let ctspms = document.getElementById('spalds').getContext('2d');
+    let ctspmt = document.getElementById('spaldt').getContext('2d');
+    
+    spaldsa = {
+            labels: [@foreach ($spm2020 as $data) "{{ $data->name }}", @endforeach ],
+            datasets: [{
+                type: 'bar',
+                label: 'Target SPALD-S',
+                data: [
+                    @foreach ($spm2020 as $data) "{{ $data->spalds_target }}", @endforeach
+                ],
+                backgroundColor: 'rgba(255, 99, 132, 0.8)',
+                borderColor: '#0f0',
+                showLine: true,
+                fillColor: "rgba(151,187,205,0.2)",
+                strokeColor: "rgba(151,187,205,1)",
+                pointColor: "rgba(200,10,10,1)",
+                pointStrokeColor: "#fff",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: "rgba(151,187,205,1)",
+                order: 2,
+            }, {
+                type: 'line',
+                label: 'Realisasi SPALD-S',
+                data: [
+                    @foreach ($spm2020 as $data) "{{ $data->spalds_realization }}", @endforeach
+                ],
+                borderColor: '#00f',
+                showLine: true,
+                fillColor: "rgba(151,187,205,0.8)",
+                strokeColor: "rgba(151,187,205,1)",
+                pointColor: "rgba(200,10,10,1)",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: "rgba(151,187,205,1)",
+                order: 1,
+            }],         
+        };
+
+        spaldsb = {
+            labels: [@foreach ($spm2021 as $data) "{{ $data->name }}", @endforeach ],
+            datasets: [{
+                type: 'bar',
+                label: 'Target SPALD-S',
+                data: [
+                    @foreach ($spm2021 as $data) "{{ $data->spalds_target }}", @endforeach
+                ],
+                backgroundColor: 'rgba(255, 99, 132, 0.8)',
+                borderColor: '#0f0',
+                showLine: true,
+                fillColor: "rgba(151,187,205,0.2)",
+                strokeColor: "rgba(151,187,205,1)",
+                pointColor: "rgba(200,10,10,1)",
+                pointStrokeColor: "#fff",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: "rgba(151,187,205,1)",
+                order: 2,
+            }, {
+                type: 'line',
+                label: 'Realisasi SPALD-S',
+                data: [
+                    @foreach ($spm2021 as $data) "{{ $data->spalds_realization }}", @endforeach
+                ],
+                borderColor: '#00f',
+                showLine: true,
+                fillColor: "rgba(151,187,205,0.8)",
+                strokeColor: "rgba(151,187,205,1)",
+                pointColor: "rgba(200,10,10,1)",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: "rgba(151,187,205,1)",
+                order: 1,
+            }],         
+        };
+
+        spaldsc = {
+            labels: [@foreach ($spm2022 as $data) "{{ $data->name }}", @endforeach ],
+            datasets: [{
+                type: 'bar',
+                label: 'Target SPALD-S',
+                data: [
+                    @foreach ($spm2022 as $data) "{{ $data->spalds_target }}", @endforeach
+                ],
+                backgroundColor: 'rgba(255, 99, 132, 0.8)',
+                borderColor: '#0f0',
+                showLine: true,
+                fillColor: "rgba(151,187,205,0.2)",
+                strokeColor: "rgba(151,187,205,1)",
+                pointColor: "rgba(200,10,10,1)",
+                pointStrokeColor: "#fff",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: "rgba(151,187,205,1)",
+                order: 2,
+            }, {
+                type: 'line',
+                label: 'Realisasi SPALD-S',
+                data: [
+                    @foreach ($spm2022 as $data) "{{ $data->spalds_realization }}", @endforeach
+                ],
+                borderColor: '#00f',
+                showLine: true,
+                fillColor: "rgba(151,187,205,0.8)",
+                strokeColor: "rgba(151,187,205,1)",
+                pointColor: "rgba(200,10,10,1)",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: "rgba(151,187,205,1)",
+                order: 1,
+            }],         
+        };
+        
+    
+        let spalds = new Chart(ctspms, {
+        data: spaldsa,
+        options: {
+            tooltips: {
+            displayColors: true,
+            callbacks:{
+                mode: 'x',
+            },
+            },
+            responsive: true,
+            legend: { position: 'bottom' },
+            }
+        });
+
+          
+        const chartyear = document.getElementById('chartyear');
+        
+        $("#chartyear").change(function() {
+           spalds.destroy();
+              
+           spalds = new Chart(ctspms, {
+            data: document.getElementById('chartyear').options[document.getElementById('chartyear').selectedIndex].value,
+            });
+
+            spalds.update();
+        });
+
+
+       
+
+        dataspaldt = {
+            labels: [@foreach ($spm2020 as $data) "{{ $data->name }}", @endforeach ],
+            datasets: [{
+                type: 'bar',
+                label: 'Target SPALD-T',
+                data: [
+                    @foreach ($spm2020 as $data) "{{ $data->spaldt_target }}", @endforeach
+                ],
+                backgroundColor: 'rgba(255, 99, 132, 0.8)',
+                borderColor: '#0f0',
+                showLine: true,
+                fillColor: "rgba(151,187,205,0.2)",
+                strokeColor: "rgba(151,187,205,1)",
+                pointColor: "rgba(200,10,10,1)",
+                pointStrokeColor: "#fff",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: "rgba(151,187,205,1)",
+                order: 2,
+            }, {
+                type: 'line',
+                label: 'Realisasi SPALD-T',
+                data: [
+                    @foreach ($spm2020 as $data) "{{ $data->spaldt_realization }}", @endforeach
+                ],
+                borderColor: '#00f',
+                showLine: true,
+                fillColor: "rgba(151,187,205,0.8)",
+                strokeColor: "rgba(151,187,205,1)",
+                pointColor: "rgba(200,10,10,1)",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: "rgba(151,187,205,1)",
+                order: 1,
+            }],         
+        };
+
+   let spaldt = new Chart(ctspmt, {
+        data: dataspaldt,
+        options: {
+            responsive: true,
+            }
+    });
+    </script>
+
+
+
 
 @endsection

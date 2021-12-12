@@ -11,6 +11,7 @@
     <link rel="stylesheet" href= "{{ asset('css/leaflet.plugin.css') }}" />
     <link rel="stylesheet" href= "{{ asset('css/iconLayers.css') }}" />
     <link rel="stylesheet" href= "{{ asset('css/gridkeen.css') }}" />
+    <link rel="stylesheet" href= "{{ asset('css/pace.css') }}" />
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
 
 @endpush
@@ -170,6 +171,7 @@
 @push('after-script')
 <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.1/chart.min.js"></script>
+<script src="{{ asset('js/pace.min.js') }}"></script> 
 <script src="{{ asset('js/basemap.js') }}"></script> 
 <script src="{{ asset('js/iconLayers.js') }}"></script>
 <script src="{{ asset('js/L.Control.Fullscreen.min.js') }}"></script>
@@ -180,7 +182,6 @@
 <script src="{{ asset('js/handlebars.min.js')}}"></script>
 <script src="{{ asset('js/list.min.js')}}"></script>
 <script src="{{ asset('js/L.Control.ZoomBar.js')}}"></script>
-
 
 
 <script>
@@ -1082,7 +1083,7 @@ function updateChart2() {
 chartdata3 = {
         labels: [@foreach ($kepadatan as $data) "{{ $data->name }}", @endforeach],
         datasets: [{
-          label: 'Kepadatan',
+          label: 'Kepadatan (jiwa/km2)',
           type:'bar',
           data: [ @foreach ($kepadatan as $data) {{ $data->density }}, @endforeach
             ],

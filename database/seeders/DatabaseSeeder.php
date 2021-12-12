@@ -19,6 +19,8 @@ class DatabaseSeeder extends Seeder
             KelurahansTableSeeder::class,
             CategoriesTableSeeder::class,
             BuildsTableSeeder::class,
+            PopulationsTableSeeder::class,
+            RisksTableSeeder::class,
         ]);
     }
 }

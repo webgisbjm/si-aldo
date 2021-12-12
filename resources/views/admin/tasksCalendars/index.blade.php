@@ -1,13 +1,17 @@
 @extends('layouts.admin')
 @section('content')
 
-<div class="card">
+<div class="card bg-success bg-gradient">
     <div class="card-header">
         {{ trans('cruds.tasksCalendar.title') }}
     </div>
 
-    <div class="card-body">
+    <div class="card-body overflow-hidden">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.css" />
+        <style>
+        .fc-unthemed td.fc-today {background: #dfbf15;}
+        .fc-widget-header {background: #0d5c1f;}
+        </style>
         <div id="calendar"></div>
 
     </div>

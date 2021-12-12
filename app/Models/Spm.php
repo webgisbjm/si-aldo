@@ -5,6 +5,7 @@ namespace App\Models;
 use \DateTimeInterface;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Spm extends Model
 {
@@ -14,8 +15,6 @@ class Spm extends Model
         '2020' => '2020',
         '2021' => '2021',
         '2022' => '2022',
-        '2023' => '2023',
-        '2024' => '2024',
     ];
 
     public $table = 'spms';
@@ -47,5 +46,29 @@ class Spm extends Model
     protected function serializeDate(DateTimeInterface $date)
     {
         return $date->format('Y-m-d H:i:s');
+    }
+
+    public function dataSPM2020()
+    {
+        return DB::table('spms')
+            ->where('year', '=', '2020')
+            ->join('kelurahans', 'kelurahans.id', '=', 'spms.kelurahans_id')
+            ->get();
+    }
+
+    public function dataSPM2021()
+    {
+        return DB::table('spms')
+            ->where('year', '=', '2021')
+            ->join('kelurahans', 'kelurahans.id', '=', 'spms.kelurahans_id')
+            ->get();
+    }
+
+    public function dataSPM2022()
+    {
+        return DB::table('spms')
+            ->where('year', '=', '2022')
+            ->join('kelurahans', 'kelurahans.id', '=', 'spms.kelurahans_id')
+            ->get();
     }
 }

@@ -20,6 +20,12 @@
 @endsection
     
 @section('content')
+
+<div class="preloader">
+    <div class="loading">
+        <img src="{{ asset('img/rotate.svg') }}" width=100px height=100px>
+    </div>
+</div>
     
 
 <div id="map" style="width: 100%; height: 80vh; box-shadow: 0 0 3px rgba(0,0,0,0.5);"></div>
@@ -60,6 +66,12 @@
 
 <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.js"></script>
+
+<script>
+    $(document).ready(function(){
+    $(".preloader").fadeOut(2000);
+    })
+  </script>
 
 <script>
   let kecamatan = L.layerGroup();

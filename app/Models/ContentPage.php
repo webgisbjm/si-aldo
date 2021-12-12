@@ -61,12 +61,9 @@ class ContentPage extends Model implements HasMedia
     {
         return DB::table('content_pages')
             ->where('content_pages.deleted_at', '=', null)
-            ->get();
-    }
-
-    public function category()
-    {
-        return DB::table('content_categories')
+            ->join('content_category_content_page', 'content_category_content_page.content_page_id', '=', 'content_pages.id')
+            ->join('content_categories', 'content_categories.id', '=', 'content_category_content_page.content_category_id')
+            ->select('content_pages.no', 'content_pages.year', 'content_pages.title', 'content_pages.excerpt', 'content_categories.name as name')
             ->get();
     }
 }

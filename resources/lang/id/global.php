@@ -24,6 +24,7 @@ return [
     'home'                           => 'Beranda',
     'list'                           => 'Daftar',
     'login'                          => 'Masuk',
+    'login_username'                 => 'Email / Username / No.Telepon',
     'login_email'                    => 'Email',
     'login_phone'                    => 'No. Telepon',
     'login_password'                 => 'Kata Sandi',

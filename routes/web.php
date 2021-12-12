@@ -95,9 +95,10 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::resource('sanitations', 'SanitationController', ['except' => ['destroy']]);
 
     // Risk
+    Route::delete('risks/destroy', 'RiskController@massDestroy')->name('risks.massDestroy');
     Route::post('risks/parse-csv-import', 'RiskController@parseCsvImport')->name('risks.parseCsvImport');
     Route::post('risks/process-csv-import', 'RiskController@processCsvImport')->name('risks.processCsvImport');
-    Route::resource('risks', 'RiskController', ['except' => ['show', 'destroy']]);
+    Route::resource('risks', 'RiskController', ['except' => 'show']);
 
     // Secured
     Route::post('secureds/parse-csv-import', 'SecuredController@parseCsvImport')->name('secureds.parseCsvImport');

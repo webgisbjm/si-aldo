@@ -167,7 +167,7 @@
 
   $.extend(true, $.fn.dataTable.defaults, {
     orderCellsTop: true,
-    order: [[ 1, 'desc' ]],
+    order: [[ 1, 'asc' ]],
     pageLength: 10,
   });
   let table = $('.datatable-Spm:not(.ajaxTable)').DataTable({ buttons: dtButtons })

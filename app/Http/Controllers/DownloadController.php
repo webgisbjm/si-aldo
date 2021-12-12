@@ -20,8 +20,7 @@ class DownloadController extends Controller
 
         $data = [
             'title'     => 'Download Peraturan',
-            'download'      => $this->ContentPage->download(),
-            'category'      => $this->ContentPage->category(),
+            'download'  => $this->ContentPage->download(),
         ];
 
         return view('v_download', $data);

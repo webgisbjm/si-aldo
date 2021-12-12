@@ -15,7 +15,7 @@
     <div class="text-center my-3">
         <h3>Peraturan-Peraturan Tentang Air Limbah Domestik</h3>
     </div>
-    <div class="table-responsive table-responsive-lg table-responsive-sm table-responsive-xl table-responsive-md overflow-hidden">
+    <div class="table-responsive table-responsive-lg table-responsive-sm table-responsive-xl table-responsive-md overflow-auto">
         <table class="table table-bordered table-hover table-striped mb-none data-table" id="datatable">
             <thead class="bg-danger">
                 <tr>
@@ -27,12 +27,10 @@
             </thead>
 
             <tbody>
+            @foreach ($download as $data)
             <tr class="gradeX">
-                @foreach ($download as $data)
                 <td>
-                @foreach($category as $key => $item)
-                    {{ $item->name }}
-                @endforeach
+                {{ $data->name ?? '' }}
                 </td>
                 <td class="center">{{ $data->no ?? '' }}&nbsp;Tahun&nbsp;{{ $data->year ?? '' }}</td>
                 <td>{{ $data->title ?? '' }}</td>
@@ -40,8 +38,8 @@
                     <a class="btn btn-sm btn-primary" href="{{ $data->excerpt ?? '#' }}" target="_blank">
                         <i class="fa fa-download" aria-hidden="true"></i></a>
                 </td>
-                @endforeach
             </tr>
+            @endforeach
             </tbody>
         </table>
 </div>

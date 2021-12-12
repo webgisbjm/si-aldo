@@ -24,6 +24,7 @@ return [
     'home'                           => 'Home',
     'list'                           => 'List',
     'login'                          => 'Login',
+    'login_username'                 => 'Email / Username / Phone Number',
     'login_email'                    => 'Email',
     'login_phone'                    => 'Phone',
     'login_password'                 => 'Password',

@@ -24,11 +24,11 @@
                 @csrf
 
                 <div class="form-group">
-                    <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" required autocomplete="email" autofocus placeholder="{{ trans('global.login_email') }}" name="email" value="{{ old('email', null) }}">
+                    <input id="username" type="text" class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }}" autofocus placeholder="{{ trans('global.login_username') }}" name="username" value="{{ old('username', null) }}">
 
-                    @if($errors->has('email'))
+                    @if($errors->has('username'))
                         <div class="invalid-feedback">
-                            {{ $errors->first('email') }}
+                            {{ $errors->first('username') }}
                         </div>
                     @endif
                 </div>

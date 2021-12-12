@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\Traits\CsvImportTrait;
 use App\Http\Requests\StoreRiskRequest;
 use App\Http\Requests\UpdateRiskRequest;
+use App\Http\Requests\MassDestroyRiskRequest;
 use App\Models\Kelurahan;
 use App\Models\Risk;
 use Illuminate\Support\Facades\Gate;
@@ -54,10 +55,10 @@ class RiskController extends Controller
             });
 
             $table->editColumn('level', function ($row) {
-                return $row->level ? Risk::LEVEL_SELECT[$row->level] : '';
+                return '<div class="badge ' . ($row->level == "1" ? 'badge-success' : ($row->level == "2" ? 'badge-warning' : ($row->level == "3" ? 'badge-danger' : 'badge-dark'))) . '">' . ($row->level ? Risk::LEVEL_SELECT[$row->level] : '') . '</div>';
             });
 
-            $table->rawColumns(['actions', 'placeholder', 'kelurahan']);
+            $table->rawColumns(['actions', 'placeholder', 'kelurahan', 'level']);
 
             return $table->make(true);
         }
@@ -97,5 +98,21 @@ class RiskController extends Controller
         $risk->update($request->all());
 
         return redirect()->route('admin.risks.index');
+    }
+
+    public function destroy(Risk $risk)
+    {
+        abort_if(Gate::denies('risk_delete'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+        $risk->delete();
+
+        return back();
+    }
+
+    public function massDestroy(MassDestroyRiskRequest $request)
+    {
+        Risk::whereIn('id', request('ids'))->delete();
+
+        return response(null, Response::HTTP_NO_CONTENT);
     }
 }

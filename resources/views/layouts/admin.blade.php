@@ -18,8 +18,15 @@
     @yield('styles')
 </head>
 
-<body class="sidebar-mini layout-fixed" style="height: auto;">
+<body class="sidebar-mini layout-fixed hold-transition" style="height: auto;">
     <div class="wrapper">
+                
+        <div class="preloader">
+            <div class="loading">
+                <img src="{{ asset('img/audio.svg') }}">
+            </div>
+        </div>
+
         <nav class="main-header navbar navbar-expand bg-white navbar-light border-bottom">
             <!-- Left navbar links -->
             <ul class="navbar-nav">
