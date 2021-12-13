@@ -35,7 +35,7 @@
                                 <li>
                                     <div
                                         class="dropdown-header-hover dropdown-item h-100 d-flex py-2 ps-2 align-items-center justify-content-start text-start">
-                                        <a href="https://simantu.pu.go.id/personal/img-post/autocover/b05c3e845a595b61d80bfe832e20b26b.pdf" target="_blank" class="text-decoration-none">{{ trans('frontend.manual-book') }}</a>
+                                        <a href="#" target="_blank" class="text-decoration-none">{{ trans('frontend.manual-book') }}</a>
                                     </div>
                                 </li>
                             </ul>
@@ -57,11 +57,8 @@
                     @endauth
                     @guest
                     <div class="d-flex">
-                        <a href="{{ route('register') }}" class="nav-link px-md-2">
-                        <button class="btn btn-register text-blue-1">{{ trans('frontend.register') }}</button>
-                        </a>
                         <a href="{{ route('login') }}" class="nav-link px-md-2">
-                            <button class="btn btn-login btn-login-blue" >
+                            <button class="btn btn-sm btn-login btn-login-blue" >
                                 {{ trans('frontend.login') }}
                             </button>
                         </a>

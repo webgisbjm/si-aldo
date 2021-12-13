@@ -37,6 +37,8 @@
 
 </div>
 </section><!-- End Gallery Section -->
+
+@include('components.frontend.modal')
 @endsection
 
 

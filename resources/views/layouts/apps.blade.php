@@ -28,6 +28,8 @@
     @yield('hero')
 
     @yield('content')
+
+    @yield('faq')
         
     @yield('footer')
 

@@ -46,7 +46,7 @@
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
   </div><!-- /.modal -->
-
+  @include('components.frontend.modal')
 @endsection
 
 @push('after-script')
@@ -61,7 +61,8 @@
 <script src="{{ asset('js/typeahead.bundle.min.js')}}"></script>
 <script src="{{ asset('js/handlebars.min.js')}}"></script>
 <script src="{{ asset('js/list.min.js')}}"></script>
-<script src="{{ asset('js/TouchHover.js')}}"></script><script src="{{ asset('js/leaflet.scalefactor.min.js')}}"></script>
+<script src="{{ asset('js/TouchHover.js')}}"></script>
+<script src="{{ asset('js/leaflet.scalefactor.min.js')}}"></script>
 <script src="{{ asset('js/L.grid.js')}}"></script>
 
 <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
@@ -71,7 +72,17 @@
     $(document).ready(function(){
     $(".preloader").fadeOut(2000);
     })
-  </script>
+</script>
+
+<script>
+$(document).ready(function(){
+    setTimeout(function(){
+    if (!sessionStorage.getItem('shown-modal')){
+        $('#disclaimer').modal('show');
+        sessionStorage.setItem('shown-modal', 'true');
+    }},4000);
+});
+</script>
 
 <script>
   let kecamatan = L.layerGroup();
@@ -963,7 +974,7 @@ L.geoJson(<?= $data->geojson ?>, {
 L.marker([<?= $data->lat . ',' . $data->lng ?>], {
         icon: L.icon({
                 iconUrl: '{{ asset('') }}{{ $data->icon }}',
-                iconSize: [24, 28],
+                iconSize: [24, 36],
                 iconAnchor: [12, 28],
                 popupAnchor: [0, -25]
             }),
@@ -985,7 +996,7 @@ L.marker([<?= $data->lat . ',' . $data->lng ?>], {
 L.marker([<?= $data->lat . ',' . $data->lng ?>], {
         icon: L.icon({
                 iconUrl: '{{ asset('') }}{{ $data->icon }}',
-                iconSize: [24, 28],
+                iconSize: [24, 36],
                 iconAnchor: [12, 28],
                 popupAnchor: [0, -25]
             }),
@@ -1172,7 +1183,7 @@ $.getJSON("{{ asset('data/kotaku.geojson') }}", function (data) {
                   children: [
                     {label: "<img src='{{ asset('img/green.png') }}' width='24' height='24'>&nbsp;Tangki Septik Individual", layer: septiktank},
                     @foreach ($kategori as $data)
-                    {label: "<img src='{{ asset('') }}{{ $data->icon }}' width='24' height='24'>&nbsp;{{ $data->type }}", layer: {{ $data->layer }}Layer},
+                    {label: "<img src='{{ asset('') }}{{ $data->icon }}' width='24' height='36'>&nbsp;{{ $data->type }}", layer: {{ $data->layer }}Layer},
                     @endforeach
                   ]
               }]

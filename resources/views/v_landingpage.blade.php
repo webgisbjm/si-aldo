@@ -54,6 +54,11 @@
 @section('content')
 
 
+@endsection
+
+@section('faq')
+
+@include('v_faq')
 
 @endsection
 
@@ -104,6 +109,6 @@
           let observer = new IntersectionObserver(callback);
           // Finally start observing the target element
           observer.observe(target);
-
+          
         </script>
 @endpush

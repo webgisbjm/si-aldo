@@ -30,17 +30,17 @@
             <div class="col-lg-6">
               <h5 class="title-font">Support</h5>
               <nav class="list-unstyled list-footer d-grid gap-2">
-                <li>
-                  <a href="#" class="text-decoration-none">Contact Support</a>
+                <li id="contact-link">
+                  <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#contact">Contact Support</a>
                 </li>
                 <li>
-                  <a href="#" class="text-decoration-none">FAQ</a>
+                  <a href="{{ url('/') }}#faq" class="text-decoration-none">FAQ</a>
                 </li>
                 <li>
                   <a href="#" class="text-decoration-none">Site Feedback</a>
                 </li>
                 <li>
-                  <a href="#" class="text-decoration-none">Expert Help</a>
+                  <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#disclaimer">Disclaimer</a>
                 </li>
               </nav>
             </div>
@@ -102,4 +102,7 @@
         </div>
       </div>
     </div>
+
+    @include('components.frontend.modal')
   </footer>
+

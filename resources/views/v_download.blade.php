@@ -44,6 +44,7 @@
         </table>
 </div>
 </div>
+@include('components.frontend.modal')
 @endsection
 
 @section('footer')
