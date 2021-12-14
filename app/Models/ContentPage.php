@@ -29,6 +29,7 @@ class ContentPage extends Model implements HasMedia
         'no',
         'year',
         'title',
+        'content_categories_id',
         'page_text',
         'excerpt',
         'created_at',
@@ -44,7 +45,7 @@ class ContentPage extends Model implements HasMedia
 
     public function categories()
     {
-        return $this->belongsToMany(ContentCategory::class);
+        return $this->belongsTo(ContentCategory::class, 'content_categories_id');
     }
 
     public function tags()
@@ -61,8 +62,7 @@ class ContentPage extends Model implements HasMedia
     {
         return DB::table('content_pages')
             ->where('content_pages.deleted_at', '=', null)
-            ->join('content_category_content_page', 'content_category_content_page.content_page_id', '=', 'content_pages.id')
-            ->join('content_categories', 'content_categories.id', '=', 'content_category_content_page.content_category_id')
+            ->join('content_categories', 'content_categories.id', '=', 'content_pages.content_categories_id')
             ->select('content_pages.no', 'content_pages.year', 'content_pages.title', 'content_pages.excerpt', 'content_categories.name as name')
             ->get();
     }

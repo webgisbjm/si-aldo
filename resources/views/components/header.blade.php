@@ -14,10 +14,10 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 gap-3 mb-3">
-                        <li class="nav-item">
+                        <li class="nav-item hover-underline-animation">
                             <a class="nav-link px-md-3 {{ request()->is('/') ? 'active' : '' }}" aria-current="page" href="/">{{ trans('frontend.home') }}</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item hover-underline-animation">
                           <a class="nav-link px-md-3 {{ request()->is('webmap') ? 'active' : '' }}" href={{ url("/webmap") }}>WebGIS</a>
                         </li>
                         <li class="nav-item dropdown">
@@ -40,7 +40,7 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item hover-underline-animation">
                             <a class="nav-link px-md-3 {{ request()->is('infographic') ? 'active' : '' }}" href={{ url("/infographic") }}>{{ trans('frontend.infographic') }}</a>
                         </li>
                     </ul>

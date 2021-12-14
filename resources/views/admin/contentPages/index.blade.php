@@ -67,9 +67,7 @@
                                 {{ $contentPage->title ?? '' }}
                             </td>
                             <td>
-                                @foreach($contentPage->categories as $key => $item)
-                                    <span class="badge badge-info">{{ $item->name }}</span>
-                                @endforeach
+                                <span class="badge badge-info">{{ $contentPage->categories->name ?? '' }}</span>
                             </td>
                             <td>
                                 @foreach($contentPage->tags as $key => $item)

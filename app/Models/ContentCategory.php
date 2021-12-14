@@ -26,6 +26,7 @@ class ContentCategory extends Model
         'created_at',
         'updated_at',
         'deleted_at',
+        'content_categories_id',
     ];
 
     protected function serializeDate(DateTimeInterface $date)

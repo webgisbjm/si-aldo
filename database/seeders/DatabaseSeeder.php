@@ -21,6 +21,11 @@ class DatabaseSeeder extends Seeder
             BuildsTableSeeder::class,
             PopulationsTableSeeder::class,
             RisksTableSeeder::class,
+            SanitationsTableSeeder::class,
+            SecuresTableSeeder::class,
+            ContentCategoriesTableSeeder::class,
+            ContentTagsTableSeeder::class,
+            ContentPagesTableSeeder::class,
         ]);
     }
 }

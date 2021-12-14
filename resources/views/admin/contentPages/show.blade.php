@@ -52,9 +52,7 @@
                             {{ trans('cruds.contentPage.fields.category') }}
                         </th>
                         <td>
-                            @foreach($contentPage->categories as $key => $category)
-                                <span class="label label-info">{{ $category->name }}</span>
-                            @endforeach
+                            <span class="label label-info">{{ $contentPage->categories->name }}</span>
                         </td>
                     </tr>
                     <tr>

@@ -428,7 +428,7 @@ return [
             'tag_helper'        => ' ',
             'page_text'         => 'Teks Lengkap',
             'page_text_helper'  => ' ',
-            'excerpt'           => 'Ringkasan',
+            'excerpt'           => 'Link Download',
             'excerpt_helper'    => ' ',
             'created_at'        => 'Created at',
             'created_at_helper' => ' ',

@@ -22,9 +22,7 @@ class StoreContentPageRequest extends FormRequest
                 'string',
             ],
             'year' => [
-                'numeric',
-                'min:1945',
-                'max:2024',
+                'nullable',
             ],
             'title' => [
                 'string',

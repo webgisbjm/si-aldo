@@ -42,7 +42,6 @@ class ContentPageController extends Controller
     public function store(StoreContentPageRequest $request)
     {
         $contentPage = ContentPage::create($request->all());
-        $contentPage->categories()->sync($request->input('categories', []));
         $contentPage->tags()->sync($request->input('tags', []));
         if ($media = $request->input('ck-media', false)) {
             Media::whereIn('id', $media)->update(['model_id' => $contentPage->id]);
@@ -67,7 +66,6 @@ class ContentPageController extends Controller
     public function update(UpdateContentPageRequest $request, ContentPage $contentPage)
     {
         $contentPage->update($request->all());
-        $contentPage->categories()->sync($request->input('categories', []));
         $contentPage->tags()->sync($request->input('tags', []));
 
         return redirect()->route('admin.content-pages.index');

@@ -28,7 +28,7 @@ class UsersTableSeeder extends Seeder
                 'remember_token' => null,
                 'approved'       => 1,
                 'username'       => 'yogi',
-                'phone'          => '085821343090',
+                'phone'          => '082157904354',
             ],
         ];
 

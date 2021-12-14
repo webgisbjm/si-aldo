@@ -11,7 +11,7 @@ class CreateContentPagesTable extends Migration
         Schema::create('content_pages', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('no')->nullable();
-            $table->float('year')->nullable();
+            $table->string('year')->nullable();
             $table->string('title')->nullable();
             $table->longText('page_text')->nullable();
             $table->longText('excerpt')->nullable();

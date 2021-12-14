@@ -125,6 +125,37 @@ body{
   margin-left: 20px;
 }
 
+.error__button {
+  min-width: 7em;
+  margin-top: 3em;
+  margin-right: 0.5em;
+  padding: 0.5em 2em;
+  outline: none;
+  border: 2px solid #2f3640;
+  background-color: transparent;
+  border-radius: 8em;
+  color: #576375;
+  cursor: pointer;
+  transition-duration: 0.2s;
+  font-size: 0.75em;
+  font-family: 'Righteous', cursive;
+}
+
+.error__button:hover {
+  color: #21252c;
+}
+
+.error__button--active {
+  background-color: #e67e22;
+  border: 2px solid #e67e22;
+  color: white;
+}
+
+.error__button--active:hover {
+  box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.5);
+  color: white;
+}
+
 @keyframes leaf {
   0% {
     transform: scaleX(1);
@@ -189,6 +220,7 @@ body{
     <div class="message">FORBIDDEN
     </div>
     <div class="message2">Halaman Ini Bukan Otoritas dan Wewenang Kamu</div>
+    
     <div class="container">
       <div class="neon">403</div>
       <div class="door-frame">
