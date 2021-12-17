@@ -46,6 +46,10 @@ class Infographic extends Model implements HasMedia
 
     public function cardInfo()
     {
-        return DB::table('infographics')->get();
+        return DB::table('infographics')
+            ->join('media', 'media.model_id', '=', 'infographics.id')
+            ->where('model_type', '=', 'App\Models\Infographic')
+            ->select('media.file_name', 'media.id as idm', 'infographics.id as id', 'infographics.title', 'infographics.content')
+            ->get();
     }
 }

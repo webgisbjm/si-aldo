@@ -3,8 +3,8 @@
 @can('build_gallery_create')
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
-            <a class="btn btn-success" href="{{ route('admin.build-galleries.create') }}">
-                <i class="fas fa-plus"></i> {{ trans('global.create') }}
+            <a class="btn btn-success" href="{{ route('admin.builds.gallery.create', $build->id) }}">
+                <i class="fas fa-plus"></i> Upload Photo
             </a>
         </div>
     </div>
@@ -18,20 +18,14 @@
         <table class=" table table-bordered table-striped table-hover ajaxTable datatable datatable-BuildGallery">
             <thead>
                 <tr>
-                    <th width="10">
+                    <th width="5%">
 
                     </th>
-                    <th>
+                    <th width="5%">
                         {{ trans('cruds.buildGallery.fields.id') }}
                     </th>
-                    <th>
-                        {{ trans('cruds.buildGallery.fields.build') }}
-                    </th>
-                    <th>
-                        {{ trans('cruds.buildGallery.fields.photo') }}
-                    </th>
-                    <th>
-                        &nbsp;
+                    <th class="text-center">
+                        Photo
                     </th>
                 </tr>
             </thead>
@@ -83,17 +77,17 @@
     serverSide: true,
     retrieve: true,
     aaSorting: [],
-    ajax: "{{ route('admin.build-galleries.index') }}",
+    ajax: {
+        url: '{!! url()->current() !!}'
+        },
     columns: [
     { data: 'placeholder', name: 'placeholder' },
     { data: 'id', name: 'id' },
-    { data: 'build_address', name: 'build.address' },
-    { data: 'photo', name: 'photo', sortable: false, searchable: false },
-    { data: 'actions', name: '{{ trans('global.actions') }}' }
+    { data: 'url', name: 'url', sortable: false, searchable: false },
     ],
     orderCellsTop: true,
     order: [[ 1, 'desc' ]],
-    pageLength: 100,
+    pageLength: 25,
   };
   let table = $('.datatable-BuildGallery').DataTable(dtOverrideGlobals);
   $('a[data-toggle="tab"]').on('shown.bs.tab click', function(e){

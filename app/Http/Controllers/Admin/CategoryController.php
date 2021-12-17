@@ -46,7 +46,7 @@ class CategoryController extends Controller
 
         if ($request->hasFile('icon')) {
             $imgName = time() . '-' . $request->file('icon')->getClientOriginalName();
-            $icon = $request->file('icon')->storeAs('assets/icons', $imgName);
+            $icon = $request->file('icon')->storeAs('public/icons', $imgName);
         }
 
 
@@ -79,7 +79,7 @@ class CategoryController extends Controller
         if ($request->hasFile('icon')) {
             Storage::delete($category->icon);
             $imgName = time() . '-' . $request->icon->getClientOriginalName();
-            $icon = $request->file('icon')->storeAs('assets/icons', $imgName);
+            $icon = $request->file('icon')->storeAs('public/icons', $imgName);
         }
 
         $category->update([

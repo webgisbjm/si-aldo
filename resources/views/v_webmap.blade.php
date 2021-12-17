@@ -28,8 +28,7 @@
 </div>
     
 
-<div id="map" style="width: 100%; height: 80vh; box-shadow: 0 0 3px rgba(0,0,0,0.5);"></div>
-
+<div id="map" style="width: 100%; height: 88vh; box-shadow: 0 0 3px rgba(0,0,0,0.5);"></div>
 
   <!-- Modal -->
   <div class="modal fade" id="featureModal" tabindex="-1" aria-labelledby="feature-title" aria-hidden="true">
@@ -969,11 +968,11 @@ L.geoJson(<?= $data->geojson ?>, {
 
 /*MCK Plus*/
 
-@foreach ($mckplus as $index => $data)
+@foreach ($mckplus as $data)
 
 L.marker([<?= $data->lat . ',' . $data->lng ?>], {
         icon: L.icon({
-                iconUrl: '{{ asset('') }}{{ $data->icon }}',
+                iconUrl: '{{ asset( Storage::url($data->icon) ) }}',
                 iconSize: [24, 36],
                 iconAnchor: [12, 28],
                 popupAnchor: [0, -25]
@@ -981,7 +980,7 @@ L.marker([<?= $data->lat . ',' . $data->lng ?>], {
             riseOnHover: true
         }).addTo({{ $data->layer }}).on('click', function(e){
           let modalTitle = "{{ $data->type }}";
-          let content = "<table class='table table-striped table-bordered table-condensed'><tr><th>KELURAHAN</th><td>" + "{{ $data->name  }}" + "<tr><th>ALAMAT</th><td>" + "{{ $data->address }}" +  "<tr><th>STATUS</th><td>" + "{{ $data->status }}" + "<tr><th colspan='2'><a href='#' class='tooltip-test' title='Detail'>Lihat Selengkapnya</a></th></tr>" + "</table>";
+          let content = "<table class='table table-striped table-bordered table-condensed'><tr><th>KELURAHAN</th><td>" + "{{ $data->name  }}" + "<tr><th>ALAMAT</th><td>" + "{{ $data->address }}" +  "<tr><th>STATUS</th><td>" + "{{ $data->status }}" + "<tr><th colspan='2'><a href='{{ url('/details') }}/{{ $data->buildId }}' class='tooltip-test' title='Detail'>Lihat Selengkapnya</a></th></tr>" + "</table>";
             $("#feature-title").html(modalTitle);
             $("#feature-info").html(content);
             $('#featureModal').modal('show');
@@ -995,7 +994,7 @@ L.marker([<?= $data->lat . ',' . $data->lng ?>], {
 @foreach ($mckkomunal as $data)
 L.marker([<?= $data->lat . ',' . $data->lng ?>], {
         icon: L.icon({
-                iconUrl: '{{ asset('') }}{{ $data->icon }}',
+                iconUrl: '{{ asset( Storage::url($data->icon) ) }}',
                 iconSize: [24, 36],
                 iconAnchor: [12, 28],
                 popupAnchor: [0, -25]
@@ -1003,7 +1002,7 @@ L.marker([<?= $data->lat . ',' . $data->lng ?>], {
             riseOnHover: true
           }).addTo({{ $data->layer }}).on('click', function(e){
           let modalTitle = "{{ $data->type }}";
-          let content = "<table class='table table-striped table-bordered table-condensed'><tr><th>KELURAHAN</th><td>" + "{{ $data->name  }}" + "<tr><th>ALAMAT</th><td>" + "{{ $data->address }}" +  "<tr><th>STATUS</th><td>" + "{{ $data->status }}" + "<tr><th colspan='2'><a href='#' class='tooltip-test' title='Detail'>Lihat Selengkapnya</a></th></tr>" + "</table>";
+          let content = "<table class='table table-striped table-bordered table-condensed'><tr><th>KELURAHAN</th><td>" + "{{ $data->name  }}" + "<tr><th>ALAMAT</th><td>" + "{{ $data->address }}" +  "<tr><th>STATUS</th><td>" + "{{ $data->status }}" + "<tr><th colspan='2'><a href='{{ url('/details') }}/{{ $data->buildId }}' class='tooltip-test' title='Detail'>Lihat Selengkapnya</a></th></tr>" + "</table>";
             $("#feature-title").html(modalTitle);
             $("#feature-info").html(content);
             $('#featureModal').modal('show');
@@ -1017,15 +1016,15 @@ L.marker([<?= $data->lat . ',' . $data->lng ?>], {
 @foreach ($mckumum as $data)
 L.marker([<?= $data->lat . ',' . $data->lng ?>], {
         icon: L.icon({
-                iconUrl: '{{ asset('') }}{{ $data->icon }}',
-                iconSize: [24, 28],
+                iconUrl: '{{ asset( Storage::url($data->icon) ) }}',
+                iconSize: [24, 36],
                 iconAnchor: [12, 28],
                 popupAnchor: [0, -25]
             }),
             riseOnHover: true
           }).addTo({{ $data->layer }}).on('click', function(e){
           let modalTitle = "{{ $data->type }}";
-          let content = "<table class='table table-striped table-bordered table-condensed'><tr><th>KELURAHAN</th><td>" + "{{ $data->name  }}" + "<tr><th>ALAMAT</th><td>" + "{{ $data->address }}" +  "<tr><th>STATUS</th><td>" + "{{ $data->status }}" + "<tr><th colspan='2'><a href='#' class='tooltip-test' title='Detail'>Lihat Selengkapnya</a></th></tr>" + "</table>";
+          let content = "<table class='table table-striped table-bordered table-condensed'><tr><th>KELURAHAN</th><td>" + "{{ $data->name  }}" + "<tr><th>ALAMAT</th><td>" + "{{ $data->address }}" +  "<tr><th>STATUS</th><td>" + "{{ $data->status }}" + "<tr><th colspan='2'><a href='{{ url('/details') }}/{{ $data->buildId }}' class='tooltip-test' title='Detail'>Lihat Selengkapnya</a></th></tr>" + "</table>";
             $("#feature-title").html(modalTitle);
             $("#feature-info").html(content);
             $('#featureModal').modal('show');
@@ -1039,15 +1038,15 @@ L.marker([<?= $data->lat . ',' . $data->lng ?>], {
 @foreach ($ipalkomunal as $data)
 L.marker([<?= $data->lat . ',' . $data->lng ?>], {
         icon: L.icon({
-                iconUrl: '{{ asset('') }}{{ $data->icon }}',
-                iconSize: [24, 28],
+                iconUrl: '{{ asset( Storage::url($data->icon) ) }}',
+                iconSize: [24, 36],
                 iconAnchor: [12, 28],
                 popupAnchor: [0, -25]
             }),
             riseOnHover: true
           }).addTo({{ $data->layer }}).on('click', function(e){
           let modalTitle = "{{ $data->type }}";
-          let content = "<table class='table table-striped table-bordered table-condensed'><tr><th>KELURAHAN</th><td>" + "{{ $data->name  }}" + "<tr><th>ALAMAT</th><td>" + "{{ $data->address }}" +  "<tr><th>STATUS</th><td>" + "{{ $data->status }}" + "<tr><th colspan='2'><a href='#' class='tooltip-test' title='Detail'>Lihat Selengkapnya</a></th></tr>" + "</table>";
+          let content = "<table class='table table-striped table-bordered table-condensed'><tr><th>KELURAHAN</th><td>" + "{{ $data->name  }}" + "<tr><th>ALAMAT</th><td>" + "{{ $data->address }}" +  "<tr><th>STATUS</th><td>" + "{{ $data->status }}" + "<tr><th colspan='2'><a href='{{ url('/details') }}/{{ $data->buildId }}' class='tooltip-test' title='Detail'>Lihat Selengkapnya</a></th></tr>" + "</table>";
             $("#feature-title").html(modalTitle);
             $("#feature-info").html(content);
             $('#featureModal').modal('show');
@@ -1061,15 +1060,15 @@ L.marker([<?= $data->lat . ',' . $data->lng ?>], {
 @foreach ($ipal as $data)
 L.marker([<?= $data->lat . ',' . $data->lng ?>], {
         icon: L.icon({
-                iconUrl: '{{ asset('') }}{{ $data->icon }}',
-                iconSize: [32, 37],
+                iconUrl: '{{ asset( Storage::url($data->icon) ) }}',
+                iconSize: [24, 36],
                 iconAnchor: [12, 28],
                 popupAnchor: [0, -25]
             }),
             riseOnHover: true
           }).addTo({{ $data->layer }}).on('click', function(e){
           let modalTitle = "{{ $data->ipalName }}";
-          let content = "<table class='table table-striped table-bordered table-condensed'><tr><th>KELURAHAN</th><td>" + "{{ $data->kelName  }}" + "<tr><th>ALAMAT</th><td>" + "{{ $data->address }}" + "<tr><th>TAHUN OPERASI</th><td>" + "{{ $data->year }}" + "<tr><th>KAPASITAS</th><td>" + "{{ $data->capacity }} m<sup>3</sup>" + "/hari" + "<tr><th colspan='2'><a href='#' class='tooltip-test' title='Detail'>Lihat Selengkapnya</a></th></tr>" + "</table>";
+          let content = "<table class='table table-striped table-bordered table-condensed'><tr><th>KELURAHAN</th><td>" + "{{ $data->kelName  }}" + "<tr><th>ALAMAT</th><td>" + "{{ $data->address }}" + "<tr><th>TAHUN OPERASI</th><td>" + "{{ $data->year }}" + "<tr><th>KAPASITAS</th><td>" + "{{ $data->capacity }} m<sup>3</sup>" + "/hari" + "<tr><th colspan='2'><a href='{{ route('detailipal', $data->ipaldId) }}' class='tooltip-test' title='Detail'>Lihat Selengkapnya</a></th></tr>" + "</table>";
             $("#feature-title").html(modalTitle);
             $("#feature-info").html(content);
             $('#featureModal').modal('show');
@@ -1083,7 +1082,7 @@ L.marker([<?= $data->lat . ',' . $data->lng ?>], {
 // @foreach ($kotaku as $data)
 // L.marker([<?= $data->lat . ',' . $data->lng ?>], {
 //         icon: L.icon({
-//                 iconUrl: '{{ asset('') }}{{ $data->icon }}',
+//                 iconUrl: '{{ asset( Storage::url($data->icon) ) }}',
 //                 iconSize: [24, 28],
 //                 iconAnchor: [12, 28],
 //                 popupAnchor: [0, -25]
@@ -1097,8 +1096,8 @@ septikkomunal = L.geoJson(null, {
     pointToLayer: function (feature, latlng) {
         return L.marker(latlng, {
             icon: L.icon({
-                iconUrl: "{{ asset('img/septictank.png') }}",
-                iconSize: [24, 28],
+                iconUrl: "{{ asset('img/icon/septictank.png') }}",
+                iconSize: [24, 36],
                 iconAnchor: [12, 28],
                 popupAnchor: [0, -25]
             }),
@@ -1183,7 +1182,7 @@ $.getJSON("{{ asset('data/kotaku.geojson') }}", function (data) {
                   children: [
                     {label: "<img src='{{ asset('img/green.png') }}' width='24' height='24'>&nbsp;Tangki Septik Individual", layer: septiktank},
                     @foreach ($kategori as $data)
-                    {label: "<img src='{{ asset('') }}{{ $data->icon }}' width='24' height='36'>&nbsp;{{ $data->type }}", layer: {{ $data->layer }}Layer},
+                    {label: "<img src='{{ asset( Storage::url($data->icon) ) }}' width='24' height='36'>&nbsp;{{ $data->type }}", layer: {{ $data->layer }}Layer},
                     @endforeach
                   ]
               }]

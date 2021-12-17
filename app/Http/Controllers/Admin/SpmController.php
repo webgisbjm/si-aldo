@@ -84,4 +84,11 @@ class SpmController extends Controller
 
         return response(null, Response::HTTP_NO_CONTENT);
     }
+
+    public function progress()
+    {
+        $spms = Spm::with(['kelurahans'])->get();
+
+        return view('home', compact('spms'));
+    }
 }

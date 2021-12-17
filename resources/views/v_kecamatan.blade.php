@@ -743,8 +743,8 @@
   
   L.marker([<?= $data->lat . ',' . $data->lng ?>], {
           icon: L.icon({
-                  iconUrl: '{{ asset('') }}{{ $data->icon }}',
-                  iconSize: [24, 28],
+                  iconUrl: '{{ asset( Storage::url($data->icon) ) }}',
+                  iconSize: [24, 36],
                   iconAnchor: [12, 28],
                   popupAnchor: [0, -25]
               }),
@@ -764,8 +764,8 @@
   @foreach ($mckkomunal as $data)
   L.marker([<?= $data->lat . ',' . $data->lng ?>], {
           icon: L.icon({
-                  iconUrl: '{{ asset('') }}{{ $data->icon }}',
-                  iconSize: [24, 28],
+                  iconUrl: '{{ asset( Storage::url($data->icon) ) }}',
+                  iconSize: [24, 36],
                   iconAnchor: [12, 28],
                   popupAnchor: [0, -25]
               }),
@@ -786,8 +786,8 @@
   L.marker([<?= $data->lat . ',' . $data->lng ?>], {
         filter: kecFilter,
           icon: L.icon({
-                  iconUrl: '{{ asset('') }}{{ $data->icon }}',
-                  iconSize: [24, 28],
+                  iconUrl: '{{ asset( Storage::url($data->icon) ) }}',
+                  iconSize: [24, 36],
                   iconAnchor: [12, 28],
                   popupAnchor: [0, -25]
               }),
@@ -807,8 +807,8 @@
   @foreach ($ipalkomunal as $data)
   L.marker([<?= $data->lat . ',' . $data->lng ?>], {
           icon: L.icon({
-                  iconUrl: '{{ asset('') }}{{ $data->icon }}',
-                  iconSize: [24, 28],
+                  iconUrl: '{{ asset( Storage::url($data->icon) ) }}',
+                  iconSize: [24, 36],
                   iconAnchor: [12, 28],
                   popupAnchor: [0, -25]
               }),
@@ -828,15 +828,15 @@
   @foreach ($ipal as $data)
   L.marker([<?= $data->lat . ',' . $data->lng ?>], {
           icon: L.icon({
-                  iconUrl: '{{ asset('') }}{{ $data->icon }}',
-                  iconSize: [32, 37],
+                  iconUrl: '{{ asset( Storage::url($data->icon) ) }}',
+                  iconSize: [24, 36],
                   iconAnchor: [12, 28],
                   popupAnchor: [0, -25]
               }),
               riseOnHover: true
             }).addTo({{ $data->layer }}).on('click', function(e){
             $("#tablehide").hide();
-            let content = "<table class='table table-dark table-striped table-bordered'><tr><th>KELURAHAN</th><td>" + "{{ $data->kelName  }}" + "<tr><th>ALAMAT</th><td>" + "{{ $data->address }}" + "<tr><th>TAHUN OPERASI</th><td>" + "{{ $data->year }}" + "<tr><th>KAPASITAS</th><td>" + "{{ $data->capacity }} m<sup>3</sup>" + "/hari" + "<tr><th colspan='2'><a href='#' class='tooltip-test' title='Detail'>Lihat Selengkapnya</a></th></tr>" + "</table>";
+            let content = "<table class='table table-dark table-striped table-bordered'><tr><th>KELURAHAN</th><td>" + "{{ $data->kelName  }}" + "<tr><th>ALAMAT</th><td>" + "{{ $data->address }}" + "<tr><th>TAHUN OPERASI</th><td>" + "{{ $data->year }}" + "<tr><th>KAPASITAS</th><td>" + "{{ $data->capacity }} m<sup>3</sup>" + "/hari" + "</table>";
               $("#tableclick").show();
               $("#tableclick").html(content);
               highlight.clearLayers().addLayer(L.circleMarker(this.getLatLng(), highlightStyle));
@@ -851,8 +851,8 @@
       pointToLayer: function (feature, latlng) {
           return L.marker(latlng, {
               icon: L.icon({
-                  iconUrl: "{{ asset('img/septictank.png') }}",
-                  iconSize: [24, 28],
+                  iconUrl: "{{ asset('img/icon/septictank.png') }}",
+                  iconSize: [24, 36],
                   iconAnchor: [12, 28],
                   popupAnchor: [0, -25]
               }),
@@ -920,7 +920,7 @@
                     children: [
                       {label: "<img src='{{ asset('img/green.png') }}' width='24' height='24'>&nbsp;Tangki Septik Individual", layer: septiktank},
                       @foreach ($kategori as $data)
-                      {label: "<img src='{{ asset('') }}{{ $data->icon }}' width='24' height='24'>&nbsp;{{ $data->type }}", layer: {{ $data->layer }}Layer},
+                      {label: "<img src='{{ asset( Storage::url($data->icon) ) }}' width='24' height='24'>&nbsp;{{ $data->type }}", layer: {{ $data->layer }}Layer},
                       @endforeach
                     ]
                 }]

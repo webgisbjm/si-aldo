@@ -103,10 +103,10 @@
                                     <h3 class="text-center">{!! $chart5->options['chart_title'] !!}</h3>
                                     {!! $chart5->renderHtml() !!}
                                 </div>
-                                <div class="card {{ $chart6->options['column_class'] }} p-2 mx-2">
+                                {{-- <div class="card {{ $chart6->options['column_class'] }} p-2 mx-2">
                                     <h3>{!! $chart6->options['chart_title'] !!}</h3>
                                     {!! $chart6->renderHtml() !!}
-                                </div>
+                                </div> --}}
 
                                <!-- /.col -->
                                 <div class="col-md-5">
@@ -121,7 +121,7 @@
                                         <!-- /.card-tools -->
                                     </div>
                                     <!-- /.card-header -->
-                                    <div class="card-body" id="collapseCard">
+                                    <div class="card-body collapse" id="collapseCard">
                                         <table class="table-bordered table-sm table-light">
                                             <thead class="bg-warning">
                                               <tr>
@@ -148,6 +148,55 @@
                                     <!-- /.card -->
                                 </div>
                                 <!-- /.col -->
+
+                                <div class="col-md-7">
+                                    <div class="card"  style="border-radius:0px;">
+                                      <div class="card-header bg-success"  style="border-radius:0px;">
+                                        <div class="card-tools">
+                                            <button type="button" class="btn btn-tool" data-toggle="collapse" data-target="#collapseCard2" aria-expanded="false" aria-controls="collapseCard2">
+                                                <i class="fas fa-minus"></i>
+                                            </button>
+                                        </div>
+                                        <h3 class="card-title">Progress Capaian Layanan Air Limbah 2020 </h3>
+                                        
+                                      </div>
+                                      <!-- /.card-header -->
+                                      <div class="card-body collapse" id="collapseCard2">
+                                        <h6>Akses Dasar / Akses Layak</h6>
+                                        <div class="progress mb-4">
+                            
+                                          <div class="progress-bar bg-success" role="progressbar" aria-valuenow="{{ $avgbasic = number_format((($spm2020->sum('basic_realization') / $spm2020->sum('basic_target')) * 100),2) }}" aria-valuemin="0"
+                                               aria-valuemax="100" style="width: {{ $avgbasic }}%">
+                                          </div>
+                                          <span class="text-end ml-1">{{ $avgbasic }} %</span>
+                                        </div>
+                                        <h6>Akses Aman SPALD-S</h6>
+                                        <div class="progress mb-4">
+                                          <div class="progress-bar bg-info" role="progressbar" aria-valuenow="{{ $avgspalds = number_format((($spm2020->sum('spalds_realization') / $spm2020->sum('spalds_target')) * 100),2) }}" aria-valuemin="0"
+                                               aria-valuemax="100" style="width: {{ $avgspalds }}%">
+                                          </div>
+                                          <span class="text-end ml-1">{{ $avgspalds }} %</span>
+                                        </div>
+                                        <h6>Akses Aman SPALD-T</h6>
+                                        <div class="progress mb-4">
+                                          <div class="progress-bar bg-warning" role="progressbar" aria-valuenow="{{ $avgspaldt = number_format((($spm2020->sum('spaldt_realization') / $spm2020->sum('spaldt_target')) * 100),2) }}" aria-valuemin="0"
+                                               aria-valuemax="100" style="width: {{ $avgspaldt }}%">
+                                          </div>
+                                          <span class="text-end ml-1">{{ $avgspaldt }} %</span>
+                                        </div>
+
+                                        <h6>Persentase Layanan (Rata-Rata)</h6>
+                                        <div class="progress mb-3">
+                                          <div class="progress-bar bg-danger" role="progressbar" aria-valuenow="{{ (($avgspalds + $avgspaldt + $avgbasic) / 3 ) }}" aria-valuemin="0"
+                                               aria-valuemax="100" style="width: {{ (($avgspalds + $avgspaldt + $avgbasic) / 3 ) }}%">
+                                          </div>
+                                          <span class="text-end ml-1">{{ (($avgspalds + $avgspaldt + $avgbasic) / 3 ) }} %</span>
+                                        </div>
+                                      </div>
+                                      <!-- /.card-body -->
+                                    </div>
+                                    <!-- /.card -->
+                                  </div>
 
                                 <div class="card bg-light bg-gradient p-2 my-2 col-md-10">
                                     <h3 class="text-center">
@@ -408,7 +457,6 @@
             }
     });
     </script>
-
 
 
 

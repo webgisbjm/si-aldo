@@ -5,6 +5,7 @@ namespace App\Models;
 use \DateTimeInterface;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
@@ -16,13 +17,11 @@ class Ipal extends Model implements HasMedia
 
     public const YEAR_SELECT = [
         '2001' => '2001',
-        '2005' => '2005',
-        '2007' => '2007',
         '2008' => '2008',
         '2009' => '2009',
         '2010' => '2010',
         '2011' => '2011',
-        '2015' => '2015',
+        '2014' => '2014',
         '2019' => '2019',
         '2020' => '2020',
         '2021' => '2021',
@@ -81,6 +80,7 @@ class Ipal extends Model implements HasMedia
         return $this->belongsToMany(Kelurahan::class);
     }
 
+
     public function getPhotosAttribute()
     {
         $files = $this->getMedia('photos');
@@ -134,5 +134,15 @@ class Ipal extends Model implements HasMedia
         $mapPopupContent .= '<div class="my-2"><strong>' . __('global.coordinates') . ':</strong><br>' . $this->coordinate . '</div>';
 
         return $mapPopupContent;
+    }
+
+    public function ipalgallery($id)
+    {
+        return DB::table('ipals')
+            ->join('media', 'media.model_id', '=', 'ipals.id')
+            ->where('ipals.id', $id)
+            ->where('media.model_type', '=', 'App\Models\Ipal')
+            ->select('media.file_name', 'media.id as idm', 'ipals.id as id')
+            ->get();
     }
 }

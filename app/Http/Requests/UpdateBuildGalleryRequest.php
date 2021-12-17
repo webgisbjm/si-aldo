@@ -16,6 +16,8 @@ class UpdateBuildGalleryRequest extends FormRequest
 
     public function rules()
     {
-        return [];
+        return [
+            'files.*' => 'required|image'
+        ];
     }
 }

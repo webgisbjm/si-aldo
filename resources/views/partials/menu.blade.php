@@ -1,8 +1,8 @@
-<aside class="main-sidebar sidebar-light-success elevation-4" style="min-height: 917px;">
+<aside class="main-sidebar sidebar-dark-success elevation-4 overflow-y-hidden" style="min-height: 917px;">
     <!-- Brand Logo -->
     <a href="/" class="brand-link ">
-        {{-- <img src="img/si-aldo.png" alt="SI-ALDO" class="brand-image"> --}}
-        <span class="brand-text font-weight-light">{{ trans('panel.site_title') }}</span>
+        <img src="{{ asset('img/brand.png') }}" alt="SI-ALDO" class="brand-image">
+        <span class="brand-text">SI-ALDO</span>
     </a>
 
     <!-- Sidebar -->
@@ -18,7 +18,7 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route("admin.home") }}">
-                        <i class="fas fa-fw fa-tachometer-alt nav-icon">
+                        <i class="far fa-fw fa-chart-bar nav-icon">
                         </i>
                         <p>
                             {{ trans('global.dashboard') }}
@@ -113,16 +113,14 @@
                             @can('ipal_access')
                                 <li class="nav-item">
                                     <a href="{{ route("admin.ipals.index") }}" class="nav-link {{ request()->is("admin/ipals") || request()->is("admin/ipals/*") ? "active" : "" }}">
-                                        <i class="fa-fw nav-icon fas fa-tint">
-
-                                        </i>
+                                        <img src="{{ asset('img/perumdapald.png') }}" alt="ipald">
                                         <p>
                                             {{ trans('cruds.ipal.title') }}
                                         </p>
                                     </a>
                                 </li>
                             @endcan
-                            @can('build_gallery_access')
+                            {{-- @can('build_gallery_access')
                                 <li class="nav-item">
                                     <a href="{{ route("admin.build-galleries.index") }}" class="nav-link {{ request()->is("admin/build-galleries") || request()->is("admin/build-galleries/*") ? "active" : "" }}">
                                         <i class="fa-fw nav-icon far fa-images">
@@ -133,7 +131,7 @@
                                         </p>
                                     </a>
                                 </li>
-                            @endcan
+                            @endcan --}}
                         </ul>
                     </li>
                 @endcan
@@ -200,7 +198,7 @@
                             @can('spm_access')
                                 <li class="nav-item">
                                     <a href="{{ route("admin.spms.index") }}" class="nav-link {{ request()->is("admin/spm") || request()->is("admin/spm/*") ? "active" : "" }}">
-                                        <i class="fa-fw nav-icon fas fa-people-carry">
+                                        <i class="fa-fw nav-icon fas fa-bullseye">
 
                                         </i>
                                         <p>
@@ -278,7 +276,7 @@
                 @can('content_management_access')
                     <li class="nav-item has-treeview {{ request()->is("admin/content-categories*") ? "menu-open" : "" }} {{ request()->is("admin/content-tags*") ? "menu-open" : "" }} {{ request()->is("admin/content-pages*") ? "menu-open" : "" }} {{ request()->is("admin/infographics*") ? "menu-open" : "" }}">
                         <a class="nav-link nav-dropdown-toggle" href="#">
-                            <i class="fa-fw nav-icon fas fa-book">
+                            <i class="fa-fw nav-icon fas fa-laptop">
 
                             </i>
                             <p>
@@ -341,7 +339,7 @@
                 @can('task_management_access')
                     <li class="nav-item has-treeview {{ request()->is("admin/task-statuses*") ? "menu-open" : "" }} {{ request()->is("admin/task-tags*") ? "menu-open" : "" }} {{ request()->is("admin/tasks*") ? "menu-open" : "" }} {{ request()->is("admin/tasks-calendars*") ? "menu-open" : "" }}">
                         <a class="nav-link nav-dropdown-toggle" href="#">
-                            <i class="fa-fw nav-icon fas fa-list">
+                            <i class="fa-fw nav-icon fas fa-chess">
 
                             </i>
                             <p>

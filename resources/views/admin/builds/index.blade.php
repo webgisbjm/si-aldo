@@ -59,6 +59,9 @@
                         {{ trans('cruds.build.fields.funded') }}
                     </th>
                     <th>
+                       Gallery
+                    </th>
+                    <th>
                         &nbsp;
                     </th>
                 </tr>
@@ -127,6 +130,8 @@
                     </td>
                     <td>
                     </td>
+                    <td>
+                    </td>
                 </tr>
             </thead>
         </table>
@@ -190,7 +195,8 @@
         { data: 'year', name: 'year' },
         { data: 'status', name: 'status'},
         { data: 'funded', name: 'funded' },
-        { data: 'actions', name: '{{ trans('global.actions') }}' }
+        { data: 'gallery', name: 'gallery' },
+        { data: 'actions', name: '{{ trans('global.actions') }}' },
             ],
     orderCellsTop: true,
     order: [[ 1, 'desc' ]],

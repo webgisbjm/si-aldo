@@ -56,8 +56,8 @@
                             </td>
                             <td>
                                 @if($category->icon)
-                                    <a href="{{ asset($category->icon) }}" target="_blank">
-                                        <img src="{{ asset($category->icon) }}" class="img-thumbnail rounded mx-auto d-block">
+                                    <a href="{{ asset( Storage::url($category->icon) ) }}" target="_blank">
+                                    <img src=" {{ Storage::url($category->icon) }}" class="img-thumbnail rounded mx-auto d-block">
                                     </a>
                                 @endif
                             </td>

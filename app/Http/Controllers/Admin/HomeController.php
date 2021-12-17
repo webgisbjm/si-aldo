@@ -166,7 +166,6 @@ class HomeController
             'relationship_name'  => 'kecamatan',
             'translation_key'    => 'sanitation',
             'style_class'        => 'pie-chart',
-            'chart_height'       => '150px',
 
         ];
 

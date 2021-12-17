@@ -4,12 +4,16 @@ use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
-Route::get('/', 'LandingpageController@index')->name('landingpage');
+Route::get('/', 'FrontendController@index')->name('landingpage');
 Route::get('/login', 'LoginController@index')->name('login');
 Route::get('/register', 'RegisterController@index')->name('register');
 Route::get('/linkstorage', function () {
     Artisan::call('storage:link');
 });
+
+Route::get('/details/{id}', 'FrontendController@details')->name('details');
+Route::get('/detail/ipald/{id}', 'FrontendController@detailipal')->name('detailipal');
+
 
 Route::get('/home', function () {
     if (session('status')) {
@@ -22,8 +26,8 @@ Route::get('/home', function () {
 Route::get('/webmap', 'WebmapController@index')->name('webmap');
 Route::get('/webmap/{id}', 'WebmapController@kecamatan');
 
-Route::get('/infographic', 'InfoController@index')->name('infografis');
-Route::get('/download', 'DownloadController@index')->name('download');
+Route::get('/infographic', 'FrontendController@info')->name('infografis');
+Route::get('/download', 'FrontendController@download')->name('download');
 
 Auth::routes();
 
@@ -63,6 +67,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::post('builds/process-csv-import', 'BuildController@processCsvImport')->name('builds.processCsvImport');
     Route::get('builds/map', 'BuildMapController@index')->name('builds.map');
     Route::resource('builds', 'BuildController');
+    Route::resource('builds.gallery', 'BuildGalleryController')->shallow()->only([
+        'index', 'create', 'store', 'destroy'
+    ]);
 
 
     // Nsup

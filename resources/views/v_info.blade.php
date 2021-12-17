@@ -21,20 +21,17 @@
 
   <div class="row no-gutters" data-aos="fade-left">
 
-    @foreach ($info as $data)
-    <div class="col-lg-3 col-md-4">
-      <div class="gallery-item" data-aos="zoom-in" data-aos-delay="100">
-        <a href="{{ asset('storage/7/SPM.jpg') }}" class="gallery-lightbox">
-          {!! $data->content !!}
-        </a>
-      </div>
-    </div>
-    @endforeach
-
+          @foreach ($info as $data)
+          <div class="col-lg-3 col-md-4">
+            <div class="gallery-item" data-aos="zoom-in" data-aos-delay="100">
+              <a href="{{ url('') }}{{ Storage::url('') }}{{ $data->idm }}/{{ $data->file_name }}" class="gallery-lightbox">
+                {!! $data->content !!}
+              </a>
+            </div>
+          </div>
+          @endforeach
     
-
   </div>
-
 </div>
 </section><!-- End Gallery Section -->
 

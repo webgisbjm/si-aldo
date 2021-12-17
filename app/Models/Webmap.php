@@ -46,6 +46,7 @@ class Webmap extends Model
             ->leftjoin('categories', 'categories.id', '=', 'builds.categories_id')
             ->rightjoin('kecamatans', 'kecamatans.id', '=', 'builds.kecamatans_id')
             ->rightjoin('kelurahans', 'kelurahans.id', '=', 'builds.kelurahans_id')
+            ->select('builds.*', 'builds.id as buildId', 'categories.*', 'kelurahans.id as kelID', 'kelurahans.name')
             ->get();
     }
 
@@ -58,6 +59,7 @@ class Webmap extends Model
             ->where('categories.type', '=', 'MCK Umum')
             ->rightjoin('kecamatans', 'kecamatans.id', '=', 'builds.kecamatans_id')
             ->rightjoin('kelurahans', 'kelurahans.id', '=', 'builds.kelurahans_id')
+            ->select('builds.*', 'builds.id as buildId', 'categories.*', 'kelurahans.id as kelID', 'kelurahans.name')
             ->get();
     }
 
@@ -70,6 +72,7 @@ class Webmap extends Model
             ->where('categories.type', '=', 'MCK Umum')
             ->rightjoin('kecamatans', 'kecamatans.id', '=', 'builds.kecamatans_id')
             ->rightjoin('kelurahans', 'kelurahans.id', '=', 'builds.kelurahans_id')
+            ->select('builds.*', 'builds.id as buildId', 'categories.*', 'kelurahans.id as kelID', 'kelurahans.name')
             ->get();
     }
 
@@ -81,6 +84,7 @@ class Webmap extends Model
             ->where('categories.type', '=', 'MCK Komunal')
             ->rightjoin('kecamatans', 'kecamatans.id', '=', 'builds.kecamatans_id')
             ->rightjoin('kelurahans', 'kelurahans.id', '=', 'builds.kelurahans_id')
+            ->select('builds.*', 'builds.id as buildId', 'categories.*', 'kelurahans.id as kelID', 'kelurahans.name')
             ->get();
     }
 
@@ -93,6 +97,7 @@ class Webmap extends Model
             ->where('categories.type', '=', 'MCK Komunal')
             ->rightjoin('kecamatans', 'kecamatans.id', '=', 'builds.kecamatans_id')
             ->rightjoin('kelurahans', 'kelurahans.id', '=', 'builds.kelurahans_id')
+            ->select('builds.*', 'builds.id as buildId', 'categories.*', 'kelurahans.id as kelID', 'kelurahans.name')
             ->get();
     }
 
@@ -104,6 +109,7 @@ class Webmap extends Model
             ->where('categories.type', '=', 'IPAL Komunal')
             ->rightjoin('kecamatans', 'kecamatans.id', '=', 'builds.kecamatans_id')
             ->rightjoin('kelurahans', 'kelurahans.id', '=', 'builds.kelurahans_id')
+            ->select('builds.*', 'builds.id as buildId', 'categories.*', 'kelurahans.id as kelID', 'kelurahans.name')
             ->get();
     }
 
@@ -116,6 +122,7 @@ class Webmap extends Model
             ->where('categories.type', '=', 'IPAL Komunal')
             ->rightjoin('kecamatans', 'kecamatans.id', '=', 'builds.kecamatans_id')
             ->rightjoin('kelurahans', 'kelurahans.id', '=', 'builds.kelurahans_id')
+            ->select('builds.*', 'builds.id as buildId', 'categories.*', 'kelurahans.id as kelID', 'kelurahans.name')
             ->get();
     }
 
@@ -126,6 +133,7 @@ class Webmap extends Model
             ->join('categories', 'categories.id', '=', 'builds.categories_id')
             ->where('categories.type', '=', 'MCK Plus')
             ->join('kelurahans', 'kelurahans.id', '=', 'builds.kelurahans_id')
+            ->select('builds.*', 'builds.id as buildId', 'categories.*', 'kelurahans.id as kelID', 'kelurahans.name')
             ->get();
     }
 
@@ -137,6 +145,7 @@ class Webmap extends Model
             ->join('categories', 'categories.id', '=', 'builds.categories_id')
             ->where('categories.type', '=', 'MCK Plus')
             ->join('kelurahans', 'kelurahans.id', '=', 'builds.kelurahans_id')
+            ->select('builds.*', 'builds.id as buildId', 'categories.*', 'kelurahans.id as kelID', 'kelurahans.name')
             ->get();
     }
 
@@ -146,7 +155,7 @@ class Webmap extends Model
             ->leftjoin('categories', 'categories.id', '=', 'ipals.categories_id')
             ->select('ipals.*', 'categories.*')
             ->join('kelurahans', 'kelurahans.id', '=', 'ipals.kelurahans_id')
-            ->select('kelurahans.name as kelName', 'ipals.*', 'ipals.name as ipalName', 'categories.*')
+            ->select('kelurahans.name as kelName', 'ipals.name as ipalName', 'ipals.id as ipaldId', 'ipals.lat', 'ipals.lng', 'ipals.lat', 'ipals.address', 'ipals.year', 'ipals.capacity', 'categories.*')
             ->get();
     }
 

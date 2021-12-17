@@ -11,128 +11,103 @@ use App\Models\Build;
 use App\Models\BuildGallery;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
-use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\Response;
 use Yajra\DataTables\Facades\DataTables;
+use Intervention\Image\Facades\Image;
 
 class BuildGalleryController extends Controller
 {
     use MediaUploadingTrait;
 
-    public function index(Request $request)
+    public function index(Build $build)
     {
         abort_if(Gate::denies('build_gallery_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        if ($request->ajax()) {
-            $query = BuildGallery::with(['build'])->select(sprintf('%s.*', (new BuildGallery())->table));
-            $table = Datatables::of($query);
+        if (request()->ajax()) {
+            $query = BuildGallery::where('build_id', $build->id);
 
-            $table->addColumn('placeholder', '&nbsp;');
-            $table->addColumn('actions', '&nbsp;');
+            return DataTables::of($query)
 
-            $table->editColumn('actions', function ($row) {
-                $viewGate = 'build_gallery_show';
-                $editGate = 'build_gallery_edit';
-                $deleteGate = 'build_gallery_delete';
-                $crudRoutePart = 'build-galleries';
+                ->addColumn('placeholder', '&nbsp;')
 
-                return view('partials.datatablesActions', compact(
-                    'viewGate',
-                    'editGate',
-                    'deleteGate',
-                    'crudRoutePart',
-                    'row'
-                ));
-            });
+                ->editColumn('id', function ($row) {
+                    return $row->id ? $row->id : '';
+                })
 
-            $table->editColumn('id', function ($row) {
-                return $row->id ? $row->id : '';
-            });
+                ->editColumn('url', function ($row) {
+                    return '<center><a href="' . Storage::url($row->url) . '"><img width="50%" height="auto" src="' . Storage::url($row->url) . '"  /></a></center>';
+                })
 
-            $table->addColumn('build_address', function ($row) {
-                return $row->build ? $row->build->address : '';
-            });
+                ->rawColumns(['placeholder', 'build', 'url'])
 
-            $table->editColumn('photo', function ($row) {
-                if ($photo = $row->photo) {
-                    return sprintf(
-                        '<a href="%s" target="_blank"><img src="%s" width="50px" height="50px"></a>',
-                        $photo->url,
-                        $photo->thumbnail
-                    );
-                }
-
-                return '';
-            });
-
-            $table->rawColumns(['actions', 'placeholder', 'build', 'photo']);
-
-            return $table->make(true);
+                ->make();
         }
 
-        return view('admin.buildGalleries.index');
+        return view('admin.buildGalleries.index', compact('build'));
     }
 
-    public function create()
+    public function create(Build $build)
     {
         abort_if(Gate::denies('build_gallery_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $builds = Build::pluck('address', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        return view('admin.buildGalleries.create', compact('builds'));
+        return view('admin.buildGalleries.create', compact('build'));
     }
 
-    public function store(StoreBuildGalleryRequest $request)
+    public function store(StoreBuildGalleryRequest $request, Build $build)
     {
-        $buildGallery = BuildGallery::create($request->all());
+        $files = $request->file('files');
 
-        if ($request->input('photo', false)) {
-            $buildGallery->addMedia(storage_path('tmp/uploads/' . basename($request->input('photo'))))->toMediaCollection('photo');
-        }
+        if ($request->hasFile('files')) {
+            foreach ($files as $file) {
 
-        if ($media = $request->input('ck-media', false)) {
-            Media::whereIn('id', $media)->update(['model_id' => $buildGallery->id]);
-        }
+                $imgName = $file->getClientOriginalName();
+                $path = $file->storeAs('public/gallery', $imgName);
 
-        return redirect()->route('admin.build-galleries.index');
-    }
-
-    public function edit(BuildGallery $buildGallery)
-    {
-        abort_if(Gate::denies('build_gallery_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        $builds = Build::pluck('address', 'id')->prepend(trans('global.pleaseSelect'), '');
-
-        $buildGallery->load('build');
-
-        return view('admin.buildGalleries.edit', compact('builds', 'buildGallery'));
-    }
-
-    public function update(UpdateBuildGalleryRequest $request, BuildGallery $buildGallery)
-    {
-        $buildGallery->update($request->all());
-
-        if ($request->input('photo', false)) {
-            if (!$buildGallery->photo || $request->input('photo') !== $buildGallery->photo->file_name) {
-                if ($buildGallery->photo) {
-                    $buildGallery->photo->delete();
-                }
-                $buildGallery->addMedia(storage_path('tmp/uploads/' . basename($request->input('photo'))))->toMediaCollection('photo');
+                BuildGallery::create([
+                    'build_id' => $build->id,
+                    'url' => $path,
+                ]);
             }
-        } elseif ($buildGallery->photo) {
-            $buildGallery->photo->delete();
         }
 
-        return redirect()->route('admin.build-galleries.index');
+        return redirect()->route('admin.builds.gallery.index', $build->id)->with('success', 'Foto Berhasil Ditambahkan');;
+    }
+
+    public function edit($id)
+    {
+        // abort_if(Gate::denies('build_gallery_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+        // $buildGallery->load('build');
+
+        // return view('admin.buildGalleries.edit', compact('buildGallery'));
+    }
+
+    public function update(UpdateBuildGalleryRequest $request, $id)
+    {
+        // $build->update($request->all());
+
+        // if ($request->input('photo', false)) {
+        //     if (!$buildGallery->photo || $request->input('photo') !== $buildGallery->photo->file_name) {
+        //         if ($buildGallery->photo) {
+        //             $buildGallery->photo->delete();
+        //         }
+        //         $buildGallery->addMedia(storage_path('tmp/uploads/' . basename($request->input('photo'))))->toMediaCollection('photo');
+        //     }
+        // } elseif ($buildGallery->photo) {
+        //     $buildGallery->photo->delete();
+        // }
+
+        // return redirect()->route('admin.build-galleries.index');
     }
 
     public function show(BuildGallery $buildGallery)
     {
-        abort_if(Gate::denies('build_gallery_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        // abort_if(Gate::denies('build_gallery_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $buildGallery->load('build');
+        // $buildGallery->load('build');
 
-        return view('admin.buildGalleries.show', compact('buildGallery'));
+        // return view('admin.buildGalleries.show', compact('buildGallery'));
     }
 
     public function destroy(BuildGallery $buildGallery)
@@ -149,17 +124,5 @@ class BuildGalleryController extends Controller
         BuildGallery::whereIn('id', request('ids'))->delete();
 
         return response(null, Response::HTTP_NO_CONTENT);
-    }
-
-    public function storeCKEditorImages(Request $request)
-    {
-        abort_if(Gate::denies('build_gallery_create') && Gate::denies('build_gallery_edit'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        $model         = new BuildGallery();
-        $model->id     = $request->input('crud_id', 0);
-        $model->exists = true;
-        $media         = $model->addMediaFromRequest('upload')->toMediaCollection('ck-media');
-
-        return response()->json(['id' => $media->id, 'url' => $media->getUrl()], Response::HTTP_CREATED);
     }
 }

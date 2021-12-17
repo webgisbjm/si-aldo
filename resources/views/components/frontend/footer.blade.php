@@ -2,14 +2,14 @@
     <div class="container-xxl mx-auto main">
       <div class="d-flex flex-lg-row flex-column" style="margin-bottom: 5rem">
         <div class="left-col">
-          <img src="img/si-aldo.png" alt="">
+          <img src="{{ asset('img/si-aldo.png') }}" alt="">
           <h5 class="caption-font">
-            Sistem Informasi daring untuk memantau kegiatan pengelolaan air limbah domestik di Kota Banjarmasin, mengkomunikasikan pencapaian, mengevaluasi kegiatan, membuka kolaborasi, dan mendorong mekanisme pelaporan yang akuntabel.<br class="d-sm-block d-none" />
+            Sistem Informasi daring yang dikembangkan oleh Dinas PUPR Kota Banjarmasin untuk memantau kegiatan pengelolaan air limbah domestik di Kota Banjarmasin, mengkomunikasikan pencapaian, mengevaluasi kegiatan, membuka kolaborasi, dan mendorong mekanisme pelaporan yang akuntabel.<br class="d-sm-block d-none" />
           </h5>
         </div>
         <div class="right-col">
-          <div class="d-flex row gap-lg-0 gap-4">
-            <div class="col-lg-6">
+          <div class="d-flex row gap-lg-0 gap-4 mx-3">
+            <div class="col-lg-7">
               <h5 class="title-font">Tautan</h5>
               <nav class="list-unstyled list-footer d-grid gap-2">
                 <li>
@@ -27,7 +27,7 @@
               </nav>
             </div>
             
-            <div class="col-lg-6">
+            <div class="col-lg-5">
               <h5 class="title-font">Support</h5>
               <nav class="list-unstyled list-footer d-grid gap-2">
                 <li id="contact-link">
@@ -50,8 +50,8 @@
       <div class="mx-auto">
         <div
           class="container-xxl p-0 mx-auto d-flex flex-column-reverse flex-lg-row justify-content-between align-items-center gap-lg-0 gap-3">
-          <nav class="text-lg-start text-center credit-font">
-            <p>© 2021 Dinas PUPR Kota Banjarmasin. All rights reserved.</p>
+          <nav class="text-lg-start text-center credit-font col-md-6">
+              <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a>
           </nav>
           <div class="d-flex footer-icon align-items-center mb-2 mb-md-0 gap-4">
             <a href="">
@@ -105,4 +105,3 @@
 
     @include('components.frontend.modal')
   </footer>
-

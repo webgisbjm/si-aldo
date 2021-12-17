@@ -37,6 +37,11 @@
     axios.get('{{ route('api.ipals.index') }}')
     .then(function (response) {
         var marker = L.geoJSON(response.data, {
+            icon: L.icon({
+                iconSize: [24, 36],
+                iconAnchor: [12, 28],
+                popupAnchor: [0, -25]
+            }),
             pointToLayer: function(geoJsonPoint, latlng) {
                 return L.marker(latlng).bindPopup(function (layer) {
                     return layer.feature.properties.map_popup_content;

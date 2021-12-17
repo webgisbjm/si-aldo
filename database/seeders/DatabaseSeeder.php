@@ -19,6 +19,8 @@ class DatabaseSeeder extends Seeder
             KelurahansTableSeeder::class,
             CategoriesTableSeeder::class,
             BuildsTableSeeder::class,
+            IpalTableSeeder::class,
+            IpalKelurahanTableSeeder::class,
             PopulationsTableSeeder::class,
             RisksTableSeeder::class,
             SanitationsTableSeeder::class,
@@ -26,6 +28,7 @@ class DatabaseSeeder extends Seeder
             ContentCategoriesTableSeeder::class,
             ContentTagsTableSeeder::class,
             ContentPagesTableSeeder::class,
+            SpmTableSeeder::class,
         ]);
     }
 }

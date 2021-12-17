@@ -61,6 +61,23 @@
                         </li>
                     </ul>
 
+                    @auth
+                    <ul class="navbar-nav mb-2 mb-lg-0 mb-3" >
+                        <li class="nav-item">
+                            <a class="nav-link px-md-3" href="{{ route('admin.home') }}">
+                                {{ trans('global.dashboard') }}
+                            </a>
+                        </li>
+                    </ul>
+                    @endauth
+                    @guest
+                    <div class="d-flex">
+                        <a href="{{ route('login') }}" class="nav-link px-md-2">
+                                {{ trans('frontend.login') }}
+                        </a>
+                    </div>
+                    @endguest
+
                     {{-- <div class="navbar-form ms-0 d-flex" role="search">
                         <span class="form-group has-feedback">
                           <input id="searchbox" type="search" class="form-control" placeholder="{{ trans('global.search') }}..."/>

@@ -51,6 +51,8 @@ class IpalController extends Controller
     {
         $ipal = Ipal::create($request->all());
         $ipal['slug'] = Str::slug($request->name);
+
+        Ipal::create($ipal);
         $ipal->services()->sync($request->input('services', []));
 
         return redirect()->route('admin.ipals.index');
@@ -73,8 +75,10 @@ class IpalController extends Controller
 
     public function update(UpdateIpalRequest $request, Ipal $ipal)
     {
-        $ipal->update($request->all());
-        $ipal['slug'] = Str::slug($request->name);
+        $data = $request->all();
+        $data['slug'] = Str::slug($request->name);
+
+        $ipal->update($data);
 
         $ipal->services()->sync($request->input('services', []));
         if (count($ipal->photos) > 0) {

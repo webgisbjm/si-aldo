@@ -5,31 +5,30 @@
     <div class="card-header">
         {{ trans('global.create') }} {{ trans('cruds.buildGallery.title_singular') }}
     </div>
-
+    
     <div class="card-body">
-        <form method="POST" action="{{ route("admin.build-galleries.store") }}" enctype="multipart/form-data">
+        {{-- Validasi --}}
+        @if ($errors->any())
+        <div class="mb-5" role="alert">
+            <div class="bg-danger text-white fw-bold rounded-t px-4 py-2">
+                There's Something Wrong!
+            </div>
+            <div class="border border-t-0 rounded-b bg-danger px-4 py-3">
+                <p>
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </p>
+            </div>
+        </div>
+        @endif
+        <form method="POST" action="{{ route("admin.builds.gallery.store", $build->id) }}" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
-                <label for="build_id">{{ trans('cruds.buildGallery.fields.build') }}</label>
-                <select class="form-control select2 {{ $errors->has('build') ? 'is-invalid' : '' }}" name="build_id" id="build_id">
-                    @foreach($builds as $id => $entry)
-                        <option value="{{ $id }}" {{ old('build_id') == $id ? 'selected' : '' }}>{{ $entry }}</option>
-                    @endforeach
-                </select>
-                @if($errors->has('build'))
-                    <span class="text-danger">{{ $errors->first('build') }}</span>
-                @endif
-                <span class="help-block">{{ trans('cruds.buildGallery.fields.build_helper') }}</span>
-            </div>
-            <div class="form-group">
-                <label for="photo">{{ trans('cruds.buildGallery.fields.photo') }}</label>
-                <div class="needsclick dropzone {{ $errors->has('photo') ? 'is-invalid' : '' }}" id="photo-dropzone">
-                </div>
-                @if($errors->has('photo'))
-                    <span class="text-danger">{{ $errors->first('photo') }}</span>
-                @endif
-                <span class="help-block">{{ trans('cruds.buildGallery.fields.photo_helper') }}</span>
-            </div>
+                <label>{{ trans('cruds.buildGallery.fields.photo') }}</label>
+                <input type="file" multiple name="files[]" placeholder="Photos" accept="image/*" class="d-block w-100 bg-light text-gray-700 border border-light rounded py-3 px-4 leading-tight focus:outline-none">
             <div class="form-group">
                 <button class="btn btn-danger" type="submit">
                     {{ trans('global.save') }}

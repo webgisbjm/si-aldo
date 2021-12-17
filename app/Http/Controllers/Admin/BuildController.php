@@ -29,6 +29,7 @@ class BuildController extends Controller
             $table = Datatables::of($query);
 
             $table->addColumn('placeholder', '&nbsp;');
+            $table->addColumn('gallery', '&nbsp;');
             $table->addColumn('actions', '&nbsp;');
 
             $table->editColumn('actions', function ($row) {
@@ -36,6 +37,7 @@ class BuildController extends Controller
                 $editGate = 'build_edit';
                 $deleteGate = 'build_delete';
                 $crudRoutePart = 'builds';
+
 
                 return view('partials.datatablesActions', compact(
                     'viewGate',
@@ -85,7 +87,14 @@ class BuildController extends Controller
                 return $row->categories ? $row->categories->type : '';
             });
 
-            $table->rawColumns(['actions', 'placeholder', 'kecamatans', 'kelurahans', 'categories', 'status']);
+            $table->addColumn('gallery', function ($row) {
+                return '
+                <a href="' . route('admin.builds.gallery.index', $row->id) . '" class="btn btn-warning rounded-md px-2 py-1 d-inline-block">
+                    Gallery
+                </a>';
+            });
+
+            $table->rawColumns(['actions', 'gallery', 'placeholder', 'kecamatans', 'kelurahans', 'categories', 'status']);
 
             return $table->make(true);
         }

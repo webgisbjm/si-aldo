@@ -25,8 +25,8 @@
 <div class="lockscreen">
     <div class="lockscreen-wrapper">
         <div class="lockscreen-logo">
-            <a href="{{ route('admin.home') }}">
-                {{ trans('panel.site_title') }}
+            <a href="{{ url('/') }}">
+                <img src="{{ asset('img/si-aldo2.png') }}" alt="logo-sialdo">
             </a>
         </div>
 

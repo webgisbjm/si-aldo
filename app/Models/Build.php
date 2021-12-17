@@ -125,4 +125,9 @@ class Build extends Model
     {
         return $date->format('Y-m-d H:i:s');
     }
+
+    public function galleries()
+    {
+        return $this->hasMany(BuildGallery::class, 'build_id', 'id');
+    }
 }
