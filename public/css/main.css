@@ -272,15 +272,14 @@ ul {
 }
 
 .header-7-1 .btn-explore {
-    background-color: #fee500;
+    background-color: #3aad01;
     box-shadow: 0px 21px 45px 0px rgba(215, 236, 255, 0.61);
     transition: 0.1s;
     border-radius: 2rem;
 }
 
 .header-7-1 .btn-explore:hover {
-    background-color: #080808;
-    color: #fee500;
+    background-color: #2d7807;
     transition: 0.1s;
 }
 
@@ -493,10 +492,10 @@ h3 {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    background-color: #f3f711;
-    border: 2px solid #f3f711;
+    background-color: #99d000;
+    border: 2px solid #99d000;
     border-radius: 0.5em;
-    color: #1a1919;
+    color: #292928;
     cursor: pointer;
     display: flex;
     align-self: center;
@@ -512,8 +511,8 @@ h3 {
 
 .btn-explore:hover,
 .btn-explore:focus {
-    color: #f3f711;
-    background-color: #1a1919;
+    background-color: #3aad01;
+    color: #1a1919;
     border: none;
     outline: 0;
 }
@@ -544,10 +543,10 @@ h3 {
     right: 30px;
     z-index: 100;
     opacity: 0;
-    background-color: #fafd47;
+    background-color: #99d000;
     border: none;
     border-radius: 50%;
-    color: grey;
+    color: rgb(46, 45, 45);
     cursor: pointer;
     font-size: 16px;
     line-height: 48px;
@@ -557,7 +556,7 @@ h3 {
 }
 
 .scrollToTopBtn:hover {
-    background-color: #fbff00;
+    background-color: #31bd06;
 }
 
 .showBtn {

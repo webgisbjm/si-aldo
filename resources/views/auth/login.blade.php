@@ -10,7 +10,7 @@
             <div class="card mx-auto">
                 <div class="login-logo mt-2 mb-1">
                     <a href="{{ url('/') }}">
-                        <img src="{{ asset('img/si-aldo2.png') }}" alt="logo-sialdo">
+                        <img src="{{ asset('img/si-aldo3.png') }}" alt="logo-sialdo">
                     </a>
                 </div>
                 <div class="card-body login-card-body mt-0">

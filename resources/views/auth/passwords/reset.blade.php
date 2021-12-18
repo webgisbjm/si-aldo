@@ -4,7 +4,7 @@
     <div class="login-logo">
         <div class="login-logo">
             <a href="{{ url('/') }}">
-                <img src="{{ asset('img/si-aldo2.png') }}" alt="logo-sialdo">
+                <img src="{{ asset('img/si-aldo3.png') }}" alt="logo-sialdo">
             </a>
         </div>
     </div>

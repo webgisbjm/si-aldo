@@ -2,7 +2,7 @@
     <div class="container-xxl mx-auto main">
       <div class="d-flex flex-lg-row flex-column" style="margin-bottom: 5rem">
         <div class="left-col">
-          <img src="{{ asset('img/si-aldo.png') }}" alt="">
+          <img src="{{ asset('img/si-aldo4.png') }}" alt="">
           <h5 class="caption-font">
             Sistem Informasi daring yang dikembangkan oleh Dinas PUPR Kota Banjarmasin untuk memantau kegiatan pengelolaan air limbah domestik di Kota Banjarmasin, mengkomunikasikan pencapaian, mengevaluasi kegiatan, membuka kolaborasi, dan mendorong mekanisme pelaporan yang akuntabel.<br class="d-sm-block d-none" />
           </h5>

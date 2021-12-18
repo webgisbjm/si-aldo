@@ -10,7 +10,7 @@ class CreateDensitiesTable extends Migration
     {
         Schema::create('densities', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->float('area', 4, 3);
+            $table->float('area', 5, 2);
             $table->integer('population');
             $table->integer('density');
             $table->string('year');

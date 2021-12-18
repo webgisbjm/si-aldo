@@ -1,7 +1,7 @@
 <aside class="main-sidebar sidebar-dark-success elevation-4 overflow-y-hidden" style="min-height: 917px;">
     <!-- Brand Logo -->
     <a href="/" class="brand-link ">
-        <img src="{{ asset('img/brand.png') }}" alt="SI-ALDO" class="brand-image">
+        <img src="{{ asset('img/brand2.png') }}" alt="SI-ALDO" class="brand-image">
         <span class="brand-text">SI-ALDO</span>
     </a>
 

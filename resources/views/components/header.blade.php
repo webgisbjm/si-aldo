@@ -4,7 +4,7 @@
         <nav class="navbar navbar-expand-lg navbar-light" style="padding-top: 2rem; padding-bottom: 1rem">
             <div class="container-xxl d-flex gap-1">
                 <a class="navbar-brand" href="/">
-                    <img src="{{ asset('img/si-aldo.png') }}"
+                    <img src="{{ asset('img/si-aldo4.png') }}"
                         alt="logo si-aldo" />
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
