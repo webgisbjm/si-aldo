@@ -398,3 +398,9 @@
 .leaflet-grid-label .lng {
     text-shadow: -2px 0 #FFFFFF, 0 2px #FFFFFF, 2px 0 #FFFFFF, 0 -2px #FFFFFF;
 }
+
+.custom .leaflet-popup-content-wrapper,
+.custom .leaflet-popup-tip {
+    background-color: #0a0a0a;
+    color: #ffffff;
+}

@@ -45,7 +45,7 @@
                   {{ $loop->first ? 'selected' : '' }}"
                   data-img="{{ Storage::url($item->url) }}"
                 >
-                <a href="{{ Storage::url($item->url) }}" class="gallery-lightbox">
+                <a href="#slide{{ $i++ }}" class="gallery-lightbox">
                   <img
                     src="{{ Storage::url($item->url) }}"
                     alt="front"
@@ -122,6 +122,8 @@
         </div>
       </div>
       <div id="map" style="width: 100%; height: 75vh;"></div>
+        <p>Licensed Under by : <a href="https://opendatacommons.org/licenses/odbl/1-0/">Open Data Commons Open Database License (ODbL) v1.0</a>
+          <br>Source Route : <a href="http://project-osrm.org/">OSRM</a></p>
     </div>
   </div>
 </section>

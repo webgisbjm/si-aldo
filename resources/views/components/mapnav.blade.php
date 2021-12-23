@@ -22,25 +22,8 @@
                         <li class="nav-item">
                           <a class="nav-link px-md-3 {{ request()->is('webmap') ? 'active' : '' }}" href={{ url("/webmap") }}>WebGIS</a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-decoration-none" href="#"
-                                data-bs-toggle="dropdown">
-                                Tools
-                            </a>
-                            <ul class="dropdown-menu nav-dropdown">
-                                <li>
-                                    <div
-                                        class="dropdown-header-hover dropdown-item h-100 d-flex py-2 ps-2 align-items-center justify-content-start text-start">
-                                        <a href="#" class="text-decoration-none" id="list-btn" data-tool="data-list" data-target=".navbar-collapse.in">Data Sarana</a>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div
-                                        class="dropdown-header-hover dropdown-item h-100 d-flex py-2 ps-2 align-items-center justify-content-start text-start">
-                                        <a href="#" class="text-decoration-none">{{ trans('frontend.manual-book') }}</a>
-                                    </div>
-                                </li>
-                            </ul>
+                        <li class="nav-item">
+                          <a href="#" class="nav-link px-md-3" id="list-btn" data-bs-tool="data-list" data-bs-target=".navbar-collapse.in">Panel</a>
                         </li>
                         <!-- Kecamatan -->
                         <li class="nav-item dropdown">
@@ -100,7 +83,7 @@
                             <a class="nav-link" data-toggle="dropdown" href="#" data-bs-toggle="dropdown">
                                 <i class="fas fa-globe" aria-hidden="true"></i>&nbsp;{{ strtoupper(app()->getLocale()) }}
                             </a>
-                            <div class="dropdown-menu dropdown-header-hover dropdown-menu-right">
+                            <div class="dropdown-menu dropdown-header-hover dropdown-menu-right" style="z-index:2000;">
                                 @foreach(config('panel.available_languages') as $langLocale => $langName)
                                     <a class="dropdown-item" href="{{ url()->current() }}?change_language={{ $langLocale }}">{{ strtoupper($langLocale) }} ({{ $langName }})</a>
                                 @endforeach

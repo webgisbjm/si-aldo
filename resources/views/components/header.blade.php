@@ -29,7 +29,7 @@
                                 <li>
                                     <div
                                         class="dropdown-header-hover dropdown-item h-100 d-flex py-2 ps-2 align-items-center justify-content-start text-start">
-                                        <a href="/download" class="text-decoration-none">Peraturan</a>
+                                        <a href="/download" class="text-decoration-none">{{ trans('frontend.regulation') }}</a>
                                     </div>
                                 </li>
                                 <li>

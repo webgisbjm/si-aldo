@@ -22,7 +22,8 @@ class FrontendController extends Controller
     public function index(Request $request)
     {
         $gallery = Build::with(['galleries'])->latest()->get();
-        return view('v_landingpage', compact('gallery'));
+        $recommendations = BuildGallery::with(['builds'])->inRandomOrder()->limit(5)->get();
+        return view('v_landingpage', compact('gallery', 'recommendations'));
     }
 
     public function details(Request $request, $id)

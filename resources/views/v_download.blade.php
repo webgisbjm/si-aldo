@@ -13,16 +13,16 @@
 @section('content')
 <div class="container" style="font-family: 'Poppins', sans-serif">
     <div class="text-center my-3">
-        <h3>Peraturan-Peraturan Tentang Air Limbah Domestik</h3>
+        <h3>{{ trans('frontend.regulation_title') }}</h3>
     </div>
     <div class="table-responsive table-responsive-lg table-responsive-sm table-responsive-xl table-responsive-md overflow-auto">
         <table class="table table-bordered table-hover table-striped mb-none data-table" id="datatable">
             <thead class="bg-danger">
                 <tr>
-                    <th>Jenis Peraturan</th>
-                    <th>Nomor dan Tahun</th>
-                    <th>Judul</th>
-                    <th>Action</th>
+                    <th>{{ trans('frontend.regulation_type') }}</th>
+                    <th>{{ trans('frontend.regulation_series') }}</th>
+                    <th>{{ trans('frontend.title') }}</th>
+                    <th>{{ trans('frontend.download') }}</th>
                 </tr>
             </thead>
 

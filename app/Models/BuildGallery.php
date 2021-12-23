@@ -33,4 +33,9 @@ class BuildGallery extends Model
     {
         return $date->format('Y-m-d H:i:s');
     }
+
+    public function builds()
+    {
+        return $this->belongsTo(Build::class, 'build_id');
+    }
 }

@@ -15,8 +15,8 @@
 <section id="gallery" class="gallery">
   <div class="container">
     <div class="section-title" data-aos="fade-right" data-aos-delay="100">
-      <h2>Informasi Penanganan Air Limbah Domestik</h2>
-      <p>INFOGRAFIS</p>
+      <h2>{{ trans('frontend.info') }}</h2>
+      <p>{{ trans('frontend.infographic') }}</p>
     </div>
 
   <div class="row no-gutters" data-aos="fade-left">
